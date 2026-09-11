@@ -1,0 +1,78 @@
+{
+  "id": "unit8",
+  "order": 8,
+  "title": "Shopping (Einkaufen)",
+  "description": "Useful phrases for shopping in German.",
+  "vocab": [
+    { "id": "u8w1", "de": "Wie viel kostet das?", "en": "How much does this cost?" },
+    { "id": "u8w2", "de": "teuer", "en": "expensive" },
+    { "id": "u8w3", "de": "billig", "en": "cheap" },
+    { "id": "u8w4", "de": "der Preis", "en": "the price" },
+    { "id": "u8w5", "de": "die Größe", "en": "the size" },
+    { "id": "u8w6", "de": "bar bezahlen", "en": "to pay cash" },
+    { "id": "u8w7", "de": "mit Karte", "en": "by card" },
+    { "id": "u8w8", "de": "Ich möchte das kaufen", "en": "I would like to buy this" }
+  ],
+  "exercises": [
+    {
+      "type": "flashcard",
+      "wordId": "u8w2",
+      "front": "teuer",
+      "back": "expensive"
+    },
+    {
+      "type": "flashcard",
+      "wordId": "u8w6",
+      "front": "bar bezahlen",
+      "back": "to pay cash"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u8w3",
+      "prompt": "How do you say \"cheap\" in German?",
+      "options": ["der Preis", "billig", "teuer", "die Größe"],
+      "answer": "billig"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u8w4",
+      "prompt": "How do you say \"the price\" in German?",
+      "options": ["die Größe", "mit Karte", "der Preis", "bar bezahlen"],
+      "answer": "der Preis"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u8w2",
+      "prompt": "Das ist zu ___. (That is too expensive.)",
+      "answer": "teuer",
+      "hint": "expensive"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u8w5",
+      "prompt": "___ ist wichtig. (The size is important.)",
+      "answer": "Die Größe",
+      "hint": "the size"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u8w1",
+      "prompt": "Build the sentence: \"How much does this cost?\"",
+      "words": ["kostet", "das", "Wie", "viel", "teuer"],
+      "answer": "Wie viel kostet das"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u8w8",
+      "prompt": "Build the sentence: \"I would like to buy this\"",
+      "words": ["das", "kaufen", "Ich", "möchte", "bar"],
+      "answer": "Ich möchte das kaufen"
+    },
+    {
+      "type": "pronunciation",
+      "wordId": "u8w1",
+      "prompt": "Say this phrase out loud:",
+      "target": "Wie viel kostet das?"
+    }
+  ]
+}

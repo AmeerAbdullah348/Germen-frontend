@@ -1,0 +1,80 @@
+{
+  "id": "unit1",
+  "order": 3,
+  "title": "Im Café (At the Café)",
+  "description": "Order a coffee and snack in German — A1 scenario.",
+  "vocab": [
+    { "id": "u1w1", "de": "der Kaffee", "en": "coffee" },
+    { "id": "u1w2", "de": "der Tee", "en": "tea" },
+    { "id": "u1w3", "de": "das Wasser", "en": "water" },
+    { "id": "u1w4", "de": "der Kuchen", "en": "cake" },
+    { "id": "u1w5", "de": "bitte", "en": "please" },
+    { "id": "u1w6", "de": "danke", "en": "thank you" },
+    { "id": "u1w7", "de": "die Rechnung", "en": "the bill/check" },
+    { "id": "u1w8", "de": "lecker", "en": "tasty/delicious" },
+    { "id": "u1w9", "de": "ich möchte", "en": "I would like" },
+    { "id": "u1w10", "de": "der Zucker", "en": "sugar" }
+  ],
+  "exercises": [
+    {
+      "type": "flashcard",
+      "wordId": "u1w1",
+      "front": "der Kaffee",
+      "back": "coffee"
+    },
+    {
+      "type": "flashcard",
+      "wordId": "u1w9",
+      "front": "ich möchte",
+      "back": "I would like"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u1w2",
+      "prompt": "How do you say \"tea\" in German?",
+      "options": ["der Tee", "der Kaffee", "das Wasser", "der Kuchen"],
+      "answer": "der Tee"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u1w7",
+      "prompt": "Which word means \"the bill\"?",
+      "options": ["die Rechnung", "der Zucker", "lecker", "danke"],
+      "answer": "die Rechnung"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u1w9",
+      "prompt": "___ einen Kaffee, bitte. (I would like a coffee, please.)",
+      "answer": ["Ich möchte", "ich möchte"],
+      "hint": "I would like"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u1w4",
+      "prompt": "Der ___ ist sehr lecker. (The cake is very tasty.)",
+      "answer": ["Kuchen", "kuchen"],
+      "hint": "cake"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u1w6",
+      "prompt": "Build the sentence: \"Thank you very much\"",
+      "words": ["Danke", "vielen", "Dank"],
+      "answer": "Vielen Dank"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u1w7",
+      "prompt": "Build the sentence: \"The bill, please\"",
+      "words": ["bitte", "die", "Rechnung"],
+      "answer": "Die Rechnung bitte"
+    },
+    {
+      "type": "pronunciation",
+      "wordId": "u1w9",
+      "prompt": "Say this phrase out loud:",
+      "target": "Ich möchte einen Kaffee, bitte."
+    }
+  ]
+}

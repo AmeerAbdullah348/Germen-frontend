@@ -1,0 +1,78 @@
+{
+  "id": "unit5",
+  "order": 6,
+  "title": "Common Verbs (Verben)",
+  "description": "The most useful German verbs for beginners.",
+  "vocab": [
+    { "id": "u5w1", "de": "sein", "en": "to be" },
+    { "id": "u5w2", "de": "haben", "en": "to have" },
+    { "id": "u5w3", "de": "gehen", "en": "to go" },
+    { "id": "u5w4", "de": "essen", "en": "to eat" },
+    { "id": "u5w5", "de": "trinken", "en": "to drink" },
+    { "id": "u5w6", "de": "sprechen", "en": "to speak" },
+    { "id": "u5w7", "de": "verstehen", "en": "to understand" },
+    { "id": "u5w8", "de": "mögen", "en": "to like" }
+  ],
+  "exercises": [
+    {
+      "type": "flashcard",
+      "wordId": "u5w1",
+      "front": "sein",
+      "back": "to be"
+    },
+    {
+      "type": "flashcard",
+      "wordId": "u5w2",
+      "front": "haben",
+      "back": "to have"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u5w3",
+      "prompt": "How do you say \"to go\" in German?",
+      "options": ["essen", "gehen", "haben", "mögen"],
+      "answer": "gehen"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u5w6",
+      "prompt": "How do you say \"to speak\" in German?",
+      "options": ["verstehen", "trinken", "sprechen", "sein"],
+      "answer": "sprechen"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u5w4",
+      "prompt": "Ich ___ einen Apfel. (I eat an apple.)",
+      "answer": "esse",
+      "hint": "to eat"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u5w5",
+      "prompt": "Ich ___ Wasser. (I drink water.)",
+      "answer": "trinke",
+      "hint": "to drink"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u5w7",
+      "prompt": "Build the sentence: \"I understand German\"",
+      "words": ["Deutsch", "verstehe", "Ich", "gut"],
+      "answer": "Ich verstehe Deutsch"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u5w8",
+      "prompt": "Build the sentence: \"I like the coffee\"",
+      "words": ["den", "mag", "Kaffee", "Ich", "nicht"],
+      "answer": "Ich mag den Kaffee"
+    },
+    {
+      "type": "pronunciation",
+      "wordId": "u5w3",
+      "prompt": "Say this phrase out loud:",
+      "target": "Ich gehe nach Hause."
+    }
+  ]
+}

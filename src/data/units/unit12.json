@@ -1,0 +1,78 @@
+{
+  "id": "unit12",
+  "order": 11,
+  "title": "Common Sentences (Nützliche Sätze)",
+  "description": "High-value everyday sentences to use right away.",
+  "vocab": [
+    { "id": "u12w1", "de": "Wie spät ist es?", "en": "What time is it?" },
+    { "id": "u12w2", "de": "Ich habe eine Frage", "en": "I have a question" },
+    { "id": "u12w3", "de": "Können Sie mir helfen?", "en": "Can you help me?" },
+    { "id": "u12w4", "de": "Es tut mir leid", "en": "I'm sorry" },
+    { "id": "u12w5", "de": "Alles klar", "en": "All clear / understood" },
+    { "id": "u12w6", "de": "Kein Problem", "en": "No problem" },
+    { "id": "u12w7", "de": "Ich bin müde", "en": "I am tired" },
+    { "id": "u12w8", "de": "Das ist gut", "en": "That is good" }
+  ],
+  "exercises": [
+    {
+      "type": "flashcard",
+      "wordId": "u12w1",
+      "front": "Wie spät ist es?",
+      "back": "What time is it?"
+    },
+    {
+      "type": "flashcard",
+      "wordId": "u12w6",
+      "front": "Kein Problem",
+      "back": "No problem"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u12w2",
+      "prompt": "How do you say \"I have a question\" in German?",
+      "options": ["Ich bin müde", "Ich habe eine Frage", "Kein Problem", "Alles klar"],
+      "answer": "Ich habe eine Frage"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u12w7",
+      "prompt": "How do you say \"I am tired\" in German?",
+      "options": ["Das ist gut", "Ich bin müde", "Es tut mir leid", "Wie spät ist es?"],
+      "answer": "Ich bin müde"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u12w4",
+      "prompt": "Es tut mir ___. (I'm sorry.)",
+      "answer": "leid",
+      "hint": "sorry"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u12w3",
+      "prompt": "Können Sie mir ___? (Can you help me?)",
+      "answer": "helfen",
+      "hint": "help"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u12w1",
+      "prompt": "Build the sentence: \"What time is it?\"",
+      "words": ["ist", "es", "heute", "Wie", "spät"],
+      "answer": "Wie spät ist es"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u12w3",
+      "prompt": "Build the sentence: \"Can you help me?\"",
+      "words": ["mir", "bitte", "Sie", "helfen", "Können"],
+      "answer": "Können Sie mir helfen"
+    },
+    {
+      "type": "pronunciation",
+      "wordId": "u12w6",
+      "prompt": "Say this phrase out loud:",
+      "target": "Kein Problem"
+    }
+  ]
+}

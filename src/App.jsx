@@ -1,0 +1,67 @@
+import { Navigate, Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout'
+import { useAuth } from './lib/AuthContext'
+import Auth from './pages/Auth'
+import Chatbot from './pages/Chatbot'
+import Dashboard from './pages/Dashboard'
+import Lesson from './pages/Lesson'
+import Profile from './pages/Profile'
+
+function RequireUser({ children }) {
+  const { user, loading, hydrated } = useAuth()
+  if (loading) return null // avoid flashing a redirect while the session check is in flight
+  if (!user) return <Navigate to="/auth" replace />
+  if (!hydrated) return <LoadingScreen /> // pulling authoritative progress down from Supabase
+  return children
+}
+
+function LoadingScreen() {
+  return (
+    <div className="px-5 pt-8 flex flex-col gap-6 animate-pulse" aria-label="Loading your progress">
+      <div className="flex flex-col gap-2">
+        <div className="h-3 w-32 rounded bg-gray-200" />
+        <div className="h-6 w-40 rounded bg-gray-200" />
+      </div>
+      <div className="flex gap-3">
+        <div className="flex-1 h-16 rounded-2xl bg-gray-100" />
+        <div className="flex-1 h-16 rounded-2xl bg-gray-100" />
+      </div>
+      <div className="h-16 rounded-2xl bg-gray-100" />
+      <div className="flex flex-col gap-3">
+        <div className="h-5 w-24 rounded bg-gray-200" />
+        <div className="h-20 rounded-2xl bg-gray-100" />
+      </div>
+    </div>
+  )
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/auth" element={<Auth />} />
+
+      <Route
+        path="/lesson/:unitId"
+        element={
+          <RequireUser>
+            <Lesson />
+          </RequireUser>
+        }
+      />
+
+      <Route
+        element={
+          <RequireUser>
+            <Layout />
+          </RequireUser>
+        }
+      >
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/chatbot" element={<Chatbot />} />
+        <Route path="/profile" element={<Profile />} />
+      </Route>
+
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  )
+}

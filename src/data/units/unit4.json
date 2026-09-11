@@ -1,0 +1,78 @@
+{
+  "id": "unit4",
+  "order": 7,
+  "title": "Daily Conversation (Alltagsgespräche)",
+  "description": "Common questions and phrases for everyday small talk.",
+  "vocab": [
+    { "id": "u4w1", "de": "Wie heißt du?", "en": "What's your name?" },
+    { "id": "u4w2", "de": "Ich heiße...", "en": "My name is..." },
+    { "id": "u4w3", "de": "Woher kommst du?", "en": "Where are you from?" },
+    { "id": "u4w4", "de": "Ich komme aus...", "en": "I come from..." },
+    { "id": "u4w5", "de": "Wie alt bist du?", "en": "How old are you?" },
+    { "id": "u4w6", "de": "Ich verstehe nicht", "en": "I don't understand" },
+    { "id": "u4w7", "de": "Können Sie das wiederholen?", "en": "Can you repeat that?" },
+    { "id": "u4w8", "de": "Sprechen Sie Englisch?", "en": "Do you speak English?" }
+  ],
+  "exercises": [
+    {
+      "type": "flashcard",
+      "wordId": "u4w1",
+      "front": "Wie heißt du?",
+      "back": "What's your name?"
+    },
+    {
+      "type": "flashcard",
+      "wordId": "u4w6",
+      "front": "Ich verstehe nicht",
+      "back": "I don't understand"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u4w3",
+      "prompt": "How do you say \"Where are you from?\" in German?",
+      "options": ["Wie heißt du?", "Woher kommst du?", "Wie alt bist du?", "Sprechen Sie Englisch?"],
+      "answer": "Woher kommst du?"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u4w7",
+      "prompt": "How do you say \"Can you repeat that?\" in German?",
+      "options": ["Ich verstehe nicht", "Sprechen Sie Englisch?", "Können Sie das wiederholen?", "Woher kommst du?"],
+      "answer": "Können Sie das wiederholen?"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u4w2",
+      "prompt": "Ich ___ Sarah. (My name is Sarah.)",
+      "answer": "heiße",
+      "hint": "am named/called"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u4w5",
+      "prompt": "Wie ___ bist du? (How old are you?)",
+      "answer": "alt",
+      "hint": "old"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u4w1",
+      "prompt": "Build the sentence: \"What's your name?\"",
+      "words": ["du", "heißt", "Wie", "alt"],
+      "answer": "Wie heißt du"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u4w4",
+      "prompt": "Build the sentence: \"I come from Germany\"",
+      "words": ["aus", "komme", "Deutschland", "Ich", "heiße"],
+      "answer": "Ich komme aus Deutschland"
+    },
+    {
+      "type": "pronunciation",
+      "wordId": "u4w8",
+      "prompt": "Say this phrase out loud:",
+      "target": "Sprechen Sie Englisch?"
+    }
+  ]
+}

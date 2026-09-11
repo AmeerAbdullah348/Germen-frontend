@@ -1,0 +1,78 @@
+{
+  "id": "unit2",
+  "order": 2,
+  "title": "Basics (Grundlagen)",
+  "description": "Essential basic words to start forming simple German sentences.",
+  "vocab": [
+    { "id": "u2w1", "de": "ja", "en": "yes" },
+    { "id": "u2w2", "de": "nein", "en": "no" },
+    { "id": "u2w3", "de": "vielleicht", "en": "maybe" },
+    { "id": "u2w4", "de": "und", "en": "and" },
+    { "id": "u2w5", "de": "oder", "en": "or" },
+    { "id": "u2w6", "de": "ich", "en": "I" },
+    { "id": "u2w7", "de": "du", "en": "you (informal)" },
+    { "id": "u2w8", "de": "wir", "en": "we" }
+  ],
+  "exercises": [
+    {
+      "type": "flashcard",
+      "wordId": "u2w1",
+      "front": "ja",
+      "back": "yes"
+    },
+    {
+      "type": "flashcard",
+      "wordId": "u2w6",
+      "front": "ich",
+      "back": "I"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u2w2",
+      "prompt": "How do you say \"no\" in German?",
+      "options": ["vielleicht", "nein", "ja", "und"],
+      "answer": "nein"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u2w7",
+      "prompt": "How do you say \"you (informal)\" in German?",
+      "options": ["wir", "oder", "du", "ich"],
+      "answer": "du"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u2w4",
+      "prompt": "Ich habe einen Bruder ___ eine Schwester. (I have a brother and a sister.)",
+      "answer": "und",
+      "hint": "and"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u2w8",
+      "prompt": "___ gehen ins Kino. (We are going to the cinema.)",
+      "answer": "Wir",
+      "hint": "we"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u2w3",
+      "prompt": "Build the sentence: \"Maybe I will come later.\"",
+      "words": ["ich", "später.", "komme", "Vielleicht", "heute"],
+      "answer": "Vielleicht komme ich später."
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u2w5",
+      "prompt": "Build the sentence: \"Do you want tea or coffee?\"",
+      "words": ["Tee", "Kaffee?", "Möchtest", "du", "oder", "Wasser"],
+      "answer": "Möchtest du Tee oder Kaffee?"
+    },
+    {
+      "type": "pronunciation",
+      "wordId": "u2w2",
+      "prompt": "Say this phrase out loud:",
+      "target": "Nein, danke."
+    }
+  ]
+}

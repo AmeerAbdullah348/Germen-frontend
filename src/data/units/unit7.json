@@ -1,0 +1,68 @@
+{
+  "id": "unit7",
+  "order": 5,
+  "title": "Food (Essen)",
+  "description": "Everyday food vocabulary for German beginners.",
+  "vocab": [
+    { "id": "u7w1", "de": "das Brot", "en": "bread" },
+    { "id": "u7w2", "de": "die Milch", "en": "milk" },
+    { "id": "u7w3", "de": "das Ei", "en": "egg" },
+    { "id": "u7w4", "de": "das Fleisch", "en": "meat" },
+    { "id": "u7w5", "de": "das Gemüse", "en": "vegetable" },
+    { "id": "u7w6", "de": "das Obst", "en": "fruit" },
+    { "id": "u7w7", "de": "der Apfel", "en": "apple" },
+    { "id": "u7w8", "de": "der Reis", "en": "rice" }
+  ],
+  "exercises": [
+    { "type": "flashcard", "wordId": "u7w1", "front": "das Brot", "back": "bread" },
+    { "type": "flashcard", "wordId": "u7w2", "front": "die Milch", "back": "milk" },
+    {
+      "type": "multipleChoice",
+      "wordId": "u7w3",
+      "prompt": "How do you say \"egg\" in German?",
+      "options": ["das Fleisch", "das Ei", "der Apfel", "der Reis"],
+      "answer": "das Ei"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u7w7",
+      "prompt": "How do you say \"apple\" in German?",
+      "options": ["das Obst", "die Milch", "der Apfel", "das Gemüse"],
+      "answer": "der Apfel"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u7w4",
+      "prompt": "Ich esse gern ___ zum Abendessen. (I like to eat meat for dinner.)",
+      "answer": "Fleisch",
+      "hint": "meat"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u7w8",
+      "prompt": "Wir kochen ___ zum Mittagessen. (We cook rice for lunch.)",
+      "answer": "Reis",
+      "hint": "rice"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u7w5",
+      "prompt": "Build the sentence: \"I like to eat vegetables.\"",
+      "words": ["esse", "Ich", "Gemüse.", "gern", "Obst"],
+      "answer": "Ich esse gern Gemüse."
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u7w6",
+      "prompt": "Build the sentence: \"The fruit is fresh.\"",
+      "words": ["ist", "Das", "frisch.", "Obst", "Brot"],
+      "answer": "Das Obst ist frisch."
+    },
+    {
+      "type": "pronunciation",
+      "wordId": "u7w1",
+      "prompt": "Say this phrase out loud:",
+      "target": "Das Brot ist frisch."
+    }
+  ]
+}

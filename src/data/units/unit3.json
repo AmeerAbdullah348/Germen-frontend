@@ -1,0 +1,78 @@
+{
+  "id": "unit3",
+  "order": 1,
+  "title": "Greetings (Begrüßungen)",
+  "description": "Learn how to say hello and goodbye in German.",
+  "vocab": [
+    { "id": "u3w1", "de": "hallo", "en": "hello" },
+    { "id": "u3w2", "de": "guten Morgen", "en": "good morning" },
+    { "id": "u3w3", "de": "guten Tag", "en": "good day / hello (formal)" },
+    { "id": "u3w4", "de": "guten Abend", "en": "good evening" },
+    { "id": "u3w5", "de": "auf Wiedersehen", "en": "goodbye (formal)" },
+    { "id": "u3w6", "de": "tschüss", "en": "bye (informal)" },
+    { "id": "u3w7", "de": "wie geht es dir", "en": "how are you (informal)" },
+    { "id": "u3w8", "de": "gute Nacht", "en": "good night" }
+  ],
+  "exercises": [
+    {
+      "type": "flashcard",
+      "wordId": "u3w1",
+      "front": "hallo",
+      "back": "hello"
+    },
+    {
+      "type": "flashcard",
+      "wordId": "u3w4",
+      "front": "guten Abend",
+      "back": "good evening"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u3w2",
+      "prompt": "How do you say \"good morning\" in German?",
+      "options": ["guten Abend", "guten Morgen", "guten Tag", "gute Nacht"],
+      "answer": "guten Morgen"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u3w6",
+      "prompt": "How do you say \"bye (informal)\" in German?",
+      "options": ["auf Wiedersehen", "tschüss", "hallo", "guten Tag"],
+      "answer": "tschüss"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u3w3",
+      "prompt": "___, Herr Müller! (Good day, Mr. Müller!)",
+      "answer": "Guten Tag",
+      "hint": "good day / hello (formal)"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u3w7",
+      "prompt": "Hallo, ___? (Hello, how are you?)",
+      "answer": "wie geht es dir",
+      "hint": "how are you (informal)"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u3w5",
+      "prompt": "Build the sentence: \"Goodbye, see you tomorrow\"",
+      "words": ["bis", "heute", "Auf", "morgen", "Wiedersehen"],
+      "answer": "Auf Wiedersehen bis morgen"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u3w8",
+      "prompt": "Build the sentence: \"Good night and sleep well\"",
+      "words": ["schlaf", "schön", "Gute", "gut", "und", "Nacht"],
+      "answer": "Gute Nacht und schlaf gut"
+    },
+    {
+      "type": "pronunciation",
+      "wordId": "u3w1",
+      "prompt": "Say this phrase out loud:",
+      "target": "Hallo, wie geht es dir?"
+    }
+  ]
+}

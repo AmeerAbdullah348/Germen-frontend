@@ -1,0 +1,78 @@
+{
+  "id": "unit11",
+  "order": 12,
+  "title": "Grammar Basics (Grammatik-Grundlagen)",
+  "description": "The building blocks: to be, to have, and the three German articles.",
+  "vocab": [
+    { "id": "u11w1", "de": "ich bin", "en": "I am" },
+    { "id": "u11w2", "de": "du bist", "en": "you are (informal)" },
+    { "id": "u11w3", "de": "er/sie ist", "en": "he/she is" },
+    { "id": "u11w4", "de": "wir sind", "en": "we are" },
+    { "id": "u11w5", "de": "der", "en": "the (masculine)" },
+    { "id": "u11w6", "de": "die", "en": "the (feminine)" },
+    { "id": "u11w7", "de": "das", "en": "the (neuter)" },
+    { "id": "u11w8", "de": "ich habe", "en": "I have" }
+  ],
+  "exercises": [
+    {
+      "type": "flashcard",
+      "wordId": "u11w1",
+      "front": "ich bin",
+      "back": "I am"
+    },
+    {
+      "type": "flashcard",
+      "wordId": "u11w8",
+      "front": "ich habe",
+      "back": "I have"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u11w4",
+      "prompt": "How do you say \"we are\" in German?",
+      "options": ["wir sind", "du bist", "ich bin", "er/sie ist"],
+      "answer": "wir sind"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u11w6",
+      "prompt": "Which article means \"the (feminine)\"?",
+      "options": ["der", "die", "das", "ich habe"],
+      "answer": "die"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u11w1",
+      "prompt": "___ müde. (I am tired.)",
+      "answer": "Ich bin",
+      "hint": "I am"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u11w5",
+      "prompt": "___ Mann ist nett. (The man is nice.)",
+      "answer": "Der",
+      "hint": "the (masculine)"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u11w3",
+      "prompt": "Build the sentence: \"He is tired.\"",
+      "words": ["Er", "ist", "müde", "wir"],
+      "answer": "Er ist müde"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u11w7",
+      "prompt": "Build the sentence: \"The child is small.\"",
+      "words": ["Das", "Kind", "ist", "klein", "die"],
+      "answer": "Das Kind ist klein"
+    },
+    {
+      "type": "pronunciation",
+      "wordId": "u11w8",
+      "prompt": "Say this phrase out loud:",
+      "target": "Ich habe Zeit"
+    }
+  ]
+}

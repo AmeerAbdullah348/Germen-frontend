@@ -1,0 +1,78 @@
+{
+  "id": "unit9",
+  "order": 9,
+  "title": "Travel (Reisen)",
+  "description": "Get around and ask for directions while traveling in Germany.",
+  "vocab": [
+    { "id": "u9w1", "de": "der Bahnhof", "en": "train station" },
+    { "id": "u9w2", "de": "der Flughafen", "en": "airport" },
+    { "id": "u9w3", "de": "das Ticket", "en": "ticket" },
+    { "id": "u9w4", "de": "links", "en": "left" },
+    { "id": "u9w5", "de": "rechts", "en": "right" },
+    { "id": "u9w6", "de": "das Hotel", "en": "hotel" },
+    { "id": "u9w7", "de": "Wo ist...?", "en": "Where is...?" },
+    { "id": "u9w8", "de": "geradeaus", "en": "straight ahead" }
+  ],
+  "exercises": [
+    {
+      "type": "flashcard",
+      "wordId": "u9w1",
+      "front": "der Bahnhof",
+      "back": "train station"
+    },
+    {
+      "type": "flashcard",
+      "wordId": "u9w2",
+      "front": "der Flughafen",
+      "back": "airport"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u9w3",
+      "prompt": "How do you say \"ticket\" in German?",
+      "options": ["der Bahnhof", "das Ticket", "das Hotel", "rechts"],
+      "answer": "das Ticket"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u9w6",
+      "prompt": "How do you say \"hotel\" in German?",
+      "options": ["links", "der Flughafen", "das Hotel", "geradeaus"],
+      "answer": "das Hotel"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u9w7",
+      "prompt": "___ der Bahnhof? (Where is the train station?)",
+      "answer": "Wo ist",
+      "hint": "Where is...?"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u9w8",
+      "prompt": "Gehen Sie ___ zum Hotel. (Go straight ahead to the hotel.)",
+      "answer": "geradeaus",
+      "hint": "straight ahead"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u9w4",
+      "prompt": "Build the sentence: \"The airport is on the left.\"",
+      "words": ["Der", "Flughafen", "ist", "links", "rechts"],
+      "answer": "Der Flughafen ist links"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u9w5",
+      "prompt": "Build the sentence: \"The hotel is on the right.\"",
+      "words": ["Das", "Hotel", "ist", "rechts", "links"],
+      "answer": "Das Hotel ist rechts"
+    },
+    {
+      "type": "pronunciation",
+      "wordId": "u9w1",
+      "prompt": "Say this phrase out loud:",
+      "target": "der Bahnhof"
+    }
+  ]
+}

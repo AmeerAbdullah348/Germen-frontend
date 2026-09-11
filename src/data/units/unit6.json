@@ -1,0 +1,78 @@
+{
+  "id": "unit6",
+  "order": 4,
+  "title": "Family (Familie)",
+  "description": "Talk about your family members in German.",
+  "vocab": [
+    { "id": "u6w1", "de": "die Familie", "en": "family" },
+    { "id": "u6w2", "de": "die Mutter", "en": "mother" },
+    { "id": "u6w3", "de": "der Vater", "en": "father" },
+    { "id": "u6w4", "de": "die Schwester", "en": "sister" },
+    { "id": "u6w5", "de": "der Bruder", "en": "brother" },
+    { "id": "u6w6", "de": "die Kinder", "en": "children" },
+    { "id": "u6w7", "de": "die Großmutter", "en": "grandmother" },
+    { "id": "u6w8", "de": "der Großvater", "en": "grandfather" }
+  ],
+  "exercises": [
+    {
+      "type": "flashcard",
+      "wordId": "u6w1",
+      "front": "die Familie",
+      "back": "family"
+    },
+    {
+      "type": "flashcard",
+      "wordId": "u6w5",
+      "front": "der Bruder",
+      "back": "brother"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u6w3",
+      "prompt": "How do you say \"father\" in German?",
+      "options": ["die Schwester", "der Vater", "die Mutter", "der Bruder"],
+      "answer": "der Vater"
+    },
+    {
+      "type": "multipleChoice",
+      "wordId": "u6w6",
+      "prompt": "How do you say \"children\" in German?",
+      "options": ["die Großmutter", "der Großvater", "die Familie", "die Kinder"],
+      "answer": "die Kinder"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u6w2",
+      "prompt": "___ heißt Anna. (My mother is named Anna.)",
+      "answer": "Die Mutter",
+      "hint": "the mother"
+    },
+    {
+      "type": "fillBlank",
+      "wordId": "u6w8",
+      "prompt": "___ ist sehr alt. (My grandfather is very old.)",
+      "answer": "Der Großvater",
+      "hint": "the grandfather"
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u6w4",
+      "prompt": "Build the sentence: \"My sister is nice.\"",
+      "words": ["ist", "Schwester", "nett.", "Meine", "Bruder"],
+      "answer": "Meine Schwester ist nett."
+    },
+    {
+      "type": "sentenceBuilder",
+      "wordId": "u6w7",
+      "prompt": "Build the sentence: \"My grandmother likes to cook.\"",
+      "words": ["kocht", "Großmutter", "gern.", "Meine", "Vater"],
+      "answer": "Meine Großmutter kocht gern."
+    },
+    {
+      "type": "pronunciation",
+      "wordId": "u6w1",
+      "prompt": "Say this phrase out loud:",
+      "target": "Ich liebe meine Familie."
+    }
+  ]
+}
