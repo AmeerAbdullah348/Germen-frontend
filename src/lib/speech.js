@@ -10,13 +10,18 @@ export function isSpeechSynthesisSupported() {
   return typeof window !== 'undefined' && 'speechSynthesis' in window
 }
 
-export function speak(text, lang = 'de-DE') {
+export function speak(text, lang = 'de-DE', rate = 1) {
   if (!isSpeechSynthesisSupported()) return
   window.speechSynthesis.cancel() // avoid queuing/overlapping utterances on repeated taps
   const utterance = new SpeechSynthesisUtterance(text)
   utterance.lang = lang
+  utterance.rate = rate
   window.speechSynthesis.speak(utterance)
 }
+
+// Web Speech API's rate range is roughly 0.1-10; 0.7 reads clearly slowed
+// down without becoming unnaturally distorted.
+export const SLOW_RATE = 0.7
 
 // Returns a ready-to-use recognizer, or null if unsupported.
 export function createRecognizer(lang = 'de-DE') {

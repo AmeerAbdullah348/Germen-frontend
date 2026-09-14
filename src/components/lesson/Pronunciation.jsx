@@ -7,6 +7,7 @@ import {
   isSpeechSynthesisSupported,
   PASS_THRESHOLD,
   similarity,
+  SLOW_RATE,
   speak,
 } from '../../lib/speech'
 
@@ -26,6 +27,7 @@ export default function Pronunciation({ exercise, onResult }) {
   const [phase, setPhase] = useState('idle') // idle | listening | correct | retry | self-report
   const [attempts, setAttempts] = useState(0)
   const [errorMessage, setErrorMessage] = useState(null)
+  const [heardTranscript, setHeardTranscript] = useState(null)
   const recognitionRef = useRef(null)
   const timeoutRef = useRef(null)
 
@@ -39,8 +41,8 @@ export default function Pronunciation({ exercise, onResult }) {
     }
   }, [])
 
-  function handleListen() {
-    speak(exercise.target)
+  function handleListen(rate = 1) {
+    speak(exercise.target, 'de-DE', rate)
   }
 
   function stopListening(nextPhase, message) {
@@ -60,12 +62,14 @@ export default function Pronunciation({ exercise, onResult }) {
 
     recognitionRef.current = recognition
     setErrorMessage(null)
+    setHeardTranscript(null)
     setPhase('listening')
 
     recognition.onresult = (event) => {
       const transcript = event.results[0]?.[0]?.transcript ?? ''
       const score = similarity(transcript, exercise.target)
       setAttempts((a) => a + 1)
+      if (score < PASS_THRESHOLD) setHeardTranscript(transcript)
       stopListening(score >= PASS_THRESHOLD ? 'correct' : 'retry')
     }
 
@@ -129,13 +133,22 @@ export default function Pronunciation({ exercise, onResult }) {
       <p className="text-2xl font-semibold text-primary-700 text-center">{exercise.target}</p>
 
       {ttsSupported && (
-        <button
-          type="button"
-          onClick={handleListen}
-          className="flex items-center gap-2 text-primary-600 font-medium"
-        >
-          <Volume2 size={20} /> Listen
-        </button>
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={() => handleListen()}
+            className="flex items-center gap-2 text-primary-600 font-medium"
+          >
+            <Volume2 size={20} /> Listen
+          </button>
+          <button
+            type="button"
+            onClick={() => handleListen(SLOW_RATE)}
+            className="text-sm text-gray-400 font-medium"
+          >
+            Slower
+          </button>
+        </div>
       )}
 
       {phase === 'idle' && (
@@ -164,6 +177,9 @@ export default function Pronunciation({ exercise, onResult }) {
           <p className="text-sm text-gray-500 text-center">
             {errorMessage ?? 'Not quite — give it another try.'}
           </p>
+          {heardTranscript && (
+            <p className="text-xs text-gray-400 text-center">We heard: "{heardTranscript}"</p>
+          )}
           <div className="flex gap-3">
             <button
               type="button"
@@ -207,9 +223,18 @@ function SelfReport({ exercise, ttsSupported, onListen, note, onResult }) {
       <p className="text-2xl font-semibold text-primary-700 text-center">{exercise.target}</p>
 
       {ttsSupported && (
-        <button type="button" onClick={onListen} className="flex items-center gap-2 text-primary-600 font-medium">
-          <Volume2 size={20} /> Listen
-        </button>
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={() => onListen()}
+            className="flex items-center gap-2 text-primary-600 font-medium"
+          >
+            <Volume2 size={20} /> Listen
+          </button>
+          <button type="button" onClick={() => onListen(SLOW_RATE)} className="text-sm text-gray-400 font-medium">
+            Slower
+          </button>
+        </div>
       )}
 
       {note && <p className="text-sm text-gray-500 text-center">{note}</p>}

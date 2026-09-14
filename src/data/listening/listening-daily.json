@@ -1,0 +1,51 @@
+{
+  "id": "listening-daily",
+  "order": 4,
+  "level": "A1",
+  "title": "Everyday Phrases",
+  "description": "Listen to common everyday German phrases and identify their meaning.",
+  "exercises": [
+    {
+      "type": "listening",
+      "itemId": "listening-daily-ex1",
+      "audioText": "Wo ist der Bahnhof?",
+      "prompt": "What is being asked?",
+      "options": [
+        "Where is the train station?",
+        "Where is the hotel?",
+        "What time is it?",
+        "How much does it cost?"
+      ],
+      "answer": "Where is the train station?"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-daily-ex2",
+      "audioText": "Das kostet zehn Euro.",
+      "prompt": "How much does it cost?",
+      "options": ["5 euros", "10 euros", "15 euros", "20 euros"],
+      "answer": "10 euros"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-daily-ex3",
+      "audioText": "Ich verstehe nicht.",
+      "prompt": "What is the person saying?",
+      "options": ["I understand", "I don't understand", "I agree", "I don't know"],
+      "answer": "I don't understand"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-daily-ex4",
+      "audioText": "Können Sie das bitte wiederholen?",
+      "prompt": "What is being asked?",
+      "options": [
+        "Can you repeat that?",
+        "Can you help me?",
+        "Can you speak slower?",
+        "Can you write that down?"
+      ],
+      "answer": "Can you repeat that?"
+    }
+  ]
+}

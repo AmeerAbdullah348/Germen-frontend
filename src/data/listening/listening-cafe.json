@@ -1,0 +1,41 @@
+{
+  "id": "listening-cafe",
+  "order": 3,
+  "level": "A1",
+  "title": "Café Conversation",
+  "description": "Listen to café phrases and a short exchange, then answer questions.",
+  "exercises": [
+    {
+      "type": "listening",
+      "itemId": "listening-cafe-ex1",
+      "audioText": "Ich möchte einen Kaffee, bitte.",
+      "prompt": "What does the person want?",
+      "options": ["Tea", "Coffee", "Water", "Juice"],
+      "answer": "Coffee"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-cafe-ex2",
+      "audioText": "Der Kuchen ist sehr lecker.",
+      "prompt": "What is described as delicious?",
+      "options": ["The soup", "The bread", "The cake", "The coffee"],
+      "answer": "The cake"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-cafe-ex3",
+      "audioText": "Die Rechnung, bitte.",
+      "prompt": "What is being requested?",
+      "options": ["The menu", "The bill", "A table", "Water"],
+      "answer": "The bill"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-cafe-ex4",
+      "audioText": "Guten Tag! Ich möchte einen Tee und ein Stück Kuchen, bitte.",
+      "prompt": "What two things does the person order?",
+      "options": ["Coffee and cake", "Tea and cake", "Tea and bread", "Coffee and bread"],
+      "answer": "Tea and cake"
+    }
+  ]
+}

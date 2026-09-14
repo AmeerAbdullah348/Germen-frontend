@@ -1,0 +1,37 @@
+{
+  "id": "writing-translation",
+  "order": 1,
+  "level": "A1",
+  "title": "Translate to German",
+  "description": "Translate short English sentences into German.",
+  "exercises": [
+    {
+      "type": "fillBlank",
+      "itemId": "writing-translation-ex1",
+      "prompt": "Translate to German: \"I would like a coffee.\"",
+      "answer": ["Ich möchte einen Kaffee", "ich möchte einen kaffee"],
+      "hint": "Ich möchte + einen Kaffee"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "writing-translation-ex2",
+      "prompt": "Translate to German: \"I have a brother.\"",
+      "answer": ["Ich habe einen Bruder"],
+      "hint": "haben + einen Bruder"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "writing-translation-ex3",
+      "prompt": "Translate to German: \"The book is good.\"",
+      "answer": ["Das Buch ist gut"],
+      "hint": "Das Buch ist..."
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "writing-translation-ex4",
+      "prompt": "Translate to German: \"We are learning German.\"",
+      "answer": ["Wir lernen Deutsch"],
+      "hint": "wir + lernen"
+    }
+  ]
+}

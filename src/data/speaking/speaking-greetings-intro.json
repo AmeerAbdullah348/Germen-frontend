@@ -1,0 +1,33 @@
+{
+  "id": "speaking-greetings-intro",
+  "order": 1,
+  "level": "A1",
+  "title": "Greetings & Introductions",
+  "description": "Repeat these greetings and introductions out loud.",
+  "exercises": [
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-greetings-intro-ex1",
+      "prompt": "Say: \"Hello, my name is...\"",
+      "target": "Hallo, ich heiße..."
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-greetings-intro-ex2",
+      "prompt": "Say: \"Nice to meet you.\"",
+      "target": "Schön, dich kennenzulernen."
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-greetings-intro-ex3",
+      "prompt": "Say: \"How are you?\"",
+      "target": "Wie geht es dir?"
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-greetings-intro-ex4",
+      "prompt": "Say: \"I am fine, thank you.\"",
+      "target": "Mir geht es gut, danke."
+    }
+  ]
+}

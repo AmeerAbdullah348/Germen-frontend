@@ -1,4 +1,4 @@
-import { AlertTriangle, BookOpen, RefreshCw } from 'lucide-react'
+import { AlertTriangle, BookOpen, Headphones, Mic, PenLine, RefreshCw } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import Card from '../components/ui/Card'
 
@@ -8,6 +8,24 @@ const ENTRIES = [
     icon: BookOpen,
     title: 'Grammar',
     description: 'Learn German grammar topics, from articles to word order.',
+  },
+  {
+    to: '/listening',
+    icon: Headphones,
+    title: 'Listening',
+    description: 'Listen to German words, sentences, and short exchanges.',
+  },
+  {
+    to: '/speaking',
+    icon: Mic,
+    title: 'Speaking',
+    description: 'Repeat-after-me and sentence-level pronunciation practice.',
+  },
+  {
+    to: '/writing',
+    icon: PenLine,
+    title: 'Writing',
+    description: 'Translate, complete, fix, and rearrange German sentences.',
   },
   {
     to: '/review',

@@ -1,0 +1,33 @@
+{
+  "id": "speaking-cafe-orders",
+  "order": 2,
+  "level": "A1",
+  "title": "Ordering at a Café",
+  "description": "Practice saying these café phrases out loud.",
+  "exercises": [
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-cafe-orders-ex1",
+      "prompt": "Say: \"I would like a coffee, please.\"",
+      "target": "Ich möchte einen Kaffee, bitte."
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-cafe-orders-ex2",
+      "prompt": "Say: \"The bill, please.\"",
+      "target": "Die Rechnung, bitte."
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-cafe-orders-ex3",
+      "prompt": "Say: \"Do you have cake?\"",
+      "target": "Haben Sie Kuchen?"
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-cafe-orders-ex4",
+      "prompt": "Say: \"That was delicious.\"",
+      "target": "Das war sehr lecker."
+    }
+  ]
+}

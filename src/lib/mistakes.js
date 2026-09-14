@@ -14,6 +14,7 @@ export function getCorrectAnswerText(exercise) {
   switch (exercise.type) {
     case 'multipleChoice':
     case 'sentenceBuilder':
+    case 'listening':
       return exercise.answer
     case 'fillBlank':
       return Array.isArray(exercise.answer) ? exercise.answer[0] : exercise.answer
@@ -21,6 +22,8 @@ export function getCorrectAnswerText(exercise) {
       return exercise.back
     case 'pronunciation':
       return exercise.target
+    case 'writingPrompt':
+      return exercise.sampleAnswer
     default:
       return exercise.answer ?? ''
   }

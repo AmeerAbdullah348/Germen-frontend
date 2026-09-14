@@ -8,12 +8,18 @@ import Grammar from './pages/Grammar'
 import GrammarLesson from './pages/GrammarLesson'
 import GrammarTopic from './pages/GrammarTopic'
 import Lesson from './pages/Lesson'
+import Listening from './pages/Listening'
+import ListeningLesson from './pages/ListeningLesson'
 import Mistakes from './pages/Mistakes'
 import MistakesSession from './pages/MistakesSession'
 import Practice from './pages/Practice'
 import Profile from './pages/Profile'
 import Review from './pages/Review'
 import ReviewSession from './pages/ReviewSession'
+import Speaking from './pages/Speaking'
+import SpeakingLesson from './pages/SpeakingLesson'
+import Writing from './pages/Writing'
+import WritingLesson from './pages/WritingLesson'
 
 function RequireUser({ children }) {
   const { user, loading, hydrated } = useAuth()
@@ -85,6 +91,33 @@ export default function App() {
       />
 
       <Route
+        path="/listening/:lessonId"
+        element={
+          <RequireUser>
+            <ListeningLesson />
+          </RequireUser>
+        }
+      />
+
+      <Route
+        path="/speaking/:topicId"
+        element={
+          <RequireUser>
+            <SpeakingLesson />
+          </RequireUser>
+        }
+      />
+
+      <Route
+        path="/writing/:topicId"
+        element={
+          <RequireUser>
+            <WritingLesson />
+          </RequireUser>
+        }
+      />
+
+      <Route
         element={
           <RequireUser>
             <Layout />
@@ -95,6 +128,9 @@ export default function App() {
         <Route path="/practice" element={<Practice />} />
         <Route path="/grammar" element={<Grammar />} />
         <Route path="/grammar/:topicId" element={<GrammarTopic />} />
+        <Route path="/listening" element={<Listening />} />
+        <Route path="/speaking" element={<Speaking />} />
+        <Route path="/writing" element={<Writing />} />
         <Route path="/review" element={<Review />} />
         <Route path="/mistakes" element={<Mistakes />} />
         <Route path="/chatbot" element={<Chatbot />} />

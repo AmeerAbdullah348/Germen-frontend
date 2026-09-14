@@ -1,0 +1,37 @@
+{
+  "id": "writing-completion",
+  "order": 2,
+  "level": "A1",
+  "title": "Complete the Sentence",
+  "description": "Type the correctly conjugated verb to complete each sentence.",
+  "exercises": [
+    {
+      "type": "fillBlank",
+      "itemId": "writing-completion-ex1",
+      "prompt": "Ich ___ Deutsch. (learn)",
+      "answer": ["lerne"],
+      "hint": "ich-form of lernen"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "writing-completion-ex2",
+      "prompt": "Er ___ nach Berlin. (travels)",
+      "answer": ["fährt"],
+      "hint": "er-form of fahren"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "writing-completion-ex3",
+      "prompt": "Wir ___ ins Kino. (are going)",
+      "answer": ["gehen"],
+      "hint": "wir-form of gehen"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "writing-completion-ex4",
+      "prompt": "Sie ___ Deutsch sehr gut. (speaks)",
+      "answer": ["spricht"],
+      "hint": "sie-form of sprechen"
+    }
+  ]
+}

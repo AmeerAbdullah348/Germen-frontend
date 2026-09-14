@@ -1,0 +1,41 @@
+{
+  "id": "listening-greetings",
+  "order": 1,
+  "level": "A1",
+  "title": "Basic Greetings",
+  "description": "Listen to short German greetings and pick what you hear.",
+  "exercises": [
+    {
+      "type": "listening",
+      "itemId": "listening-greetings-ex1",
+      "audioText": "Guten Morgen!",
+      "prompt": "What greeting did you hear?",
+      "options": ["Good morning", "Good evening", "Good night", "Goodbye"],
+      "answer": "Good morning"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-greetings-ex2",
+      "audioText": "Guten Abend!",
+      "prompt": "What greeting did you hear?",
+      "options": ["Good morning", "Good evening", "Good afternoon", "Goodbye"],
+      "answer": "Good evening"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-greetings-ex3",
+      "audioText": "Wie geht es dir?",
+      "prompt": "What is being asked?",
+      "options": ["What's your name?", "How are you?", "Where are you from?", "How old are you?"],
+      "answer": "How are you?"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-greetings-ex4",
+      "audioText": "Auf Wiedersehen!",
+      "prompt": "What phrase did you hear?",
+      "options": ["Hello", "Thank you", "Goodbye", "Please"],
+      "answer": "Goodbye"
+    }
+  ]
+}

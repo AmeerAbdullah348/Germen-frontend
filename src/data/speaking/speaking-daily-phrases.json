@@ -1,0 +1,33 @@
+{
+  "id": "speaking-daily-phrases",
+  "order": 3,
+  "level": "A1",
+  "title": "Everyday Phrases",
+  "description": "Practice saying common everyday phrases out loud.",
+  "exercises": [
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-daily-phrases-ex1",
+      "prompt": "Say: \"I don't understand.\"",
+      "target": "Ich verstehe nicht."
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-daily-phrases-ex2",
+      "prompt": "Say: \"Can you repeat that, please?\"",
+      "target": "Können Sie das bitte wiederholen?"
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-daily-phrases-ex3",
+      "prompt": "Say: \"Excuse me.\"",
+      "target": "Entschuldigung."
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-daily-phrases-ex4",
+      "prompt": "Say: \"I need help.\"",
+      "target": "Ich brauche Hilfe."
+    }
+  ]
+}

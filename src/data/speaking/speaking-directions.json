@@ -1,0 +1,33 @@
+{
+  "id": "speaking-directions",
+  "order": 4,
+  "level": "A1",
+  "title": "Asking for Directions",
+  "description": "Practice saying these direction-related phrases out loud.",
+  "exercises": [
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-directions-ex1",
+      "prompt": "Say: \"Where is the train station?\"",
+      "target": "Wo ist der Bahnhof?"
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-directions-ex2",
+      "prompt": "Say: \"Go straight ahead.\"",
+      "target": "Gehen Sie geradeaus."
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-directions-ex3",
+      "prompt": "Say: \"Turn left.\"",
+      "target": "Biegen Sie links ab."
+    },
+    {
+      "type": "pronunciation",
+      "itemId": "speaking-directions-ex4",
+      "prompt": "Say: \"It's close by.\"",
+      "target": "Es ist in der Nähe."
+    }
+  ]
+}

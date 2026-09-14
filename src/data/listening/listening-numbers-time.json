@@ -1,0 +1,41 @@
+{
+  "id": "listening-numbers-time",
+  "order": 2,
+  "level": "A1",
+  "title": "Numbers & Time",
+  "description": "Listen for numbers and times in short German sentences.",
+  "exercises": [
+    {
+      "type": "listening",
+      "itemId": "listening-numbers-time-ex1",
+      "audioText": "Es ist neun Uhr.",
+      "prompt": "What time is it?",
+      "options": ["8 o'clock", "9 o'clock", "10 o'clock", "7 o'clock"],
+      "answer": "9 o'clock"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-numbers-time-ex2",
+      "audioText": "Ich habe drei Bücher.",
+      "prompt": "How many books does the speaker have?",
+      "options": ["Two", "Three", "Four", "Five"],
+      "answer": "Three"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-numbers-time-ex3",
+      "audioText": "Der Zug kommt um sieben Uhr.",
+      "prompt": "When does the train arrive?",
+      "options": ["6 o'clock", "7 o'clock", "8 o'clock", "9 o'clock"],
+      "answer": "7 o'clock"
+    },
+    {
+      "type": "listening",
+      "itemId": "listening-numbers-time-ex4",
+      "audioText": "Wir treffen uns um zwölf Uhr.",
+      "prompt": "What time do they meet?",
+      "options": ["11 o'clock", "12 o'clock", "1 o'clock", "2 o'clock"],
+      "answer": "12 o'clock"
+    }
+  ]
+}

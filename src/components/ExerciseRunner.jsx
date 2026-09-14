@@ -4,9 +4,11 @@ import Button from './ui/Button'
 import ProgressBar from './ui/ProgressBar'
 import Flashcard from './lesson/Flashcard'
 import FillBlank from './lesson/FillBlank'
+import Listening from './lesson/Listening'
 import MultipleChoice from './lesson/MultipleChoice'
 import Pronunciation from './lesson/Pronunciation'
 import SentenceBuilder from './lesson/SentenceBuilder'
+import WritingPrompt from './lesson/WritingPrompt'
 
 const EXERCISE_COMPONENTS = {
   flashcard: Flashcard,
@@ -14,6 +16,8 @@ const EXERCISE_COMPONENTS = {
   fillBlank: FillBlank,
   sentenceBuilder: SentenceBuilder,
   pronunciation: Pronunciation,
+  listening: Listening,
+  writingPrompt: WritingPrompt,
 }
 
 // Content-agnostic exercise session runner — extracted from the original

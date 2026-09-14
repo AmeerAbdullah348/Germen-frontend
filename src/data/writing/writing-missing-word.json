@@ -1,0 +1,37 @@
+{
+  "id": "writing-missing-word",
+  "order": 3,
+  "level": "A1",
+  "title": "Missing Word",
+  "description": "Type the missing word (article, ending, or contraction) to complete each sentence.",
+  "exercises": [
+    {
+      "type": "fillBlank",
+      "itemId": "writing-missing-word-ex1",
+      "prompt": "Der Mann ___ den Hund. (sees)",
+      "answer": ["sieht"],
+      "hint": "er/sie/es form of sehen"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "writing-missing-word-ex2",
+      "prompt": "Ich habe ___ Bruder. (a)",
+      "answer": ["einen"],
+      "hint": "ein → einen in the masculine accusative"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "writing-missing-word-ex3",
+      "prompt": "___ Auto ist neu. (The — neuter)",
+      "answer": ["Das", "das"],
+      "hint": "neuter definite article"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "writing-missing-word-ex4",
+      "prompt": "Wir gehen ___ Kino. (to the — contracted)",
+      "answer": ["ins"],
+      "hint": "in + das = ins"
+    }
+  ]
+}

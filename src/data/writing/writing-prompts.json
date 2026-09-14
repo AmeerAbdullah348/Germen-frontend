@@ -1,0 +1,33 @@
+{
+  "id": "writing-prompts",
+  "order": 5,
+  "level": "A1",
+  "title": "Short Writing Prompts",
+  "description": "Write a short free-response answer in German, then compare it to a model answer.",
+  "exercises": [
+    {
+      "type": "writingPrompt",
+      "itemId": "writing-prompts-ex1",
+      "prompt": "Introduce yourself in 1-2 German sentences (name + where you're from).",
+      "sampleAnswer": "Ich heiße Anna. Ich komme aus Deutschland."
+    },
+    {
+      "type": "writingPrompt",
+      "itemId": "writing-prompts-ex2",
+      "prompt": "Describe your morning routine in 1-2 German sentences.",
+      "sampleAnswer": "Ich stehe um sieben Uhr auf. Dann trinke ich Kaffee."
+    },
+    {
+      "type": "writingPrompt",
+      "itemId": "writing-prompts-ex3",
+      "prompt": "Order something at a café in German (1-2 sentences).",
+      "sampleAnswer": "Ich möchte einen Kaffee und ein Stück Kuchen, bitte."
+    },
+    {
+      "type": "writingPrompt",
+      "itemId": "writing-prompts-ex4",
+      "prompt": "Describe your family in 1-2 German sentences.",
+      "sampleAnswer": "Ich habe einen Bruder und eine Schwester. Meine Familie ist klein."
+    }
+  ]
+}
