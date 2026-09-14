@@ -119,6 +119,13 @@ export function getDueWordIds(allWordIds, now = new Date()) {
   return due.slice(0, MAX_DUE_PER_SESSION)
 }
 
+// A unit is "complete" once every one of its words has been answered at
+// least once — reuses the existing SM-2 word records instead of tracking a
+// separate completion flag.
+export function isUnitComplete(unit, state = getState()) {
+  return unit.vocab.every((word) => Boolean(state.words[word.id]))
+}
+
 const XP_PER_LEVEL = 100
 
 export function getLevel(xp) {
