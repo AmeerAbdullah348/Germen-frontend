@@ -124,6 +124,20 @@ export async function flushPendingSync(userId) {
   }
 }
 
+// Placement results are a low-frequency, historical log (one row per
+// attempt) — unlike words/items/mistakes there's no offline retry queue for
+// this; the local placementLevel (progress.js) already took effect
+// immediately and is durable on this device regardless of whether this push
+// succeeds. This call is fire-and-forget so it never blocks the results screen.
+export async function savePlacementResult(userId, estimatedLevel, rawScores) {
+  if (!isSupabaseConfigured || !userId) return
+  await supabase.from('placement_results').insert({
+    user_id: userId,
+    estimated_level: estimatedLevel,
+    raw_scores: rawScores,
+  })
+}
+
 // Fetched lazily by the Mistakes page (not during login hydration, unlike
 // words/items/profile) — this is a log a user browses, not current state
 // that needs to be ready before the rest of the app can render.
@@ -165,11 +179,18 @@ export async function hydrateFromRemote(userId) {
 
   const current = getState()
 
-  const [profileRes, wordRes, itemRes, favoriteRes] = await Promise.all([
+  const [profileRes, wordRes, itemRes, favoriteRes, placementRes] = await Promise.all([
     supabase.from('profiles').select('*').eq('id', userId).maybeSingle(),
     supabase.from('word_progress').select('*').eq('user_id', userId),
     supabase.from('item_progress').select('*').eq('user_id', userId),
     supabase.from('favorites').select('word_id').eq('user_id', userId),
+    supabase
+      .from('placement_results')
+      .select('estimated_level')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle(),
   ])
 
   const words = wordRes.error
@@ -182,6 +203,10 @@ export async function hydrateFromRemote(userId) {
         (itemRes.data ?? []).map((row) => [`${row.item_type}:${row.item_id}`, fromRemoteItemRow(row)])
       )
 
+  const placementLevel = placementRes.error
+    ? current.placementLevel
+    : (placementRes.data?.estimated_level ?? current.placementLevel)
+
   overwriteState({
     name: profileRes.error ? current.name : (profileRes.data?.name ?? current.name),
     xp: profileRes.error ? current.xp : (profileRes.data?.xp ?? current.xp),
@@ -190,6 +215,7 @@ export async function hydrateFromRemote(userId) {
       : { count: profileRes.data?.streak_count ?? 0, lastActiveDay: profileRes.data?.last_active_day ?? null },
     words,
     items,
+    placementLevel,
   })
 
   if (!favoriteRes.error) {

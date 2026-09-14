@@ -1,9 +1,12 @@
 import { LogOut } from 'lucide-react'
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { Link } from 'react-router-dom'
 import Badge from '../components/ui/Badge'
+import Card from '../components/ui/Card'
 import SyncStatus from '../components/SyncStatus'
 import { UNITS } from '../data/units'
 import { signOut } from '../lib/auth'
+import { LEVEL_LABELS } from '../lib/levels'
 import { getMasteryLabel } from '../lib/mastery'
 import { getLevel, getState } from '../lib/progress'
 
@@ -54,6 +57,18 @@ export default function Profile() {
           <LogOut size={16} /> Log out
         </button>
       </div>
+
+      <Card as={Link} to="/placement" interactive className="flex items-center justify-between">
+        <div>
+          <p className="text-xs font-semibold text-gray-500">CEFR level</p>
+          <p className="font-medium text-gray-900">
+            {state.placementLevel ? `${state.placementLevel} · ${LEVEL_LABELS[state.placementLevel]}` : 'Not tested yet'}
+          </p>
+        </div>
+        <span className="text-sm text-primary-600 font-medium">
+          {state.placementLevel ? 'Retake test' : 'Take test'}
+        </span>
+      </Card>
 
       <div>
         <h2 className="text-lg font-medium text-gray-800 mb-2">Mastery breakdown</h2>

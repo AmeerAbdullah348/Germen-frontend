@@ -23,6 +23,7 @@ function defaultState() {
     items: {}, // "<itemType>:<itemId>" -> SM-2 card (grammar, listening, ...)
     xp: 0,
     streak: { count: 0, lastActiveDay: null },
+    placementLevel: null, // CEFR code from the most recent placement test, if any
   }
 }
 
@@ -153,6 +154,18 @@ export function bumpStreak(now = new Date()) {
   state.streak = { count: newCount, lastActiveDay: today }
   saveState(state)
   markProfileDirty()
+  return state
+}
+
+// Placement test result — a pure recommendation, never touches words/items,
+// so retaking it can't destroy or reset any existing progress. Persisted
+// locally immediately (so level-unlocking takes effect right away); the
+// historical row in Supabase's placement_results table is pushed separately
+// and best-effort (see remoteSync.js's savePlacementResult).
+export function setPlacementLevel(level) {
+  const state = getState()
+  state.placementLevel = level
+  saveState(state)
   return state
 }
 

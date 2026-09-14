@@ -16,6 +16,7 @@ import Listening from './pages/Listening'
 import ListeningLesson from './pages/ListeningLesson'
 import Mistakes from './pages/Mistakes'
 import MistakesSession from './pages/MistakesSession'
+import PlacementTest from './pages/PlacementTest'
 import Practice from './pages/Practice'
 import Profile from './pages/Profile'
 import Reading from './pages/Reading'
@@ -150,6 +151,15 @@ export default function App() {
         element={
           <RequireUser>
             <ReadingQuestions />
+          </RequireUser>
+        }
+      />
+
+      <Route
+        path="/placement"
+        element={
+          <RequireUser>
+            <PlacementTest />
           </RequireUser>
         }
       />

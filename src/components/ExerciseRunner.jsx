@@ -32,6 +32,7 @@ export default function ExerciseRunner({
   exitTo = '/',
   finishedTitle = 'Lesson complete! 🎉',
   backLabel = 'Back to Dashboard',
+  renderFinished,
 }) {
   const [index, setIndex] = useState(0)
   const [score, setScore] = useState({ correct: 0, total: 0 })
@@ -65,6 +66,11 @@ export default function ExerciseRunner({
   }
 
   if (finished) {
+    // Callers that need a custom completion screen (e.g. the placement test's
+    // CEFR estimate + recommendation) can render their own instead of the
+    // default score summary — everything else about the session is unchanged.
+    if (renderFinished) return renderFinished(score)
+
     return (
       <div className="min-h-svh flex flex-col items-center justify-center gap-4 px-6 text-center mx-auto max-w-md">
         <h1 className="text-2xl font-semibold text-gray-900">{finishedTitle}</h1>

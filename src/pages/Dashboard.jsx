@@ -1,4 +1,4 @@
-import { Flame, Lock, Search, Star, Target, X } from 'lucide-react'
+import { ChevronRight, Flame, GraduationCap, Lock, Search, Star, Target, X } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Badge from '../components/ui/Badge'
@@ -7,6 +7,7 @@ import ProgressBar from '../components/ui/ProgressBar'
 import SyncStatus from '../components/SyncStatus'
 import { UNITS } from '../data/units'
 import { getLevelGroups } from '../lib/levels'
+import { getRecommendations } from '../lib/recommendations'
 import {
   DAILY_XP_GOAL,
   getDailyXp,
@@ -67,6 +68,7 @@ export default function Dashboard() {
   const [query, setQuery] = useState('')
 
   const levelGroups = useMemo(() => getLevelGroups(UNITS, state), [state])
+  const recommendations = useMemo(() => getRecommendations(new Date(), state), [state])
 
   const searchResults = useMemo(() => {
     const trimmed = query.trim()
@@ -122,6 +124,43 @@ export default function Dashboard() {
           colorClassName={dailyGoalPct >= 100 ? 'bg-success' : 'bg-accent-400'}
         />
       </Card>
+
+      {!state.placementLevel && (
+        <Card
+          as="button"
+          type="button"
+          interactive
+          onClick={() => navigate('/placement')}
+          className="text-left flex items-center gap-3"
+        >
+          <div className="shrink-0 h-11 w-11 rounded-full bg-primary-50 flex items-center justify-center">
+            <GraduationCap className="text-primary-500" size={22} />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="font-medium text-gray-900">Find your level</p>
+            <p className="text-sm text-gray-500">Take a quick placement test to unlock the right content.</p>
+          </div>
+        </Card>
+      )}
+
+      {recommendations.length > 0 && (
+        <div className="flex flex-col gap-2">
+          <h2 className="text-sm font-semibold text-gray-500">Recommended for you</h2>
+          {recommendations.map((rec) => (
+            <Card
+              key={rec.id}
+              as="button"
+              type="button"
+              interactive
+              onClick={() => navigate(rec.to)}
+              className="text-left flex items-center justify-between"
+            >
+              <span className="text-gray-800 font-medium">{rec.label}</span>
+              <ChevronRight className="text-gray-300" size={18} />
+            </Card>
+          ))}
+        </div>
+      )}
 
       <div className="relative">
         <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" size={18} />

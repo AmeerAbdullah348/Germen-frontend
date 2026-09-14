@@ -2,6 +2,7 @@ import {
   AlertTriangle,
   BookMarked,
   BookOpen,
+  GraduationCap,
   Headphones,
   LibraryBig,
   Mic,
@@ -14,6 +15,12 @@ import { useNavigate } from 'react-router-dom'
 import Card from '../components/ui/Card'
 
 const ENTRIES = [
+  {
+    to: '/placement',
+    icon: GraduationCap,
+    title: 'Placement Test',
+    description: 'Find your CEFR level and unlock the right content.',
+  },
   {
     to: '/grammar',
     icon: BookOpen,

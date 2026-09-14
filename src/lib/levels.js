@@ -18,13 +18,21 @@ export const LEVEL_LABELS = {
 // previous level has been completed at least once. The first level with any
 // items is always unlocked. `isComplete` defaults to unit completion so the
 // Dashboard's existing call site (getLevelGroups(UNITS, state)) is unchanged.
-export function getLevelGroups(items, state, { isComplete = isUnitComplete } = {}) {
+//
+// A placement test result additionally unlocks every level up to and
+// including the estimated level, independent of real completion — so a
+// placement-tested user can jump straight to B1 content without grinding
+// through A1/A2 first. This never revokes access earned through real
+// completion, and levels beyond the placement estimate still require it.
+export function getLevelGroups(items, state, { isComplete = isUnitComplete, placementLevel = state.placementLevel } = {}) {
   const byLevel = new Map()
   for (const item of items) {
     const level = item.level || 'A1'
     if (!byLevel.has(level)) byLevel.set(level, [])
     byLevel.get(level).push(item)
   }
+
+  const placementIndex = placementLevel ? LEVEL_ORDER.indexOf(placementLevel) : -1
 
   const groups = []
   let previousComplete = true
@@ -33,7 +41,10 @@ export function getLevelGroups(items, state, { isComplete = isUnitComplete } = {
     if (!levelItems || levelItems.length === 0) continue
 
     const completedCount = levelItems.filter((item) => isComplete(item, state)).length
-    const unlocked = previousComplete
+    const levelIndex = LEVEL_ORDER.indexOf(level)
+    const unlockedByPlacement = placementIndex >= 0 && levelIndex <= placementIndex
+    const unlocked = previousComplete || unlockedByPlacement
+
     groups.push({
       level,
       label: LEVEL_LABELS[level] || level,

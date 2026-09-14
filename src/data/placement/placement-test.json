@@ -1,0 +1,157 @@
+{
+  "questions": [
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-vocab-1",
+      "section": "vocabulary",
+      "level": "A1",
+      "prompt": "What does 'der Kaffee' mean?",
+      "options": ["coffee", "tea", "water", "juice"],
+      "answer": "coffee"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-vocab-2",
+      "section": "vocabulary",
+      "level": "A1",
+      "prompt": "What does 'die Familie' mean?",
+      "options": ["family", "friend", "house", "city"],
+      "answer": "family"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-vocab-3",
+      "section": "vocabulary",
+      "level": "A2",
+      "prompt": "What does 'die Rechnung' mean?",
+      "options": ["the bill", "the menu", "the table", "the kitchen"],
+      "answer": "the bill"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-vocab-4",
+      "section": "vocabulary",
+      "level": "B1",
+      "prompt": "What does 'die Erfahrung' mean?",
+      "options": ["experience", "expectation", "explanation", "exhibition"],
+      "answer": "experience"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-grammar-1",
+      "section": "grammar",
+      "level": "A1",
+      "prompt": "Ich ___ Deutsch. (learn)",
+      "options": ["lerne", "lernst", "lernt", "lernen"],
+      "answer": "lerne"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-grammar-2",
+      "section": "grammar",
+      "level": "A1",
+      "prompt": "Which article goes with 'Buch' (book, neuter)?",
+      "options": ["der", "die", "das", "den"],
+      "answer": "das"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-grammar-3",
+      "section": "grammar",
+      "level": "A2",
+      "prompt": "Er hat das Buch ___. (read — past participle)",
+      "options": ["lesen", "gelesen", "liest", "las"],
+      "answer": "gelesen"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-grammar-4",
+      "section": "grammar",
+      "level": "B1",
+      "prompt": "das Auto ___ Mannes (the man's car)",
+      "options": ["der", "den", "dem", "des"],
+      "answer": "des"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-reading-1",
+      "section": "reading",
+      "level": "A1",
+      "prompt": "Read: \"Ich stehe um sieben Uhr auf.\" What time does the person get up?",
+      "options": ["6 o'clock", "7 o'clock", "8 o'clock", "9 o'clock"],
+      "answer": "7 o'clock"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-reading-2",
+      "section": "reading",
+      "level": "A1",
+      "prompt": "Read: \"Der Kaffee ist heiß.\" What is hot?",
+      "options": ["The tea", "The coffee", "The soup", "The bread"],
+      "answer": "The coffee"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-reading-3",
+      "section": "reading",
+      "level": "A2",
+      "prompt": "Read: \"Nachdem sie gegessen hatte, ging sie ins Bett.\" What happened first?",
+      "options": ["She went to bed", "She ate", "She woke up", "She left the house"],
+      "answer": "She ate"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "placement-reading-4",
+      "section": "reading",
+      "level": "B1",
+      "prompt": "Read: \"Obwohl es regnete, ging er spazieren.\" What is true?",
+      "options": [
+        "He stayed inside because of the rain",
+        "He went for a walk despite the rain",
+        "It was sunny",
+        "He canceled his walk"
+      ],
+      "answer": "He went for a walk despite the rain"
+    },
+    {
+      "type": "listening",
+      "itemId": "placement-listening-1",
+      "section": "listening",
+      "level": "A1",
+      "audioText": "Guten Morgen!",
+      "prompt": "What greeting did you hear?",
+      "options": ["Good morning", "Good evening", "Good night", "Goodbye"],
+      "answer": "Good morning"
+    },
+    {
+      "type": "listening",
+      "itemId": "placement-listening-2",
+      "section": "listening",
+      "level": "A1",
+      "audioText": "Ich möchte einen Tee, bitte.",
+      "prompt": "What does the person want?",
+      "options": ["Coffee", "Tea", "Water", "Juice"],
+      "answer": "Tea"
+    },
+    {
+      "type": "listening",
+      "itemId": "placement-listening-3",
+      "section": "listening",
+      "level": "A2",
+      "audioText": "Der Zug fährt um acht Uhr ab.",
+      "prompt": "When does the train leave?",
+      "options": ["7 o'clock", "8 o'clock", "9 o'clock", "10 o'clock"],
+      "answer": "8 o'clock"
+    },
+    {
+      "type": "listening",
+      "itemId": "placement-listening-4",
+      "section": "listening",
+      "level": "B1",
+      "audioText": "Ich hätte gerne einen Tisch für zwei Personen reserviert.",
+      "prompt": "What is being requested?",
+      "options": ["A table reservation for two", "A room for one night", "A taxi", "A menu"],
+      "answer": "A table reservation for two"
+    }
+  ]
+}
