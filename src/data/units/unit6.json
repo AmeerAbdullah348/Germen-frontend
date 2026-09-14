@@ -5,14 +5,14 @@
   "title": "Family (Familie)",
   "description": "Talk about your family members in German.",
   "vocab": [
-    { "id": "u6w1", "de": "die Familie", "en": "family" },
-    { "id": "u6w2", "de": "die Mutter", "en": "mother" },
-    { "id": "u6w3", "de": "der Vater", "en": "father" },
-    { "id": "u6w4", "de": "die Schwester", "en": "sister" },
-    { "id": "u6w5", "de": "der Bruder", "en": "brother" },
-    { "id": "u6w6", "de": "die Kinder", "en": "children" },
-    { "id": "u6w7", "de": "die Großmutter", "en": "grandmother" },
-    { "id": "u6w8", "de": "der Großvater", "en": "grandfather" }
+    { "id": "u6w1", "de": "die Familie", "en": "family", "category": "Family" },
+    { "id": "u6w2", "de": "die Mutter", "en": "mother", "category": "Family" },
+    { "id": "u6w3", "de": "der Vater", "en": "father", "category": "Family" },
+    { "id": "u6w4", "de": "die Schwester", "en": "sister", "category": "Family" },
+    { "id": "u6w5", "de": "der Bruder", "en": "brother", "category": "Family" },
+    { "id": "u6w6", "de": "die Kinder", "en": "children", "category": "Family" },
+    { "id": "u6w7", "de": "die Großmutter", "en": "grandmother", "category": "Family" },
+    { "id": "u6w8", "de": "der Großvater", "en": "grandfather", "category": "Family" }
   ],
   "exercises": [
     {

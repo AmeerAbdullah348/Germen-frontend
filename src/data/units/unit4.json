@@ -5,14 +5,14 @@
   "title": "Daily Conversation (Alltagsgespräche)",
   "description": "Common questions and phrases for everyday small talk.",
   "vocab": [
-    { "id": "u4w1", "de": "Wie heißt du?", "en": "What's your name?" },
-    { "id": "u4w2", "de": "Ich heiße...", "en": "My name is..." },
-    { "id": "u4w3", "de": "Woher kommst du?", "en": "Where are you from?" },
-    { "id": "u4w4", "de": "Ich komme aus...", "en": "I come from..." },
-    { "id": "u4w5", "de": "Wie alt bist du?", "en": "How old are you?" },
-    { "id": "u4w6", "de": "Ich verstehe nicht", "en": "I don't understand" },
-    { "id": "u4w7", "de": "Können Sie das wiederholen?", "en": "Can you repeat that?" },
-    { "id": "u4w8", "de": "Sprechen Sie Englisch?", "en": "Do you speak English?" }
+    { "id": "u4w1", "de": "Wie heißt du?", "en": "What's your name?", "category": "Everyday Conversation" },
+    { "id": "u4w2", "de": "Ich heiße...", "en": "My name is...", "category": "Everyday Conversation" },
+    { "id": "u4w3", "de": "Woher kommst du?", "en": "Where are you from?", "category": "Everyday Conversation" },
+    { "id": "u4w4", "de": "Ich komme aus...", "en": "I come from...", "category": "Everyday Conversation" },
+    { "id": "u4w5", "de": "Wie alt bist du?", "en": "How old are you?", "category": "Everyday Conversation" },
+    { "id": "u4w6", "de": "Ich verstehe nicht", "en": "I don't understand", "category": "Everyday Conversation" },
+    { "id": "u4w7", "de": "Können Sie das wiederholen?", "en": "Can you repeat that?", "category": "Everyday Conversation" },
+    { "id": "u4w8", "de": "Sprechen Sie Englisch?", "en": "Do you speak English?", "category": "Everyday Conversation" }
   ],
   "exercises": [
     {

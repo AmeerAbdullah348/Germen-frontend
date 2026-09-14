@@ -5,14 +5,14 @@
   "title": "Shopping (Einkaufen)",
   "description": "Useful phrases for shopping in German.",
   "vocab": [
-    { "id": "u8w1", "de": "Wie viel kostet das?", "en": "How much does this cost?" },
-    { "id": "u8w2", "de": "teuer", "en": "expensive" },
-    { "id": "u8w3", "de": "billig", "en": "cheap" },
-    { "id": "u8w4", "de": "der Preis", "en": "the price" },
-    { "id": "u8w5", "de": "die Größe", "en": "the size" },
-    { "id": "u8w6", "de": "bar bezahlen", "en": "to pay cash" },
-    { "id": "u8w7", "de": "mit Karte", "en": "by card" },
-    { "id": "u8w8", "de": "Ich möchte das kaufen", "en": "I would like to buy this" }
+    { "id": "u8w1", "de": "Wie viel kostet das?", "en": "How much does this cost?", "category": "Shopping" },
+    { "id": "u8w2", "de": "teuer", "en": "expensive", "category": "Shopping" },
+    { "id": "u8w3", "de": "billig", "en": "cheap", "category": "Shopping" },
+    { "id": "u8w4", "de": "der Preis", "en": "the price", "category": "Shopping" },
+    { "id": "u8w5", "de": "die Größe", "en": "the size", "category": "Shopping" },
+    { "id": "u8w6", "de": "bar bezahlen", "en": "to pay cash", "category": "Shopping" },
+    { "id": "u8w7", "de": "mit Karte", "en": "by card", "category": "Shopping" },
+    { "id": "u8w8", "de": "Ich möchte das kaufen", "en": "I would like to buy this", "category": "Shopping" }
   ],
   "exercises": [
     {

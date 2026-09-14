@@ -5,14 +5,14 @@
   "title": "Common Sentences (Nützliche Sätze)",
   "description": "High-value everyday sentences to use right away.",
   "vocab": [
-    { "id": "u12w1", "de": "Wie spät ist es?", "en": "What time is it?" },
-    { "id": "u12w2", "de": "Ich habe eine Frage", "en": "I have a question" },
-    { "id": "u12w3", "de": "Können Sie mir helfen?", "en": "Can you help me?" },
-    { "id": "u12w4", "de": "Es tut mir leid", "en": "I'm sorry" },
-    { "id": "u12w5", "de": "Alles klar", "en": "All clear / understood" },
-    { "id": "u12w6", "de": "Kein Problem", "en": "No problem" },
-    { "id": "u12w7", "de": "Ich bin müde", "en": "I am tired" },
-    { "id": "u12w8", "de": "Das ist gut", "en": "That is good" }
+    { "id": "u12w1", "de": "Wie spät ist es?", "en": "What time is it?", "category": "Time" },
+    { "id": "u12w2", "de": "Ich habe eine Frage", "en": "I have a question", "category": "School" },
+    { "id": "u12w3", "de": "Können Sie mir helfen?", "en": "Can you help me?", "category": "Everyday Conversation" },
+    { "id": "u12w4", "de": "Es tut mir leid", "en": "I'm sorry", "category": "Everyday Conversation" },
+    { "id": "u12w5", "de": "Alles klar", "en": "All clear / understood", "category": "Everyday Conversation" },
+    { "id": "u12w6", "de": "Kein Problem", "en": "No problem", "category": "Everyday Conversation" },
+    { "id": "u12w7", "de": "Ich bin müde", "en": "I am tired", "category": "Health" },
+    { "id": "u12w8", "de": "Das ist gut", "en": "That is good", "category": "Everyday Conversation" }
   ],
   "exercises": [
     {

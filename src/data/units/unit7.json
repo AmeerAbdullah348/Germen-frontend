@@ -5,14 +5,14 @@
   "title": "Food (Essen)",
   "description": "Everyday food vocabulary for German beginners.",
   "vocab": [
-    { "id": "u7w1", "de": "das Brot", "en": "bread" },
-    { "id": "u7w2", "de": "die Milch", "en": "milk" },
-    { "id": "u7w3", "de": "das Ei", "en": "egg" },
-    { "id": "u7w4", "de": "das Fleisch", "en": "meat" },
-    { "id": "u7w5", "de": "das Gemüse", "en": "vegetable" },
-    { "id": "u7w6", "de": "das Obst", "en": "fruit" },
-    { "id": "u7w7", "de": "der Apfel", "en": "apple" },
-    { "id": "u7w8", "de": "der Reis", "en": "rice" }
+    { "id": "u7w1", "de": "das Brot", "en": "bread", "category": "Food" },
+    { "id": "u7w2", "de": "die Milch", "en": "milk", "category": "Food" },
+    { "id": "u7w3", "de": "das Ei", "en": "egg", "category": "Food" },
+    { "id": "u7w4", "de": "das Fleisch", "en": "meat", "category": "Food" },
+    { "id": "u7w5", "de": "das Gemüse", "en": "vegetable", "category": "Food" },
+    { "id": "u7w6", "de": "das Obst", "en": "fruit", "category": "Food" },
+    { "id": "u7w7", "de": "der Apfel", "en": "apple", "category": "Food" },
+    { "id": "u7w8", "de": "der Reis", "en": "rice", "category": "Food" }
   ],
   "exercises": [
     { "type": "flashcard", "wordId": "u7w1", "front": "das Brot", "back": "bread" },

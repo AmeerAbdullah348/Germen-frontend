@@ -1,0 +1,45 @@
+{
+  "id": "reading-my-family",
+  "order": 4,
+  "level": "A1",
+  "title": "Meine Familie",
+  "titleEn": "My Family",
+  "paragraphs": [
+    "Ich heiße Lena und ich bin zwanzig Jahre alt.",
+    "Meine Familie ist nicht groß, aber sehr nett.",
+    "Mein Vater heißt Peter und arbeitet als Lehrer.",
+    "Meine Mutter heißt Julia und ist Ärztin.",
+    "Ich habe einen Bruder. Er heißt Max und ist Student.",
+    "Am Wochenende essen wir zusammen und sprechen viel."
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-my-family-ex1",
+      "prompt": "How old is Lena?",
+      "options": ["18", "19", "20", "21"],
+      "answer": "20"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-my-family-ex2",
+      "prompt": "What is Lena's father's profession?",
+      "options": ["Doctor", "Teacher", "Engineer", "Student"],
+      "answer": "Teacher"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-my-family-ex3",
+      "prompt": "What is Lena's mother's profession?",
+      "options": ["Teacher", "Nurse", "Doctor", "Lawyer"],
+      "answer": "Doctor"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-my-family-ex4",
+      "prompt": "What does Lena have?",
+      "options": ["A sister", "A brother", "Two brothers", "No siblings"],
+      "answer": "A brother"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "reading-morning-routine",
+  "order": 1,
+  "level": "A1",
+  "title": "Ein normaler Morgen",
+  "titleEn": "A Normal Morning",
+  "paragraphs": [
+    "Anna steht jeden Morgen um sieben Uhr auf.",
+    "Sie trinkt einen Kaffee und isst Brot mit Marmelade.",
+    "Um acht Uhr fährt sie mit dem Bus zur Arbeit.",
+    "Anna arbeitet in einem Büro in der Stadt.",
+    "Am Abend kocht sie Abendessen für ihre Familie."
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-morning-routine-ex1",
+      "prompt": "What time does Anna get up?",
+      "options": ["6 o'clock", "7 o'clock", "8 o'clock", "9 o'clock"],
+      "answer": "7 o'clock"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-morning-routine-ex2",
+      "prompt": "What does Anna eat for breakfast?",
+      "options": ["Cake", "Bread with jam", "Eggs", "Fruit"],
+      "answer": "Bread with jam"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-morning-routine-ex3",
+      "prompt": "How does Anna get to work?",
+      "options": ["By car", "By bike", "By bus", "By train"],
+      "answer": "By bus"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-morning-routine-ex4",
+      "prompt": "Where does Anna work?",
+      "options": ["In a restaurant", "In a school", "In an office", "In a hospital"],
+      "answer": "In an office"
+    }
+  ]
+}

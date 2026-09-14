@@ -1,3 +1,4 @@
+import { clearFavoriteDirty, getPendingFavorites, overwriteFavorites } from './favorites'
 import { clearPendingMistakes, getPendingMistakeCount, getRecentMistakes } from './mistakes'
 import { clearItemDirty, clearProfileDirty, clearWordDirty, getPendingSync, getState, overwriteState } from './progress'
 import { isSupabaseConfigured, supabase } from './supabaseClient'
@@ -112,6 +113,15 @@ export async function flushPendingSync(userId) {
     const { error } = await supabase.from('mistakes').insert(unsynced.map((m) => toRemoteMistakeRow(userId, m)))
     if (!error) clearPendingMistakes()
   }
+
+  const pendingFavorites = getPendingFavorites()
+  for (const [wordId, action] of Object.entries(pendingFavorites)) {
+    const { error } =
+      action === 'add'
+        ? await supabase.from('favorites').upsert({ user_id: userId, word_id: wordId })
+        : await supabase.from('favorites').delete().eq('user_id', userId).eq('word_id', wordId)
+    if (!error) clearFavoriteDirty(wordId)
+  }
 }
 
 // Fetched lazily by the Mistakes page (not during login hydration, unlike
@@ -142,32 +152,47 @@ export async function fetchRemoteMistakes(userId, limit = 100) {
 // Pulls the authoritative copy down from Supabase into the local cache.
 // Flushes any pending local writes first so a device coming back online
 // doesn't clobber its own not-yet-synced changes.
+//
+// Each query's result is only applied if that query actually succeeded — a
+// failed query (offline, RLS misconfigured, or a table that doesn't exist
+// yet on this Supabase project) falls back to the current local value
+// instead of silently overwriting it with an empty result. Without this,
+// any transient fetch failure would wipe locally-tracked progress.
 export async function hydrateFromRemote(userId) {
   if (!isSupabaseConfigured || !userId) return
 
   await flushPendingSync(userId)
 
-  const [{ data: profile }, { data: wordRows }, { data: itemRows }] = await Promise.all([
+  const current = getState()
+
+  const [profileRes, wordRes, itemRes, favoriteRes] = await Promise.all([
     supabase.from('profiles').select('*').eq('id', userId).maybeSingle(),
     supabase.from('word_progress').select('*').eq('user_id', userId),
     supabase.from('item_progress').select('*').eq('user_id', userId),
+    supabase.from('favorites').select('word_id').eq('user_id', userId),
   ])
 
-  const words = {}
-  for (const row of wordRows ?? []) {
-    words[row.word_id] = fromRemoteWordRow(row)
-  }
+  const words = wordRes.error
+    ? current.words
+    : Object.fromEntries((wordRes.data ?? []).map((row) => [row.word_id, fromRemoteWordRow(row)]))
 
-  const items = {}
-  for (const row of itemRows ?? []) {
-    items[`${row.item_type}:${row.item_id}`] = fromRemoteItemRow(row)
-  }
+  const items = itemRes.error
+    ? current.items
+    : Object.fromEntries(
+        (itemRes.data ?? []).map((row) => [`${row.item_type}:${row.item_id}`, fromRemoteItemRow(row)])
+      )
 
   overwriteState({
-    name: profile?.name ?? 'Learner',
-    xp: profile?.xp ?? 0,
-    streak: { count: profile?.streak_count ?? 0, lastActiveDay: profile?.last_active_day ?? null },
+    name: profileRes.error ? current.name : (profileRes.data?.name ?? current.name),
+    xp: profileRes.error ? current.xp : (profileRes.data?.xp ?? current.xp),
+    streak: profileRes.error
+      ? current.streak
+      : { count: profileRes.data?.streak_count ?? 0, lastActiveDay: profileRes.data?.last_active_day ?? null },
     words,
     items,
   })
+
+  if (!favoriteRes.error) {
+    overwriteFavorites((favoriteRes.data ?? []).map((row) => row.word_id))
+  }
 }

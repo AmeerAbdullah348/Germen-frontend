@@ -1,0 +1,45 @@
+{
+  "id": "reading-cafe-order",
+  "order": 2,
+  "level": "A1",
+  "title": "Im Café bestellen",
+  "titleEn": "Ordering at the Café",
+  "paragraphs": [
+    "Kellnerin: Guten Tag! Was möchten Sie?",
+    "Markus: Ich möchte einen Kaffee und einen Kuchen, bitte.",
+    "Kellnerin: Gerne. Möchten Sie Zucker?",
+    "Markus: Nein, danke. Nur Milch, bitte.",
+    "Kellnerin: Das macht sechs Euro.",
+    "Markus: Hier, bitte. Danke schön!"
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-cafe-order-ex1",
+      "prompt": "What does Markus order to drink?",
+      "options": ["Tea", "Water", "Coffee", "Juice"],
+      "answer": "Coffee"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-cafe-order-ex2",
+      "prompt": "What does Markus order to eat?",
+      "options": ["Bread", "Cake", "Egg", "Fruit"],
+      "answer": "Cake"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-cafe-order-ex3",
+      "prompt": "Does Markus want sugar?",
+      "options": ["Yes", "No", "He doesn't say", "Only a little"],
+      "answer": "No"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-cafe-order-ex4",
+      "prompt": "How much does the order cost?",
+      "options": ["Five euros", "Six euros", "Seven euros", "Eight euros"],
+      "answer": "Six euros"
+    }
+  ]
+}

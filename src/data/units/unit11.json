@@ -5,14 +5,14 @@
   "title": "Grammar Basics (Grammatik-Grundlagen)",
   "description": "The building blocks: to be, to have, and the three German articles.",
   "vocab": [
-    { "id": "u11w1", "de": "ich bin", "en": "I am" },
-    { "id": "u11w2", "de": "du bist", "en": "you are (informal)" },
-    { "id": "u11w3", "de": "er/sie ist", "en": "he/she is" },
-    { "id": "u11w4", "de": "wir sind", "en": "we are" },
-    { "id": "u11w5", "de": "der", "en": "the (masculine)" },
-    { "id": "u11w6", "de": "die", "en": "the (feminine)" },
-    { "id": "u11w7", "de": "das", "en": "the (neuter)" },
-    { "id": "u11w8", "de": "ich habe", "en": "I have" }
+    { "id": "u11w1", "de": "ich bin", "en": "I am", "category": "Everyday Conversation" },
+    { "id": "u11w2", "de": "du bist", "en": "you are (informal)", "category": "Everyday Conversation" },
+    { "id": "u11w3", "de": "er/sie ist", "en": "he/she is", "category": "Everyday Conversation" },
+    { "id": "u11w4", "de": "wir sind", "en": "we are", "category": "Everyday Conversation" },
+    { "id": "u11w5", "de": "der", "en": "the (masculine)", "category": "Everyday Conversation" },
+    { "id": "u11w6", "de": "die", "en": "the (feminine)", "category": "Everyday Conversation" },
+    { "id": "u11w7", "de": "das", "en": "the (neuter)", "category": "Everyday Conversation" },
+    { "id": "u11w8", "de": "ich habe", "en": "I have", "category": "Everyday Conversation" }
   ],
   "exercises": [
     {

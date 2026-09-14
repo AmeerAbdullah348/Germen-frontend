@@ -5,16 +5,16 @@
   "title": "Im Café (At the Café)",
   "description": "Order a coffee and snack in German — A1 scenario.",
   "vocab": [
-    { "id": "u1w1", "de": "der Kaffee", "en": "coffee" },
-    { "id": "u1w2", "de": "der Tee", "en": "tea" },
-    { "id": "u1w3", "de": "das Wasser", "en": "water" },
-    { "id": "u1w4", "de": "der Kuchen", "en": "cake" },
-    { "id": "u1w5", "de": "bitte", "en": "please" },
-    { "id": "u1w6", "de": "danke", "en": "thank you" },
-    { "id": "u1w7", "de": "die Rechnung", "en": "the bill/check" },
-    { "id": "u1w8", "de": "lecker", "en": "tasty/delicious" },
-    { "id": "u1w9", "de": "ich möchte", "en": "I would like" },
-    { "id": "u1w10", "de": "der Zucker", "en": "sugar" }
+    { "id": "u1w1", "de": "der Kaffee", "en": "coffee", "category": "Restaurant" },
+    { "id": "u1w2", "de": "der Tee", "en": "tea", "category": "Restaurant" },
+    { "id": "u1w3", "de": "das Wasser", "en": "water", "category": "Restaurant" },
+    { "id": "u1w4", "de": "der Kuchen", "en": "cake", "category": "Restaurant" },
+    { "id": "u1w5", "de": "bitte", "en": "please", "category": "Everyday Conversation" },
+    { "id": "u1w6", "de": "danke", "en": "thank you", "category": "Everyday Conversation" },
+    { "id": "u1w7", "de": "die Rechnung", "en": "the bill/check", "category": "Restaurant" },
+    { "id": "u1w8", "de": "lecker", "en": "tasty/delicious", "category": "Restaurant" },
+    { "id": "u1w9", "de": "ich möchte", "en": "I would like", "category": "Restaurant" },
+    { "id": "u1w10", "de": "der Zucker", "en": "sugar", "category": "Restaurant" }
   ],
   "exercises": [
     {

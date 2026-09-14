@@ -5,14 +5,14 @@
   "title": "Work / Job (Arbeit)",
   "description": "Talk about your job and workplace in German.",
   "vocab": [
-    { "id": "u10w1", "de": "die Arbeit", "en": "work / job" },
-    { "id": "u10w2", "de": "das Büro", "en": "office" },
-    { "id": "u10w3", "de": "der Kollege", "en": "colleague" },
-    { "id": "u10w4", "de": "das Meeting", "en": "meeting" },
-    { "id": "u10w5", "de": "der Beruf", "en": "profession" },
-    { "id": "u10w6", "de": "der Chef", "en": "boss" },
-    { "id": "u10w7", "de": "arbeiten", "en": "to work" },
-    { "id": "u10w8", "de": "die Firma", "en": "company" }
+    { "id": "u10w1", "de": "die Arbeit", "en": "work / job", "category": "Work" },
+    { "id": "u10w2", "de": "das Büro", "en": "office", "category": "Work" },
+    { "id": "u10w3", "de": "der Kollege", "en": "colleague", "category": "Work" },
+    { "id": "u10w4", "de": "das Meeting", "en": "meeting", "category": "Work" },
+    { "id": "u10w5", "de": "der Beruf", "en": "profession", "category": "Work" },
+    { "id": "u10w6", "de": "der Chef", "en": "boss", "category": "Work" },
+    { "id": "u10w7", "de": "arbeiten", "en": "to work", "category": "Work" },
+    { "id": "u10w8", "de": "die Firma", "en": "company", "category": "Work" }
   ],
   "exercises": [
     { "type": "flashcard", "wordId": "u10w1", "front": "die Arbeit", "back": "work / job" },

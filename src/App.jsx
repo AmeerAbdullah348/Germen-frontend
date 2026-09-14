@@ -4,6 +4,10 @@ import { useAuth } from './lib/AuthContext'
 import Auth from './pages/Auth'
 import Chatbot from './pages/Chatbot'
 import Dashboard from './pages/Dashboard'
+import Dictionary from './pages/Dictionary'
+import DictionaryWord from './pages/DictionaryWord'
+import Favorites from './pages/Favorites'
+import FavoritesPractice from './pages/FavoritesPractice'
 import Grammar from './pages/Grammar'
 import GrammarLesson from './pages/GrammarLesson'
 import GrammarTopic from './pages/GrammarTopic'
@@ -14,10 +18,16 @@ import Mistakes from './pages/Mistakes'
 import MistakesSession from './pages/MistakesSession'
 import Practice from './pages/Practice'
 import Profile from './pages/Profile'
+import Reading from './pages/Reading'
+import ReadingPassage from './pages/ReadingPassage'
+import ReadingQuestions from './pages/ReadingQuestions'
 import Review from './pages/Review'
 import ReviewSession from './pages/ReviewSession'
 import Speaking from './pages/Speaking'
 import SpeakingLesson from './pages/SpeakingLesson'
+import Vocabulary from './pages/Vocabulary'
+import VocabularyCategory from './pages/VocabularyCategory'
+import VocabularyPractice from './pages/VocabularyPractice'
 import Writing from './pages/Writing'
 import WritingLesson from './pages/WritingLesson'
 
@@ -118,6 +128,33 @@ export default function App() {
       />
 
       <Route
+        path="/vocabulary/:category/practice"
+        element={
+          <RequireUser>
+            <VocabularyPractice />
+          </RequireUser>
+        }
+      />
+
+      <Route
+        path="/favorites/practice"
+        element={
+          <RequireUser>
+            <FavoritesPractice />
+          </RequireUser>
+        }
+      />
+
+      <Route
+        path="/reading/:passageId/questions"
+        element={
+          <RequireUser>
+            <ReadingQuestions />
+          </RequireUser>
+        }
+      />
+
+      <Route
         element={
           <RequireUser>
             <Layout />
@@ -131,6 +168,13 @@ export default function App() {
         <Route path="/listening" element={<Listening />} />
         <Route path="/speaking" element={<Speaking />} />
         <Route path="/writing" element={<Writing />} />
+        <Route path="/vocabulary" element={<Vocabulary />} />
+        <Route path="/vocabulary/:category" element={<VocabularyCategory />} />
+        <Route path="/dictionary" element={<Dictionary />} />
+        <Route path="/dictionary/:wordId" element={<DictionaryWord />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/reading" element={<Reading />} />
+        <Route path="/reading/:passageId" element={<ReadingPassage />} />
         <Route path="/review" element={<Review />} />
         <Route path="/mistakes" element={<Mistakes />} />
         <Route path="/chatbot" element={<Chatbot />} />

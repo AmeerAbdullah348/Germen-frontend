@@ -5,14 +5,14 @@
   "title": "Common Verbs (Verben)",
   "description": "The most useful German verbs for beginners.",
   "vocab": [
-    { "id": "u5w1", "de": "sein", "en": "to be" },
-    { "id": "u5w2", "de": "haben", "en": "to have" },
-    { "id": "u5w3", "de": "gehen", "en": "to go" },
-    { "id": "u5w4", "de": "essen", "en": "to eat" },
-    { "id": "u5w5", "de": "trinken", "en": "to drink" },
-    { "id": "u5w6", "de": "sprechen", "en": "to speak" },
-    { "id": "u5w7", "de": "verstehen", "en": "to understand" },
-    { "id": "u5w8", "de": "mögen", "en": "to like" }
+    { "id": "u5w1", "de": "sein", "en": "to be", "category": "Everyday Conversation" },
+    { "id": "u5w2", "de": "haben", "en": "to have", "category": "Everyday Conversation" },
+    { "id": "u5w3", "de": "gehen", "en": "to go", "category": "Travel" },
+    { "id": "u5w4", "de": "essen", "en": "to eat", "category": "Food" },
+    { "id": "u5w5", "de": "trinken", "en": "to drink", "category": "Food" },
+    { "id": "u5w6", "de": "sprechen", "en": "to speak", "category": "Everyday Conversation" },
+    { "id": "u5w7", "de": "verstehen", "en": "to understand", "category": "Everyday Conversation" },
+    { "id": "u5w8", "de": "mögen", "en": "to like", "category": "Everyday Conversation" }
   ],
   "exercises": [
     {

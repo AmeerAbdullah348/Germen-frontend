@@ -5,14 +5,14 @@
   "title": "Travel (Reisen)",
   "description": "Get around and ask for directions while traveling in Germany.",
   "vocab": [
-    { "id": "u9w1", "de": "der Bahnhof", "en": "train station" },
-    { "id": "u9w2", "de": "der Flughafen", "en": "airport" },
-    { "id": "u9w3", "de": "das Ticket", "en": "ticket" },
-    { "id": "u9w4", "de": "links", "en": "left" },
-    { "id": "u9w5", "de": "rechts", "en": "right" },
-    { "id": "u9w6", "de": "das Hotel", "en": "hotel" },
-    { "id": "u9w7", "de": "Wo ist...?", "en": "Where is...?" },
-    { "id": "u9w8", "de": "geradeaus", "en": "straight ahead" }
+    { "id": "u9w1", "de": "der Bahnhof", "en": "train station", "category": "Transportation" },
+    { "id": "u9w2", "de": "der Flughafen", "en": "airport", "category": "Airport" },
+    { "id": "u9w3", "de": "das Ticket", "en": "ticket", "category": "Travel" },
+    { "id": "u9w4", "de": "links", "en": "left", "category": "Travel" },
+    { "id": "u9w5", "de": "rechts", "en": "right", "category": "Travel" },
+    { "id": "u9w6", "de": "das Hotel", "en": "hotel", "category": "Hotel" },
+    { "id": "u9w7", "de": "Wo ist...?", "en": "Where is...?", "category": "Travel" },
+    { "id": "u9w8", "de": "geradeaus", "en": "straight ahead", "category": "Travel" }
   ],
   "exercises": [
     {

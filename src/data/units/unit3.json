@@ -5,14 +5,14 @@
   "title": "Greetings (Begrüßungen)",
   "description": "Learn how to say hello and goodbye in German.",
   "vocab": [
-    { "id": "u3w1", "de": "hallo", "en": "hello" },
-    { "id": "u3w2", "de": "guten Morgen", "en": "good morning" },
-    { "id": "u3w3", "de": "guten Tag", "en": "good day / hello (formal)" },
-    { "id": "u3w4", "de": "guten Abend", "en": "good evening" },
-    { "id": "u3w5", "de": "auf Wiedersehen", "en": "goodbye (formal)" },
-    { "id": "u3w6", "de": "tschüss", "en": "bye (informal)" },
-    { "id": "u3w7", "de": "wie geht es dir", "en": "how are you (informal)" },
-    { "id": "u3w8", "de": "gute Nacht", "en": "good night" }
+    { "id": "u3w1", "de": "hallo", "en": "hello", "category": "Everyday Conversation" },
+    { "id": "u3w2", "de": "guten Morgen", "en": "good morning", "category": "Daily Routine" },
+    { "id": "u3w3", "de": "guten Tag", "en": "good day / hello (formal)", "category": "Everyday Conversation" },
+    { "id": "u3w4", "de": "guten Abend", "en": "good evening", "category": "Daily Routine" },
+    { "id": "u3w5", "de": "auf Wiedersehen", "en": "goodbye (formal)", "category": "Everyday Conversation" },
+    { "id": "u3w6", "de": "tschüss", "en": "bye (informal)", "category": "Everyday Conversation" },
+    { "id": "u3w7", "de": "wie geht es dir", "en": "how are you (informal)", "category": "Everyday Conversation" },
+    { "id": "u3w8", "de": "gute Nacht", "en": "good night", "category": "Daily Routine" }
   ],
   "exercises": [
     {

@@ -5,14 +5,14 @@
   "title": "Basics (Grundlagen)",
   "description": "Essential basic words to start forming simple German sentences.",
   "vocab": [
-    { "id": "u2w1", "de": "ja", "en": "yes" },
-    { "id": "u2w2", "de": "nein", "en": "no" },
-    { "id": "u2w3", "de": "vielleicht", "en": "maybe" },
-    { "id": "u2w4", "de": "und", "en": "and" },
-    { "id": "u2w5", "de": "oder", "en": "or" },
-    { "id": "u2w6", "de": "ich", "en": "I" },
-    { "id": "u2w7", "de": "du", "en": "you (informal)" },
-    { "id": "u2w8", "de": "wir", "en": "we" }
+    { "id": "u2w1", "de": "ja", "en": "yes", "category": "Everyday Conversation" },
+    { "id": "u2w2", "de": "nein", "en": "no", "category": "Everyday Conversation" },
+    { "id": "u2w3", "de": "vielleicht", "en": "maybe", "category": "Everyday Conversation" },
+    { "id": "u2w4", "de": "und", "en": "and", "category": "Everyday Conversation" },
+    { "id": "u2w5", "de": "oder", "en": "or", "category": "Everyday Conversation" },
+    { "id": "u2w6", "de": "ich", "en": "I", "category": "Everyday Conversation" },
+    { "id": "u2w7", "de": "du", "en": "you (informal)", "category": "Everyday Conversation" },
+    { "id": "u2w8", "de": "wir", "en": "we", "category": "Everyday Conversation" }
   ],
   "exercises": [
     {

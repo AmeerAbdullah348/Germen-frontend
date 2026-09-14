@@ -1,0 +1,45 @@
+{
+  "id": "reading-asking-directions",
+  "order": 3,
+  "level": "A1",
+  "title": "Nach dem Weg fragen",
+  "titleEn": "Asking for Directions",
+  "paragraphs": [
+    "Tourist: Entschuldigung, wo ist der Bahnhof?",
+    "Passantin: Gehen Sie geradeaus und dann links.",
+    "Tourist: Ist es weit von hier?",
+    "Passantin: Nein, es ist nur fünf Minuten zu Fuß.",
+    "Tourist: Vielen Dank für Ihre Hilfe!",
+    "Passantin: Kein Problem. Gute Reise!"
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-asking-directions-ex1",
+      "prompt": "What is the tourist looking for?",
+      "options": ["The airport", "The train station", "The hotel", "The pharmacy"],
+      "answer": "The train station"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-asking-directions-ex2",
+      "prompt": "Which direction should the tourist go first?",
+      "options": ["Right", "Left", "Straight ahead", "Back"],
+      "answer": "Straight ahead"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-asking-directions-ex3",
+      "prompt": "How far is it on foot?",
+      "options": ["Five minutes", "Ten minutes", "Fifteen minutes", "Twenty minutes"],
+      "answer": "Five minutes"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "reading-asking-directions-ex4",
+      "prompt": "What does the passerby say at the end?",
+      "options": ["\"Goodbye\"", "\"Good night\"", "\"Good trip\"", "\"Good luck\""],
+      "answer": "\"Good trip\""
+    }
+  ]
+}
