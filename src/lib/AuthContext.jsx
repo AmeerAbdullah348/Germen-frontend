@@ -27,13 +27,31 @@ export function AuthProvider({ children }) {
 
   // Pull the authoritative copy down from Supabase once per login — not on
   // every session refresh, since that would clobber changes made since.
+  //
+  // Raced against a timeout: local-first data is already usable immediately,
+  // so if the network is slow or unreachable (e.g. reloading the PWA while
+  // offline), the user isn't stuck on the loading skeleton for however long
+  // Supabase's own retry/backoff takes to give up (observed ~8s offline).
+  // hydrateFromRemote keeps running in the background regardless and still
+  // applies whatever it gets once it does settle — this only affects how
+  // long the UI blocks, not whether hydration eventually happens.
   useEffect(() => {
     const userId = session?.user?.id
     if (!userId || hydratedForUserId.current === userId) return
 
     hydratedForUserId.current = userId
     setHydrated(false)
-    hydrateFromRemote(userId).finally(() => setHydrated(true))
+
+    let settled = false
+    const markHydrated = () => {
+      if (settled) return
+      settled = true
+      setHydrated(true)
+    }
+
+    hydrateFromRemote(userId).finally(markHydrated)
+    const timeoutId = setTimeout(markHydrated, 3000)
+    return () => clearTimeout(timeoutId)
   }, [session?.user?.id])
 
   // Retry any writes that failed while offline as soon as connectivity returns.

@@ -1,5 +1,6 @@
 import { Dumbbell, Home, MessageCircle, User } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router-dom'
+import OfflineBanner from './OfflineBanner'
 
 const TABS = [
   { to: '/', label: 'Home', icon: Home, end: true },
@@ -11,6 +12,7 @@ const TABS = [
 export default function Layout() {
   return (
     <div className="h-svh flex flex-col mx-auto max-w-md bg-primary-50">
+      <OfflineBanner />
       <main className="flex-1 min-h-0 overflow-y-auto">
         <Outlet />
       </main>

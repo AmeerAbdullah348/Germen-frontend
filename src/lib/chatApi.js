@@ -1,5 +1,6 @@
 import { getCachedAnswer, setCachedAnswer } from './chatCache'
 import { getRemainingMessages, recordMessageSent } from './chatLimits'
+import { isOnline } from './network'
 import { supabase } from './supabaseClient'
 
 export const MAX_INPUT_LENGTH = 500
@@ -32,12 +33,21 @@ export async function askChatbot(rawMessage, history = []) {
 
   // The FAQ cache only makes sense for a context-free opening question — a
   // cached answer to "give me another example" would ignore what was
-  // actually being discussed, so follow-ups always hit the API fresh.
+  // actually being discussed, so follow-ups always hit the API fresh. This
+  // lookup is a local read, so it still works offline even though the
+  // fallback below (an actual network call) can't.
   const isFollowUp = history.length > 0
   if (!isFollowUp) {
     const cached = getCachedAnswer(message)
     if (cached) {
       return { status: 'cached', text: cached }
+    }
+  }
+
+  if (!isOnline()) {
+    return {
+      status: 'offline',
+      text: "You're offline — the AI tutor needs an internet connection. Your other practice still works offline.",
     }
   }
 

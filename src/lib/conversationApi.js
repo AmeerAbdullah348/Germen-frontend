@@ -1,5 +1,6 @@
 import { MAX_INPUT_LENGTH } from './chatApi'
 import { getRemainingMessages, recordMessageSent } from './chatLimits'
+import { isOnline } from './network'
 import { supabase } from './supabaseClient'
 
 export { MAX_INPUT_LENGTH }
@@ -31,6 +32,13 @@ export async function sendConversationMessage(rawMessage, history, scenarioId, l
     return {
       status: 'rate-limited',
       text: "You've reached today's message limit so we can keep this free for everyone. Please come back tomorrow!",
+    }
+  }
+
+  if (!isOnline()) {
+    return {
+      status: 'offline',
+      text: "You're offline — conversation practice needs an internet connection. Your other practice still works offline.",
     }
   }
 

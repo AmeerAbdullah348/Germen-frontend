@@ -1,5 +1,6 @@
 import { GRAMMAR_TOPICS } from '../data/grammar'
 import { LISTENING_LESSONS } from '../data/listening'
+import { READING_PASSAGES } from '../data/reading'
 import { SPEAKING_TOPICS } from '../data/speaking'
 import { UNITS } from '../data/units'
 import { WRITING_TOPICS } from '../data/writing'
@@ -13,6 +14,7 @@ const SKILL_SOURCES = {
   listening: { topics: LISTENING_LESSONS, label: 'Listening', to: '/listening' },
   speaking: { topics: SPEAKING_TOPICS, label: 'Speaking', to: '/speaking' },
   writing: { topics: WRITING_TOPICS, label: 'Writing', to: '/writing' },
+  reading: { topics: READING_PASSAGES, label: 'Reading', to: '/reading' },
 }
 
 // Below this many attempts, accuracy is too noisy to act on (e.g. 1/1 wrong

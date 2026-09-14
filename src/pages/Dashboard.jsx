@@ -10,6 +10,7 @@ import { checkAndUnlockAchievements } from '../lib/achievements'
 import { DAILY_CHALLENGE_BONUS_XP, isDailyChallengeDoneToday } from '../lib/dailyChallenge'
 import { getLevelGroups } from '../lib/levels'
 import { getRecommendations } from '../lib/recommendations'
+import { checkAndNotify } from '../lib/reminders'
 import {
   DAILY_XP_GOAL,
   getDailyXp,
@@ -75,8 +76,11 @@ export default function Dashboard() {
 
   // Achievements are derived from progress rather than recorded directly, so
   // check for newly-earned ones opportunistically whenever the Dashboard mounts.
+  // Reminders are similarly a once-per-session/day check, not tied to any
+  // specific action.
   useEffect(() => {
     checkAndUnlockAchievements()
+    checkAndNotify()
   }, [])
 
   const searchResults = useMemo(() => {

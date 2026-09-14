@@ -1,4 +1,5 @@
-import { LogOut } from 'lucide-react'
+import { Bell, BellOff, LogOut } from 'lucide-react'
+import { useState } from 'react'
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { Link } from 'react-router-dom'
 import Badge from '../components/ui/Badge'
@@ -10,6 +11,13 @@ import { signOut } from '../lib/auth'
 import { LEVEL_LABELS } from '../lib/levels'
 import { getMasteryLabel } from '../lib/mastery'
 import { getLevel, getState } from '../lib/progress'
+import {
+  areRemindersEnabled,
+  getNotificationPermission,
+  isNotificationSupported,
+  requestNotificationPermission,
+  setRemindersEnabled,
+} from '../lib/reminders'
 
 const MASTERY_TONE = {
   New: 'gray',
@@ -49,6 +57,25 @@ export default function Profile() {
   const analytics = getAnalytics(new Date(), state)
   const weeklyChartData = getWeeklyChartData()
 
+  const [remindersOn, setRemindersOn] = useState(() => areRemindersEnabled() && getNotificationPermission() === 'granted')
+  const [permissionDenied, setPermissionDenied] = useState(() => getNotificationPermission() === 'denied')
+
+  async function handleToggleReminders() {
+    if (remindersOn) {
+      setRemindersEnabled(false)
+      setRemindersOn(false)
+      return
+    }
+    const permission = await requestNotificationPermission()
+    if (permission === 'granted') {
+      setRemindersEnabled(true)
+      setRemindersOn(true)
+      setPermissionDenied(false)
+    } else if (permission === 'denied') {
+      setPermissionDenied(true)
+    }
+  }
+
   return (
     <div className="px-5 pt-8 flex flex-col gap-6">
       <div className="flex items-start justify-between">
@@ -81,6 +108,30 @@ export default function Profile() {
           {state.placementLevel ? 'Retake test' : 'Take test'}
         </span>
       </Card>
+
+      {isNotificationSupported() && (
+        <Card className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-xs font-semibold text-gray-500">Reminders</p>
+            <p className="text-sm text-gray-600">
+              {permissionDenied
+                ? 'Blocked in your browser settings — allow notifications for this site to enable.'
+                : 'Streak, due words, and daily challenge nudges while the app is open.'}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={handleToggleReminders}
+            disabled={permissionDenied}
+            aria-label={remindersOn ? 'Disable reminders' : 'Enable reminders'}
+            className={`shrink-0 h-9 w-9 rounded-full flex items-center justify-center ${
+              remindersOn ? 'bg-primary-50 text-primary-600' : 'bg-gray-100 text-gray-400'
+            } disabled:opacity-50`}
+          >
+            {remindersOn ? <Bell size={18} /> : <BellOff size={18} />}
+          </button>
+        </Card>
+      )}
 
       <div className="flex flex-col gap-3">
         <h2 className="text-lg font-medium text-gray-800">Analytics</h2>
