@@ -7,6 +7,7 @@ import {
   GraduationCap,
   Headphones,
   LibraryBig,
+  MessageCircleHeart,
   Mic,
   PenLine,
   RefreshCw,
@@ -83,6 +84,12 @@ const ENTRIES = [
     icon: PenLine,
     title: 'Writing',
     description: 'Translate, complete, fix, and rearrange German sentences.',
+  },
+  {
+    to: '/conversation',
+    icon: MessageCircleHeart,
+    title: 'Conversation Practice',
+    description: 'Roleplay real scenarios — restaurant, airport, job interview, and more.',
   },
   {
     to: '/favorites',

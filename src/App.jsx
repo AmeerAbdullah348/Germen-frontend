@@ -4,6 +4,8 @@ import { useAuth } from './lib/AuthContext'
 import Achievements from './pages/Achievements'
 import Auth from './pages/Auth'
 import Chatbot from './pages/Chatbot'
+import Conversation from './pages/Conversation'
+import ConversationChat from './pages/ConversationChat'
 import DailyChallenge from './pages/DailyChallenge'
 import Dashboard from './pages/Dashboard'
 import Dictionary from './pages/Dictionary'
@@ -201,6 +203,8 @@ export default function App() {
         <Route path="/mistakes" element={<Mistakes />} />
         <Route path="/missions" element={<Missions />} />
         <Route path="/achievements" element={<Achievements />} />
+        <Route path="/conversation" element={<Conversation />} />
+        <Route path="/conversation/:scenarioId" element={<ConversationChat />} />
         <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
