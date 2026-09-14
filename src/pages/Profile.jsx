@@ -5,6 +5,7 @@ import Badge from '../components/ui/Badge'
 import Card from '../components/ui/Card'
 import SyncStatus from '../components/SyncStatus'
 import { UNITS } from '../data/units'
+import { formatStudyTime, getAnalytics, getWeeklyChartData } from '../lib/analytics'
 import { signOut } from '../lib/auth'
 import { LEVEL_LABELS } from '../lib/levels'
 import { getMasteryLabel } from '../lib/mastery'
@@ -26,6 +27,14 @@ const MASTERY_CHART_COLOR = {
 
 const MASTERY_ORDER = ['New', 'Learning', 'Familiar', 'Mastered']
 
+const SKILL_LABELS = {
+  grammar: 'Grammar',
+  listening: 'Listening',
+  speaking: 'Speaking',
+  writing: 'Writing',
+  reading: 'Reading',
+}
+
 export default function Profile() {
   const state = getState()
   const level = getLevel(state.xp)
@@ -36,6 +45,9 @@ export default function Profile() {
     counts[getMasteryLabel(state.words[word.id])]++
   }
   const chartData = MASTERY_ORDER.map((label) => ({ label, count: counts[label] }))
+
+  const analytics = getAnalytics(new Date(), state)
+  const weeklyChartData = getWeeklyChartData()
 
   return (
     <div className="px-5 pt-8 flex flex-col gap-6">
@@ -69,6 +81,72 @@ export default function Profile() {
           {state.placementLevel ? 'Retake test' : 'Take test'}
         </span>
       </Card>
+
+      <div className="flex flex-col gap-3">
+        <h2 className="text-lg font-medium text-gray-800">Analytics</h2>
+        <div className="grid grid-cols-2 gap-3">
+          <Card padding="p-3" className="flex flex-col gap-0.5">
+            <p className="text-xs text-gray-500">Vocabulary</p>
+            <p className="font-semibold text-gray-900">
+              {analytics.vocabLearned}/{analytics.vocabTotal} learned
+            </p>
+            <p className="text-xs text-gray-400">{analytics.vocabMastered} mastered</p>
+          </Card>
+          <Card padding="p-3" className="flex flex-col gap-0.5">
+            <p className="text-xs text-gray-500">Accuracy</p>
+            <p className="font-semibold text-gray-900">
+              {analytics.overallAccuracy != null ? `${Math.round(analytics.overallAccuracy * 100)}%` : '—'}
+            </p>
+          </Card>
+          <Card padding="p-3" className="flex flex-col gap-0.5">
+            <p className="text-xs text-gray-500">Streak</p>
+            <p className="font-semibold text-gray-900">{analytics.currentStreak} days</p>
+            <p className="text-xs text-gray-400">Longest: {analytics.longestStreak}</p>
+          </Card>
+          <Card padding="p-3" className="flex flex-col gap-0.5">
+            <p className="text-xs text-gray-500">Study time</p>
+            <p className="font-semibold text-gray-900">{formatStudyTime(analytics.studyTimeMs)}</p>
+            <p className="text-xs text-gray-400">{analytics.sessionCount} sessions</p>
+          </Card>
+          <Card padding="p-3" className="flex flex-col gap-0.5">
+            <p className="text-xs text-gray-500">This week</p>
+            <p className="font-semibold text-gray-900">{analytics.weeklyXp} XP</p>
+          </Card>
+          <Card padding="p-3" className="flex flex-col gap-0.5">
+            <p className="text-xs text-gray-500">This month</p>
+            <p className="font-semibold text-gray-900">{analytics.monthlyXp} XP</p>
+          </Card>
+        </div>
+
+        <div className="rounded-2xl bg-white border border-gray-200 p-3 h-32">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={weeklyChartData}>
+              <XAxis dataKey="day" tickLine={false} axisLine={false} fontSize={11} stroke="#9ca3af" />
+              <YAxis hide allowDecimals={false} />
+              <Tooltip cursor={{ fill: '#f3f4f6' }} />
+              <Bar dataKey="xp" radius={[4, 4, 0, 0]} fill="#3b82f6" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          {Object.entries(SKILL_LABELS).map(([key, label]) => {
+            const skill = analytics.skillProgress[key]
+            return (
+              <div
+                key={key}
+                className="flex items-center justify-between rounded-xl bg-white border border-gray-200 px-4 py-3"
+              >
+                <span className="text-gray-800">{label}</span>
+                <span className="text-sm text-gray-500">
+                  {skill.topicsComplete}/{skill.topicsTotal} topics
+                  {skill.accuracy != null && ` · ${Math.round(skill.accuracy * 100)}%`}
+                </span>
+              </div>
+            )
+          })}
+        </div>
+      </div>
 
       <div>
         <h2 className="text-lg font-medium text-gray-800 mb-2">Mastery breakdown</h2>

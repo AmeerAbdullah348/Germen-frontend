@@ -1,3 +1,5 @@
+import { logActivity } from './activity'
+import { todayKey } from './dateKeys'
 import { reviewCard, gradeToQuality, isDue } from './srs'
 import { readJSON, writeJSON } from './storage'
 
@@ -7,14 +9,9 @@ const XP_PER_INCORRECT = 2
 // Cap how many overdue cards surface in one sitting so a user returning after
 // weeks away isn't buried under hundreds of "due" reviews at once.
 const MAX_DUE_PER_SESSION = 20
-
-function todayKey(date = new Date()) {
-  // Local calendar day (not UTC) — good enough for a single-device v1.
-  const y = date.getFullYear()
-  const m = String(date.getMonth() + 1).padStart(2, '0')
-  const d = String(date.getDate()).padStart(2, '0')
-  return `${y}-${m}-${d}`
-}
+// Below this many questions, a 100% score is too easy to be meaningful for
+// the "perfect lesson" achievement (a 1-question session shouldn't count).
+const MIN_EXERCISES_FOR_PERFECT = 3
 
 function defaultState() {
   return {
@@ -24,6 +21,13 @@ function defaultState() {
     xp: 0,
     streak: { count: 0, lastActiveDay: null },
     placementLevel: null, // CEFR code from the most recent placement test, if any
+    // Local-only analytics (not synced — matches the existing daily-goal
+    // precedent: motivational/informational, losing it on a new device is
+    // harmless unlike real SM-2 progress).
+    longestStreak: 0,
+    studyTimeMs: 0,
+    sessionCount: 0,
+    hadPerfectSession: false,
   }
 }
 
@@ -119,6 +123,7 @@ export function recordAnswer(wordId, isCorrect, now = new Date()) {
   markWordDirty(wordId)
   markProfileDirty() // xp changed too
   addDailyXp(xpGained, now)
+  logActivity('vocab_answer', now)
   return state
 }
 
@@ -136,6 +141,7 @@ export function recordItemAnswer(itemType, itemId, isCorrect, now = new Date()) 
   markItemDirty(itemType, itemId)
   markProfileDirty()
   addDailyXp(xpGained, now)
+  logActivity(`${itemType}_answer`, now)
   return state
 }
 
@@ -152,8 +158,10 @@ export function bumpStreak(now = new Date()) {
   const newCount = lastActiveDay === yesterday ? count + 1 : 1
 
   state.streak = { count: newCount, lastActiveDay: today }
+  state.longestStreak = Math.max(state.longestStreak || 0, newCount)
   saveState(state)
   markProfileDirty()
+  logActivity('day_active', now)
   return state
 }
 
@@ -219,4 +227,55 @@ function addDailyXp(amount, now = new Date()) {
   const today = todayKey(now)
   const current = getDailyXp(now)
   writeJSON(DAILY_XP_KEY, { date: today, xp: current + amount })
+  addToXpHistory(today, amount)
+}
+
+// --- XP history (for weekly/monthly analytics) ---------------------------
+// A rolling log of { date, xp } — local-only, same as the daily goal above.
+// Capped so it can't grow unbounded on a long-lived account.
+const XP_HISTORY_KEY = 'gla:xpHistory'
+const XP_HISTORY_MAX_DAYS = 60
+
+function addToXpHistory(dateKey, amount) {
+  const history = readJSON(XP_HISTORY_KEY, [])
+  const todayEntry = history.find((entry) => entry.date === dateKey)
+  if (todayEntry) {
+    todayEntry.xp += amount
+  } else {
+    history.push({ date: dateKey, xp: amount })
+  }
+  history.sort((a, b) => (a.date < b.date ? -1 : 1))
+  writeJSON(XP_HISTORY_KEY, history.slice(-XP_HISTORY_MAX_DAYS))
+}
+
+export function getXpHistory() {
+  return readJSON(XP_HISTORY_KEY, [])
+}
+
+// --- Bonus XP (missions/daily challenge rewards) --------------------------
+// Same profile-sync path as recordAnswer's XP gain, but with no word/item
+// attached — used for rewards that aren't tied to answering a specific question.
+export function addBonusXp(amount, now = new Date()) {
+  const state = getState()
+  state.xp += amount
+  saveState(state)
+  markProfileDirty()
+  addDailyXp(amount, now)
+  return state
+}
+
+// --- Session tracking (study time, session count, perfect-session flag) --
+// Called once by ExerciseRunner when any session finishes (unit lesson,
+// grammar practice, review, daily challenge, ...) so every session type is
+// covered from one call site instead of touching each page individually.
+export function recordSession(durationMs, score, now = new Date()) {
+  const state = getState()
+  state.studyTimeMs = (state.studyTimeMs || 0) + Math.max(0, durationMs)
+  state.sessionCount = (state.sessionCount || 0) + 1
+  if (score && score.total >= MIN_EXERCISES_FOR_PERFECT && score.correct === score.total) {
+    state.hadPerfectSession = true
+  }
+  saveState(state)
+  logActivity('session_completed', now)
+  return state
 }

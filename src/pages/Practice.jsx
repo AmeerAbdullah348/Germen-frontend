@@ -1,7 +1,9 @@
 import {
   AlertTriangle,
+  Award,
   BookMarked,
   BookOpen,
+  CheckSquare,
   GraduationCap,
   Headphones,
   LibraryBig,
@@ -10,11 +12,30 @@ import {
   RefreshCw,
   Search,
   Star,
+  Zap,
 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import Card from '../components/ui/Card'
 
 const ENTRIES = [
+  {
+    to: '/daily-challenge',
+    icon: Zap,
+    title: 'Daily Challenge',
+    description: 'A short mixed session with bonus XP.',
+  },
+  {
+    to: '/missions',
+    icon: CheckSquare,
+    title: 'Missions',
+    description: 'Daily and weekly goals for bonus XP.',
+  },
+  {
+    to: '/achievements',
+    icon: Award,
+    title: 'Achievements',
+    description: 'Badges earned from genuine learning progress.',
+  },
   {
     to: '/placement',
     icon: GraduationCap,

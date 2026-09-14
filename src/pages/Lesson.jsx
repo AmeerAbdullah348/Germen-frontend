@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import ExerciseRunner from '../components/ExerciseRunner'
 import { UNITS_BY_ID } from '../data/units'
 import { useAuth } from '../lib/AuthContext'
+import { logActivity } from '../lib/activity'
 import { getCorrectAnswerText, recordMistake } from '../lib/mistakes'
 import { bumpStreak, recordAnswer } from '../lib/progress'
 import { flushPendingSync } from '../lib/remoteSync'
@@ -41,6 +42,7 @@ export default function Lesson() {
 
   function handleFinish() {
     bumpStreak()
+    logActivity('lesson_completed')
     flushPendingSync(user?.id)
   }
 

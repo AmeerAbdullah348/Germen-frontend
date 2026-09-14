@@ -1,8 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import { useAuth } from './lib/AuthContext'
+import Achievements from './pages/Achievements'
 import Auth from './pages/Auth'
 import Chatbot from './pages/Chatbot'
+import DailyChallenge from './pages/DailyChallenge'
 import Dashboard from './pages/Dashboard'
 import Dictionary from './pages/Dictionary'
 import DictionaryWord from './pages/DictionaryWord'
@@ -14,6 +16,7 @@ import GrammarTopic from './pages/GrammarTopic'
 import Lesson from './pages/Lesson'
 import Listening from './pages/Listening'
 import ListeningLesson from './pages/ListeningLesson'
+import Missions from './pages/Missions'
 import Mistakes from './pages/Mistakes'
 import MistakesSession from './pages/MistakesSession'
 import PlacementTest from './pages/PlacementTest'
@@ -165,6 +168,15 @@ export default function App() {
       />
 
       <Route
+        path="/daily-challenge"
+        element={
+          <RequireUser>
+            <DailyChallenge />
+          </RequireUser>
+        }
+      />
+
+      <Route
         element={
           <RequireUser>
             <Layout />
@@ -187,6 +199,8 @@ export default function App() {
         <Route path="/reading/:passageId" element={<ReadingPassage />} />
         <Route path="/review" element={<Review />} />
         <Route path="/mistakes" element={<Mistakes />} />
+        <Route path="/missions" element={<Missions />} />
+        <Route path="/achievements" element={<Achievements />} />
         <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/profile" element={<Profile />} />
       </Route>

@@ -1,3 +1,4 @@
+import { clearAchievementDirty, getPendingAchievements, overwriteUnlockedAchievements } from './achievements'
 import { clearFavoriteDirty, getPendingFavorites, overwriteFavorites } from './favorites'
 import { clearPendingMistakes, getPendingMistakeCount, getRecentMistakes } from './mistakes'
 import { clearItemDirty, clearProfileDirty, clearWordDirty, getPendingSync, getState, overwriteState } from './progress'
@@ -122,6 +123,14 @@ export async function flushPendingSync(userId) {
         : await supabase.from('favorites').delete().eq('user_id', userId).eq('word_id', wordId)
     if (!error) clearFavoriteDirty(wordId)
   }
+
+  // Achievements are append-only (never revoked), so — like mistakes — this
+  // is just "push whatever's still pending," not a full dirty-row diff.
+  const pendingAchievements = getPendingAchievements()
+  for (const achievementId of pendingAchievements) {
+    const { error } = await supabase.from('achievements').upsert({ user_id: userId, achievement_id: achievementId })
+    if (!error) clearAchievementDirty(achievementId)
+  }
 }
 
 // Placement results are a low-frequency, historical log (one row per
@@ -179,7 +188,7 @@ export async function hydrateFromRemote(userId) {
 
   const current = getState()
 
-  const [profileRes, wordRes, itemRes, favoriteRes, placementRes] = await Promise.all([
+  const [profileRes, wordRes, itemRes, favoriteRes, placementRes, achievementRes] = await Promise.all([
     supabase.from('profiles').select('*').eq('id', userId).maybeSingle(),
     supabase.from('word_progress').select('*').eq('user_id', userId),
     supabase.from('item_progress').select('*').eq('user_id', userId),
@@ -191,6 +200,7 @@ export async function hydrateFromRemote(userId) {
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle(),
+    supabase.from('achievements').select('achievement_id').eq('user_id', userId),
   ])
 
   const words = wordRes.error
@@ -216,9 +226,22 @@ export async function hydrateFromRemote(userId) {
     words,
     items,
     placementLevel,
+    // Local-only analytics fields with no Supabase column at all — never
+    // fetched, so they must be explicitly carried forward here. Without
+    // this, overwriteState's `{...defaultState(), ...newState}` merge would
+    // silently reset them to 0/false on every login (every full page
+    // reload triggers a fresh hydration), wiping real session/streak history.
+    longestStreak: current.longestStreak,
+    studyTimeMs: current.studyTimeMs,
+    sessionCount: current.sessionCount,
+    hadPerfectSession: current.hadPerfectSession,
   })
 
   if (!favoriteRes.error) {
     overwriteFavorites((favoriteRes.data ?? []).map((row) => row.word_id))
+  }
+
+  if (!achievementRes.error) {
+    overwriteUnlockedAchievements((achievementRes.data ?? []).map((row) => row.achievement_id))
   }
 }

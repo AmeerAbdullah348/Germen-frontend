@@ -1,11 +1,13 @@
-import { ChevronRight, Flame, GraduationCap, Lock, Search, Star, Target, X } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { ChevronRight, Flame, GraduationCap, Lock, Search, Star, Target, X, Zap } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Badge from '../components/ui/Badge'
 import Card from '../components/ui/Card'
 import ProgressBar from '../components/ui/ProgressBar'
 import SyncStatus from '../components/SyncStatus'
 import { UNITS } from '../data/units'
+import { checkAndUnlockAchievements } from '../lib/achievements'
+import { DAILY_CHALLENGE_BONUS_XP, isDailyChallengeDoneToday } from '../lib/dailyChallenge'
 import { getLevelGroups } from '../lib/levels'
 import { getRecommendations } from '../lib/recommendations'
 import {
@@ -69,6 +71,13 @@ export default function Dashboard() {
 
   const levelGroups = useMemo(() => getLevelGroups(UNITS, state), [state])
   const recommendations = useMemo(() => getRecommendations(new Date(), state), [state])
+  const challengeDone = isDailyChallengeDoneToday()
+
+  // Achievements are derived from progress rather than recorded directly, so
+  // check for newly-earned ones opportunistically whenever the Dashboard mounts.
+  useEffect(() => {
+    checkAndUnlockAchievements()
+  }, [])
 
   const searchResults = useMemo(() => {
     const trimmed = query.trim()
@@ -123,6 +132,25 @@ export default function Dashboard() {
           max={DAILY_XP_GOAL}
           colorClassName={dailyGoalPct >= 100 ? 'bg-success' : 'bg-accent-400'}
         />
+      </Card>
+
+      <Card
+        as="button"
+        type="button"
+        interactive
+        disabled={challengeDone}
+        onClick={() => navigate('/daily-challenge')}
+        className={`text-left flex items-center gap-3 ${challengeDone ? 'cursor-not-allowed' : ''}`}
+      >
+        <div className="shrink-0 h-11 w-11 rounded-full bg-accent-50 flex items-center justify-center">
+          <Zap className={challengeDone ? 'text-gray-300' : 'text-accent-500'} size={22} />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className={`font-medium ${challengeDone ? 'text-gray-400' : 'text-gray-900'}`}>Daily Challenge</p>
+          <p className={`text-sm ${challengeDone ? 'text-gray-400' : 'text-gray-500'}`}>
+            {challengeDone ? 'Completed — come back tomorrow' : `A short mixed session · +${DAILY_CHALLENGE_BONUS_XP} XP`}
+          </p>
+        </div>
       </Card>
 
       {!state.placementLevel && (

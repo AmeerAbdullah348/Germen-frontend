@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { recordSession } from '../lib/progress'
 import Button from './ui/Button'
 import ProgressBar from './ui/ProgressBar'
 import Flashcard from './lesson/Flashcard'
@@ -37,6 +38,9 @@ export default function ExerciseRunner({
   const [index, setIndex] = useState(0)
   const [score, setScore] = useState({ correct: 0, total: 0 })
   const [finished, setFinished] = useState(false)
+  // Lazy initializer (not a plain useRef(Date.now())) so the impure call
+  // only ever runs once, on first mount, the same way React expects.
+  const [startTime] = useState(() => Date.now())
 
   if (!exercises || exercises.length === 0) {
     return (
@@ -61,6 +65,10 @@ export default function ExerciseRunner({
       setIndex((i) => i + 1)
     } else {
       setFinished(true)
+      // Centralized here (not per-page) so every session type — unit lesson,
+      // grammar, listening, review, daily challenge, ... — feeds the same
+      // study-time/session-count/perfect-score analytics from one call site.
+      recordSession(Date.now() - startTime, nextScore)
       onFinish?.(nextScore)
     }
   }

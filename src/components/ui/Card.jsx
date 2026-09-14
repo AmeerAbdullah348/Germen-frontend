@@ -10,6 +10,7 @@ export default function Card({
   padding = 'p-4',
   className = '',
   children,
+  onClick,
   ...props
 }) {
   const tone = disabled
@@ -25,6 +26,13 @@ export default function Card({
       className={['rounded-2xl border', tone, padding, interactiveClasses, className]
         .filter(Boolean)
         .join(' ')}
+      // `disabled` only worked as a styling flag before — the native
+      // attribute (works for as="button") and this onClick guard (works for
+      // every `as`, including Link, which ignores `disabled` entirely) are
+      // what actually stop a "locked" card from being clicked through.
+      disabled={disabled}
+      aria-disabled={disabled || undefined}
+      onClick={disabled ? undefined : onClick}
       {...props}
     >
       {children}
