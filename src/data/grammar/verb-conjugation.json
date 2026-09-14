@@ -1,0 +1,43 @@
+{
+  "id": "verb-conjugation",
+  "order": 3,
+  "level": "A1",
+  "title": "Present Tense Verb Conjugation",
+  "explanation": "Regular German verbs conjugate by dropping the **-en** ending and adding a new one for each person: **ich -e, du -st, er/sie/es -t, wir -en, ihr -t, sie/Sie -en**. For example, *lernen* (to learn) becomes *ich lerne, du lernst, er lernt...*",
+  "examples": [
+    { "de": "ich lerne", "en": "I learn" },
+    { "de": "du lernst", "en": "you learn" },
+    { "de": "er lernt", "en": "he learns" },
+    { "de": "wir lernen", "en": "we learn" }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "verb-conjugation-ex1",
+      "prompt": "Du ___ Deutsch. (learn)",
+      "options": ["lerne", "lernst", "lernt", "lernen"],
+      "answer": "lernst"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "verb-conjugation-ex2",
+      "prompt": "Wir ___ Musik. (hören - to listen)",
+      "options": ["höre", "hörst", "hört", "hören"],
+      "answer": "hören"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "verb-conjugation-ex3",
+      "prompt": "Er ___ (spielen) Fußball.",
+      "answer": ["spielt"],
+      "hint": "er/sie/es ending is -t"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "verb-conjugation-ex4",
+      "prompt": "Build: 'I learn German.'",
+      "words": ["Ich", "lerne", "Deutsch"],
+      "answer": "Ich lerne Deutsch"
+    }
+  ]
+}

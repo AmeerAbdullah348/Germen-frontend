@@ -1,0 +1,42 @@
+{
+  "id": "adjectives",
+  "order": 11,
+  "level": "B1",
+  "title": "Adjective Endings",
+  "explanation": "Adjectives placed before a noun take an ending that depends on the noun's gender, case, and whether it follows a definite or indefinite article. After a definite article (der/die/das) the endings are simpler — usually **-e** or **-en**; after an indefinite article (ein/eine) they carry more of the gender information themselves.",
+  "examples": [
+    { "de": "der große Mann", "en": "the tall man" },
+    { "de": "ein großer Mann", "en": "a tall man" },
+    { "de": "die kleine Katze", "en": "the small cat" }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "adjectives-ex1",
+      "prompt": "der groß__ Mann (Nominativ, definite article)",
+      "options": ["-e", "-er", "-en", "-es"],
+      "answer": "-e"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "adjectives-ex2",
+      "prompt": "ein groß__ Mann (Nominativ, indefinite article)",
+      "options": ["-e", "-er", "-en", "-es"],
+      "answer": "-er"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "adjectives-ex3",
+      "prompt": "die klein___ Katze (the small cat)",
+      "answer": ["e"],
+      "hint": "definite article, feminine Nominativ"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "adjectives-ex4",
+      "prompt": "Build: 'the tall man'",
+      "words": ["der", "große", "Mann"],
+      "answer": "der große Mann"
+    }
+  ]
+}

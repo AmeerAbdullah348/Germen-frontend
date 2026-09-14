@@ -14,7 +14,7 @@ export default function SyncStatus() {
     return () => clearInterval(id)
   }, [])
 
-  const hasPending = pending.profileDirty || pending.wordIds.length > 0
+  const hasPending = pending.profileDirty || pending.wordIds.length > 0 || pending.items.length > 0
   if (!hasPending) return null
 
   return (

@@ -1,0 +1,42 @@
+{
+  "id": "genitiv",
+  "order": 12,
+  "level": "B1",
+  "title": "Genitiv — Showing Possession",
+  "explanation": "Genitiv shows possession or belonging (\"of the...\"). Articles change: **der → des, die → der, das → des, die (plural) → der**. Masculine and neuter nouns also add **-s** or **-es**. In everyday spoken German, *von* + Dativ often replaces Genitiv.",
+  "examples": [
+    { "de": "das Auto des Mannes", "en": "the man's car" },
+    { "de": "die Farbe der Blumen", "en": "the color of the flowers" },
+    { "de": "das Haus meiner Eltern", "en": "my parents' house" }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "genitiv-ex1",
+      "prompt": "das Auto ___ Mannes (the man's car)",
+      "options": ["der", "den", "dem", "des"],
+      "answer": "des"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "genitiv-ex2",
+      "prompt": "Which article form marks Genitiv feminine or plural?",
+      "options": ["die", "der", "des", "dem"],
+      "answer": "der"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "genitiv-ex3",
+      "prompt": "die Farbe ___ Blumen (the color of the flowers)",
+      "answer": ["der"],
+      "hint": "Genitiv plural article"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "genitiv-ex4",
+      "prompt": "Build: 'my parents' house'",
+      "words": ["das", "Haus", "meiner", "Eltern"],
+      "answer": "das Haus meiner Eltern"
+    }
+  ]
+}

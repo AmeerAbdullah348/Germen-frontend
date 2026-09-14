@@ -1,0 +1,42 @@
+{
+  "id": "nominativ-akkusativ",
+  "order": 2,
+  "level": "A1",
+  "title": "Nominativ & Akkusativ — Subject & Direct Object",
+  "explanation": "**Nominativ** marks the subject — who or what is doing the action. **Akkusativ** marks the direct object — who or what receives the action. Only the masculine article changes in Akkusativ: **der → den**, **ein → einen**. Feminine, neuter, and plural articles stay the same.",
+  "examples": [
+    { "de": "Der Mann sieht den Hund.", "en": "The man sees the dog." },
+    { "de": "Ich habe einen Bruder.", "en": "I have a brother." },
+    { "de": "Die Frau kauft die Blumen.", "en": "The woman buys the flowers." }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "nominativ-akkusativ-ex1",
+      "prompt": "Ich sehe ___ Mann. (I see the man.)",
+      "options": ["der", "den", "dem", "des"],
+      "answer": "den"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "nominativ-akkusativ-ex2",
+      "prompt": "Which case answers 'who or what is doing the action'?",
+      "options": ["Nominativ", "Akkusativ", "Dativ", "Genitiv"],
+      "answer": "Nominativ"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "nominativ-akkusativ-ex3",
+      "prompt": "Ich habe ___ Hund. (I have a dog.)",
+      "answer": ["einen"],
+      "hint": "ein → einen in the masculine accusative"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "nominativ-akkusativ-ex4",
+      "prompt": "Build: 'The woman sees the man.'",
+      "words": ["Die", "Frau", "sieht", "den", "Mann"],
+      "answer": "Die Frau sieht den Mann"
+    }
+  ]
+}

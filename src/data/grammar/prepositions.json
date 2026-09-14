@@ -1,0 +1,42 @@
+{
+  "id": "prepositions",
+  "order": 8,
+  "level": "A1",
+  "title": "Common Prepositions",
+  "explanation": "German prepositions each require a specific case for the noun that follows. **für, ohne, durch, gegen, um** always take Akkusativ. **mit, nach, bei, von, zu, aus** always take Dativ. Memorizing prepositions together with their case saves a lot of guessing later.",
+  "examples": [
+    { "de": "Das Geschenk ist für dich.", "en": "The gift is for you." },
+    { "de": "Ich fahre mit dem Bus.", "en": "I go by bus." },
+    { "de": "Wir gehen ohne ihn.", "en": "We're going without him." }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "prepositions-ex1",
+      "prompt": "Which case does 'mit' always take?",
+      "options": ["Nominativ", "Akkusativ", "Dativ", "Genitiv"],
+      "answer": "Dativ"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "prepositions-ex2",
+      "prompt": "Das Geschenk ist ___ dich. (for you)",
+      "options": ["mit", "für", "von", "bei"],
+      "answer": "für"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "prepositions-ex3",
+      "prompt": "Ich fahre ___ dem Bus. (by bus)",
+      "answer": ["mit"],
+      "hint": "always takes Dativ"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "prepositions-ex4",
+      "prompt": "Build: 'We're going without him.'",
+      "words": ["Wir", "gehen", "ohne", "ihn"],
+      "answer": "Wir gehen ohne ihn"
+    }
+  ]
+}

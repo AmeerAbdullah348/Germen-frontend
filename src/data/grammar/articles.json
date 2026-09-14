@@ -1,0 +1,43 @@
+{
+  "id": "articles",
+  "order": 1,
+  "level": "A1",
+  "title": "Der, die, das — Definite Articles",
+  "explanation": "Every German noun has a gender: masculine (**der**), feminine (**die**), or neuter (**das**). The plural of any noun always uses **die**. There's no reliable shortcut — gender has to be learned along with each new word, so it helps to memorize nouns together with their article from the start.",
+  "examples": [
+    { "de": "der Mann", "en": "the man" },
+    { "de": "die Frau", "en": "the woman" },
+    { "de": "das Kind", "en": "the child" },
+    { "de": "die Bücher", "en": "the books (plural)" }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "articles-ex1",
+      "prompt": "Which article goes with 'Tisch' (table)?",
+      "options": ["der", "die", "das", "die (plural)"],
+      "answer": "der"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "articles-ex2",
+      "prompt": "Which article goes with 'Katze' (cat)?",
+      "options": ["der", "die", "das", "die (plural)"],
+      "answer": "die"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "articles-ex3",
+      "prompt": "___ Auto ist neu. (The car is new.)",
+      "answer": ["Das", "das"],
+      "hint": "Auto is a neuter noun"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "articles-ex4",
+      "prompt": "Build: 'The woman reads the book.'",
+      "words": ["Die", "Frau", "liest", "das", "Buch"],
+      "answer": "Die Frau liest das Buch"
+    }
+  ]
+}

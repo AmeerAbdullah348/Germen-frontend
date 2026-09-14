@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from '../ui/Button'
 
 function shuffle(arr) {
   const a = [...arr]
@@ -73,22 +74,11 @@ export default function SentenceBuilder({ exercise, onResult }) {
       )}
 
       {!submitted ? (
-        <button
-          type="button"
-          onClick={handleSubmit}
-          disabled={built.length === 0}
-          className="rounded-xl bg-primary-600 disabled:bg-gray-300 text-white py-3 font-medium"
-        >
+        <Button onClick={handleSubmit} disabled={built.length === 0}>
           Check
-        </button>
+        </Button>
       ) : (
-        <button
-          type="button"
-          onClick={() => onResult(isCorrect)}
-          className="rounded-xl bg-primary-600 text-white py-3 font-medium"
-        >
-          Continue
-        </button>
+        <Button onClick={() => onResult(isCorrect, sentence)}>Continue</Button>
       )}
     </div>
   )

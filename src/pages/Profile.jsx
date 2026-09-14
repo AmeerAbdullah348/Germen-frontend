@@ -1,22 +1,17 @@
 import { LogOut } from 'lucide-react'
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import Badge from '../components/ui/Badge'
 import SyncStatus from '../components/SyncStatus'
 import { UNITS } from '../data/units'
 import { signOut } from '../lib/auth'
+import { getMasteryLabel } from '../lib/mastery'
 import { getLevel, getState } from '../lib/progress'
 
-function masteryLabel(card) {
-  if (!card) return 'New'
-  if (card.repetitions === 0) return 'Learning'
-  if (card.repetitions < 3) return 'Familiar'
-  return 'Mastered'
-}
-
-const MASTERY_COLOR = {
-  New: 'bg-gray-100 text-gray-500',
-  Learning: 'bg-red-50 text-danger',
-  Familiar: 'bg-accent-100 text-accent-600',
-  Mastered: 'bg-green-50 text-success',
+const MASTERY_TONE = {
+  New: 'gray',
+  Learning: 'danger',
+  Familiar: 'accent',
+  Mastered: 'success',
 }
 
 const MASTERY_CHART_COLOR = {
@@ -35,7 +30,7 @@ export default function Profile() {
 
   const counts = Object.fromEntries(MASTERY_ORDER.map((label) => [label, 0]))
   for (const word of allWords) {
-    counts[masteryLabel(state.words[word.id])]++
+    counts[getMasteryLabel(state.words[word.id])]++
   }
   const chartData = MASTERY_ORDER.map((label) => ({ label, count: counts[label] }))
 
@@ -84,7 +79,7 @@ export default function Profile() {
           <div key={unit.id} className="flex flex-col gap-2">
             <h3 className="text-sm font-semibold text-gray-500">{unit.title}</h3>
             {unit.vocab.map((word) => {
-              const label = masteryLabel(state.words[word.id])
+              const label = getMasteryLabel(state.words[word.id])
               return (
                 <div
                   key={word.id}
@@ -94,9 +89,7 @@ export default function Profile() {
                     <p className="font-medium text-gray-900">{word.de}</p>
                     <p className="text-sm text-gray-500">{word.en}</p>
                   </div>
-                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${MASTERY_COLOR[label]}`}>
-                    {label}
-                  </span>
+                  <Badge tone={MASTERY_TONE[label]}>{label}</Badge>
                 </div>
               )
             })}

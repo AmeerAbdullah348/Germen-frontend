@@ -1,0 +1,42 @@
+{
+  "id": "word-order",
+  "order": 6,
+  "level": "A1",
+  "title": "Word Order — Verb-Second",
+  "explanation": "In a German main clause, the conjugated verb is always the **second element** — not necessarily the second word. Almost anything can come first (the subject, a time expression, a place), but the verb never moves from position two.",
+  "examples": [
+    { "de": "Ich gehe heute ins Kino.", "en": "I'm going to the cinema today." },
+    { "de": "Heute gehe ich ins Kino.", "en": "Today I'm going to the cinema." },
+    { "de": "Morgen lerne ich Deutsch.", "en": "Tomorrow I'm learning German." }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "word-order-ex1",
+      "prompt": "In 'Heute gehe ich ins Kino,' which word is the verb?",
+      "options": ["Heute", "gehe", "ich", "Kino"],
+      "answer": "gehe"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "word-order-ex2",
+      "prompt": "Where does the conjugated verb go in a German main clause?",
+      "options": ["Always first", "Always second", "Always last", "Anywhere"],
+      "answer": "Always second"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "word-order-ex3",
+      "prompt": "Morgen ___ (lernen) ich Deutsch.",
+      "answer": ["lerne"],
+      "hint": "the verb stays in position two"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "word-order-ex4",
+      "prompt": "Build: 'Tomorrow I am learning German.'",
+      "words": ["Morgen", "lerne", "ich", "Deutsch"],
+      "answer": "Morgen lerne ich Deutsch"
+    }
+  ]
+}

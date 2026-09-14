@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from '../ui/Button'
 
 export default function MultipleChoice({ exercise, onResult }) {
   const [selected, setSelected] = useState(null)
@@ -49,22 +50,11 @@ export default function MultipleChoice({ exercise, onResult }) {
       </div>
 
       {!submitted ? (
-        <button
-          type="button"
-          onClick={handleSubmit}
-          disabled={selected === null}
-          className="rounded-xl bg-primary-600 disabled:bg-gray-300 text-white py-3 font-medium"
-        >
+        <Button onClick={handleSubmit} disabled={selected === null}>
           Check
-        </button>
+        </Button>
       ) : (
-        <button
-          type="button"
-          onClick={() => onResult(isCorrect)}
-          className="rounded-xl bg-primary-600 text-white py-3 font-medium"
-        >
-          Continue
-        </button>
+        <Button onClick={() => onResult(isCorrect, selected)}>Continue</Button>
       )}
     </div>
   )

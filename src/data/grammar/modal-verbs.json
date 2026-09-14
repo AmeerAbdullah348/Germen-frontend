@@ -1,0 +1,47 @@
+{
+  "id": "modal-verbs",
+  "order": 4,
+  "level": "A1",
+  "title": "Modal Verbs",
+  "explanation": "Modal verbs — **können** (can), **müssen** (must), **wollen** (want to), **dürfen** (may), **sollen** (should), **mögen** (like to) — express ability, necessity, desire, or permission. They're irregular in the singular, and they push the main verb to the very end of the sentence as a plain infinitive.",
+  "examples": [
+    { "de": "Ich kann schwimmen.", "en": "I can swim." },
+    { "de": "Du musst arbeiten.", "en": "You must work." },
+    { "de": "Wir wollen reisen.", "en": "We want to travel." }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "modal-verbs-ex1",
+      "prompt": "Ich ___ Deutsch sprechen. (can)",
+      "options": ["kann", "kannst", "könnt", "können"],
+      "answer": "kann"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "modal-verbs-ex2",
+      "prompt": "Where does the main verb go in a sentence with a modal verb?",
+      "options": [
+        "Right after the modal verb",
+        "At the end of the sentence, as an infinitive",
+        "At the start of the sentence",
+        "It disappears"
+      ],
+      "answer": "At the end of the sentence, as an infinitive"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "modal-verbs-ex3",
+      "prompt": "Sie ___ (müssen) jetzt gehen. (she must)",
+      "answer": ["muss"],
+      "hint": "irregular er/sie/es form of müssen"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "modal-verbs-ex4",
+      "prompt": "Build: 'I want to learn German.'",
+      "words": ["Ich", "will", "Deutsch", "lernen"],
+      "answer": "Ich will Deutsch lernen"
+    }
+  ]
+}

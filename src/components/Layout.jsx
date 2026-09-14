@@ -1,8 +1,9 @@
-import { Home, MessageCircle, User } from 'lucide-react'
+import { Dumbbell, Home, MessageCircle, User } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router-dom'
 
 const TABS = [
   { to: '/', label: 'Home', icon: Home, end: true },
+  { to: '/practice', label: 'Practice', icon: Dumbbell },
   { to: '/chatbot', label: 'Chat', icon: MessageCircle },
   { to: '/profile', label: 'Profile', icon: User },
 ]

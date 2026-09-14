@@ -1,6 +1,9 @@
 import { Flame, Lock, Search, Star, Target, X } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Badge from '../components/ui/Badge'
+import Card from '../components/ui/Card'
+import ProgressBar from '../components/ui/ProgressBar'
 import SyncStatus from '../components/SyncStatus'
 import { UNITS } from '../data/units'
 import { getLevelGroups } from '../lib/levels'
@@ -25,15 +28,13 @@ function matchUnit(unit, query) {
 
 function UnitCard({ unit, dueCount, locked, onClick }) {
   return (
-    <button
+    <Card
+      as="button"
       type="button"
       disabled={locked}
       onClick={onClick}
-      className={`text-left rounded-2xl border p-4 flex items-center gap-3 transition-all ${
-        locked
-          ? 'bg-gray-50 border-gray-100 cursor-not-allowed'
-          : 'bg-white border-gray-200 shadow-sm hover:shadow-md hover:border-primary-200 active:scale-[0.99]'
-      }`}
+      interactive
+      className={`text-left flex items-center gap-3 ${locked ? 'cursor-not-allowed' : ''}`}
     >
       <div className="min-w-0 flex-1">
         <p className={`font-medium truncate ${locked ? 'text-gray-400' : 'text-gray-900'}`}>
@@ -47,12 +48,12 @@ function UnitCard({ unit, dueCount, locked, onClick }) {
         <Lock className="shrink-0 text-gray-300" size={18} />
       ) : (
         dueCount > 0 && (
-          <span className="shrink-0 whitespace-nowrap rounded-full bg-accent-100 text-accent-600 text-xs font-semibold px-2.5 py-1">
+          <Badge tone="accent" className="shrink-0 whitespace-nowrap">
             {dueCount} due
-          </span>
+          </Badge>
         )
       )}
-    </button>
+    </Card>
   )
 }
 
@@ -84,7 +85,7 @@ export default function Dashboard() {
       </div>
 
       <div className="flex gap-3">
-        <div className="flex-1 rounded-2xl bg-white border border-gray-200 shadow-sm p-4 flex items-center gap-3">
+        <Card className="flex-1 flex items-center gap-3">
           <div className="shrink-0 h-11 w-11 rounded-full bg-accent-50 flex items-center justify-center">
             <Flame className="text-accent-500" size={22} />
           </div>
@@ -92,8 +93,8 @@ export default function Dashboard() {
             <p className="text-xl font-semibold text-gray-900 leading-tight">{state.streak.count}</p>
             <p className="text-xs text-gray-500">Day streak</p>
           </div>
-        </div>
-        <div className="flex-1 rounded-2xl bg-white border border-gray-200 shadow-sm p-4 flex flex-col gap-2">
+        </Card>
+        <Card className="flex-1 flex flex-col gap-2">
           <div className="flex items-center gap-3">
             <div className="shrink-0 h-11 w-11 rounded-full bg-primary-50 flex items-center justify-center">
               <Star className="text-primary-500" size={22} />
@@ -103,16 +104,11 @@ export default function Dashboard() {
               <p className="text-xs text-gray-500">{state.xp} XP</p>
             </div>
           </div>
-          <div className="h-1.5 rounded-full bg-gray-100 overflow-hidden">
-            <div
-              className="h-full bg-primary-500 transition-all"
-              style={{ width: `${(xpIntoLevel / XP_PER_LEVEL_TOTAL) * 100}%` }}
-            />
-          </div>
-        </div>
+          <ProgressBar value={xpIntoLevel} max={XP_PER_LEVEL_TOTAL} heightClassName="h-1.5" />
+        </Card>
       </div>
 
-      <div className="rounded-2xl bg-white border border-gray-200 shadow-sm p-4 flex flex-col gap-2">
+      <Card className="flex flex-col gap-2">
         <div className="flex items-center gap-2">
           <Target className="text-accent-500" size={18} />
           <p className="text-sm font-medium text-gray-800">Daily goal</p>
@@ -120,13 +116,12 @@ export default function Dashboard() {
             {dailyXp}/{DAILY_XP_GOAL} XP
           </p>
         </div>
-        <div className="h-2 rounded-full bg-gray-100 overflow-hidden">
-          <div
-            className={`h-full transition-all ${dailyGoalPct >= 100 ? 'bg-success' : 'bg-accent-400'}`}
-            style={{ width: `${dailyGoalPct}%` }}
-          />
-        </div>
-      </div>
+        <ProgressBar
+          value={dailyXp}
+          max={DAILY_XP_GOAL}
+          colorClassName={dailyGoalPct >= 100 ? 'bg-success' : 'bg-accent-400'}
+        />
+      </Card>
 
       <div className="relative">
         <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
@@ -155,11 +150,13 @@ export default function Dashboard() {
             {searchResults.length > 0 ? `${searchResults.length} result${searchResults.length === 1 ? '' : 's'}` : 'No results'}
           </h2>
           {searchResults.map(({ unit, matchedWord }) => (
-            <button
+            <Card
               key={unit.id}
+              as="button"
               type="button"
+              interactive
               onClick={() => navigate(`/lesson/${unit.id}`)}
-              className="text-left rounded-2xl bg-white border border-gray-200 shadow-sm hover:shadow-md hover:border-primary-200 active:scale-[0.99] transition-all p-4 flex items-center gap-3"
+              className="text-left flex items-center gap-3"
             >
               <div className="min-w-0 flex-1">
                 <p className="font-medium text-gray-900 truncate">{unit.title}</p>
@@ -173,7 +170,7 @@ export default function Dashboard() {
                   <p className="text-sm text-gray-500 truncate">{unit.description}</p>
                 )}
               </div>
-            </button>
+            </Card>
           ))}
         </div>
       ) : (

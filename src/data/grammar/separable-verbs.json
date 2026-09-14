@@ -1,0 +1,42 @@
+{
+  "id": "separable-verbs",
+  "order": 5,
+  "level": "A1",
+  "title": "Separable Verbs",
+  "explanation": "Many German verbs have a detachable prefix that splits off and moves to the very end of the sentence in the present tense — e.g. *aufstehen* (to get up) becomes *ich stehe ... auf*. The prefix carries the core meaning, so it's easy to miss a verb's real meaning if you only see the first part.",
+  "examples": [
+    { "de": "Ich stehe früh auf.", "en": "I get up early." },
+    { "de": "Wir kaufen im Supermarkt ein.", "en": "We shop at the supermarket." },
+    { "de": "Er ruft mich an.", "en": "He calls me." }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "separable-verbs-ex1",
+      "prompt": "'aufstehen' means...",
+      "options": ["to sit down", "to get up", "to stand still", "to fall"],
+      "answer": "to get up"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "separable-verbs-ex2",
+      "prompt": "Ich ___ jeden Tag früh ___. (aufstehen)",
+      "options": ["stehe / auf", "aufstehe / —", "stehe auf / —", "auf / stehe"],
+      "answer": "stehe / auf"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "separable-verbs-ex3",
+      "prompt": "Wir kaufen im Supermarkt ___. (einkaufen)",
+      "answer": ["ein"],
+      "hint": "the separated prefix goes at the end"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "separable-verbs-ex4",
+      "prompt": "Build: 'He calls me.' (anrufen)",
+      "words": ["Er", "ruft", "mich", "an"],
+      "answer": "Er ruft mich an"
+    }
+  ]
+}

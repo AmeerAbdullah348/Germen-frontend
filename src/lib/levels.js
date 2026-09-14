@@ -13,34 +13,36 @@ export const LEVEL_LABELS = {
   C2: 'Mastery',
 }
 
-// Groups units by level (in LEVEL_ORDER) and marks each level unlocked once
-// every unit in the previous level has been completed at least once. The
-// first level with any units is always unlocked.
-export function getLevelGroups(units, state) {
+// Groups any CEFR-leveled content list (units, grammar topics, ...) by level
+// (in LEVEL_ORDER) and marks each level unlocked once every item in the
+// previous level has been completed at least once. The first level with any
+// items is always unlocked. `isComplete` defaults to unit completion so the
+// Dashboard's existing call site (getLevelGroups(UNITS, state)) is unchanged.
+export function getLevelGroups(items, state, { isComplete = isUnitComplete } = {}) {
   const byLevel = new Map()
-  for (const unit of units) {
-    const level = unit.level || 'A1'
+  for (const item of items) {
+    const level = item.level || 'A1'
     if (!byLevel.has(level)) byLevel.set(level, [])
-    byLevel.get(level).push(unit)
+    byLevel.get(level).push(item)
   }
 
   const groups = []
   let previousComplete = true
   for (const level of LEVEL_ORDER) {
-    const levelUnits = byLevel.get(level)
-    if (!levelUnits || levelUnits.length === 0) continue
+    const levelItems = byLevel.get(level)
+    if (!levelItems || levelItems.length === 0) continue
 
-    const completedCount = levelUnits.filter((u) => isUnitComplete(u, state)).length
+    const completedCount = levelItems.filter((item) => isComplete(item, state)).length
     const unlocked = previousComplete
     groups.push({
       level,
       label: LEVEL_LABELS[level] || level,
-      units: levelUnits,
+      units: levelItems,
       completedCount,
-      totalCount: levelUnits.length,
+      totalCount: levelItems.length,
       unlocked,
     })
-    previousComplete = completedCount === levelUnits.length
+    previousComplete = completedCount === levelItems.length
   }
   return groups
 }

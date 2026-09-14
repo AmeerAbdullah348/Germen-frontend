@@ -1,5 +1,6 @@
 import { Mic, RotateCcw, Volume2 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import Button from '../ui/Button'
 import {
   createRecognizer,
   isSpeechRecognitionSupported,
@@ -187,13 +188,9 @@ export default function Pronunciation({ exercise, onResult }) {
       {phase === 'correct' && (
         <div className="flex flex-col items-center gap-3">
           <p className="text-success font-medium">Nicely done! 🎉</p>
-          <button
-            type="button"
-            onClick={() => onResult(true)}
-            className="rounded-xl bg-primary-600 text-white py-3 px-8 font-medium"
-          >
+          <Button className="px-8" onClick={() => onResult(true)}>
             Continue
-          </button>
+          </Button>
         </div>
       )}
     </div>
@@ -219,20 +216,12 @@ function SelfReport({ exercise, ttsSupported, onListen, note, onResult }) {
 
       <p className="text-sm text-gray-600">Say it out loud, then let us know:</p>
       <div className="flex gap-3 w-full">
-        <button
-          type="button"
-          onClick={() => onResult(false)}
-          className="flex-1 rounded-xl border border-danger text-danger py-3 font-medium"
-        >
+        <Button variant="outline-danger" className="flex-1" onClick={() => onResult(false)}>
           Struggled
-        </button>
-        <button
-          type="button"
-          onClick={() => onResult(true)}
-          className="flex-1 rounded-xl bg-success text-white py-3 font-medium"
-        >
+        </Button>
+        <Button variant="success" className="flex-1" onClick={() => onResult(true)}>
           Got it
-        </button>
+        </Button>
       </div>
     </div>
   )

@@ -1,0 +1,42 @@
+{
+  "id": "tenses",
+  "order": 10,
+  "level": "A2",
+  "title": "Perfekt — Talking About the Past",
+  "explanation": "The **Perfekt** tense is the most common way to talk about the past in spoken German. It's formed with a conjugated *haben* or *sein* plus a past participle (usually *ge-...-t* or *ge-...-en*) pushed to the end of the sentence.",
+  "examples": [
+    { "de": "Ich habe Deutsch gelernt.", "en": "I learned German." },
+    { "de": "Wir sind nach Berlin gefahren.", "en": "We traveled to Berlin." },
+    { "de": "Er hat das Buch gelesen.", "en": "He read the book." }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "tenses-ex1",
+      "prompt": "Which helper verb do most verbs of movement use with Perfekt?",
+      "options": ["haben", "sein", "werden", "können"],
+      "answer": "sein"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "tenses-ex2",
+      "prompt": "Ich ___ Deutsch gelernt. (have learned)",
+      "options": ["bin", "habe", "hat", "haben"],
+      "answer": "habe"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "tenses-ex3",
+      "prompt": "Er hat das Buch ___. (lesen)",
+      "answer": ["gelesen"],
+      "hint": "past participle of lesen"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "tenses-ex4",
+      "prompt": "Build: 'We traveled to Berlin.'",
+      "words": ["Wir", "sind", "nach", "Berlin", "gefahren"],
+      "answer": "Wir sind nach Berlin gefahren"
+    }
+  ]
+}

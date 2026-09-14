@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { isAnswerCorrect } from '../../lib/answerCheck'
+import Button from '../ui/Button'
 
 const SPECIAL_CHARS = ['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü']
 
@@ -72,21 +73,11 @@ export default function FillBlank({ exercise, onResult }) {
       )}
 
       {!submitted ? (
-        <button
-          type="submit"
-          disabled={!value.trim()}
-          className="rounded-xl bg-primary-600 disabled:bg-gray-300 text-white py-3 font-medium"
-        >
+        <Button type="submit" disabled={!value.trim()}>
           Check
-        </button>
+        </Button>
       ) : (
-        <button
-          type="button"
-          onClick={() => onResult(isCorrect)}
-          className="rounded-xl bg-primary-600 text-white py-3 font-medium"
-        >
-          Continue
-        </button>
+        <Button onClick={() => onResult(isCorrect, value)}>Continue</Button>
       )}
     </form>
   )

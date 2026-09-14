@@ -1,0 +1,42 @@
+{
+  "id": "dativ",
+  "order": 9,
+  "level": "A2",
+  "title": "Dativ — The Indirect Object",
+  "explanation": "Dativ marks the indirect object — usually the person something is given to, done for, or happens to. Articles change: **der → dem, die → der, das → dem, die (plural) → den**. Common with verbs like *geben* (to give), *helfen* (to help), and *danken* (to thank).",
+  "examples": [
+    { "de": "Ich gebe dem Mann das Buch.", "en": "I give the book to the man." },
+    { "de": "Sie hilft der Frau.", "en": "She helps the woman." },
+    { "de": "Wir danken den Kindern.", "en": "We thank the children." }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "dativ-ex1",
+      "prompt": "Ich helfe ___ Mann. (I help the man.)",
+      "options": ["der", "den", "dem", "des"],
+      "answer": "dem"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "dativ-ex2",
+      "prompt": "Which case is used for the person receiving something?",
+      "options": ["Nominativ", "Akkusativ", "Dativ", "Genitiv"],
+      "answer": "Dativ"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "dativ-ex3",
+      "prompt": "Ich gebe ___ Frau die Blumen. (to the woman)",
+      "answer": ["der"],
+      "hint": "feminine Dativ article"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "dativ-ex4",
+      "prompt": "Build: 'We thank the children.'",
+      "words": ["Wir", "danken", "den", "Kindern"],
+      "answer": "Wir danken den Kindern"
+    }
+  ]
+}

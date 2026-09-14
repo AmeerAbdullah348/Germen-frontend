@@ -1,0 +1,42 @@
+{
+  "id": "negation",
+  "order": 7,
+  "level": "A1",
+  "title": "Negation — nicht vs. kein",
+  "explanation": "Use **kein** to negate a noun that has (or could have) an indefinite article — *kein Auto* (no car). Use **nicht** to negate verbs, adjectives, or nouns with a definite article. Kein takes the same endings as *ein*.",
+  "examples": [
+    { "de": "Ich habe kein Auto.", "en": "I don't have a car." },
+    { "de": "Das ist nicht mein Buch.", "en": "That's not my book." },
+    { "de": "Ich verstehe nicht.", "en": "I don't understand." }
+  ],
+  "exercises": [
+    {
+      "type": "multipleChoice",
+      "itemId": "negation-ex1",
+      "prompt": "Ich habe ___ Zeit. (no time)",
+      "options": ["nicht", "kein", "keine", "nichts"],
+      "answer": "keine"
+    },
+    {
+      "type": "multipleChoice",
+      "itemId": "negation-ex2",
+      "prompt": "Das ist ___ richtig. (not correct)",
+      "options": ["kein", "keine", "nicht", "keinen"],
+      "answer": "nicht"
+    },
+    {
+      "type": "fillBlank",
+      "itemId": "negation-ex3",
+      "prompt": "Ich habe ___ Bruder. (no brother)",
+      "answer": ["keinen"],
+      "hint": "masculine accusative of kein"
+    },
+    {
+      "type": "sentenceBuilder",
+      "itemId": "negation-ex4",
+      "prompt": "Build: 'I don't understand.'",
+      "words": ["Ich", "verstehe", "nicht"],
+      "answer": "Ich verstehe nicht"
+    }
+  ]
+}

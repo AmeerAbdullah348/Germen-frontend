@@ -20,6 +20,7 @@ function defaultState() {
   return {
     name: 'Learner',
     words: {}, // wordId -> SM-2 card
+    items: {}, // "<itemType>:<itemId>" -> SM-2 card (grammar, listening, ...)
     xp: 0,
     streak: { count: 0, lastActiveDay: null },
   }
@@ -46,7 +47,9 @@ export function overwriteState(newState) {
 const PENDING_KEY = 'gla:pendingSync'
 
 function getPending() {
-  return readJSON(PENDING_KEY, { profileDirty: false, wordIds: [] })
+  const pending = readJSON(PENDING_KEY, { profileDirty: false, wordIds: [], items: [] })
+  // Backward-compatible: older cached pending state won't have `items` yet.
+  return { items: [], ...pending }
 }
 
 function savePending(pending) {
@@ -56,6 +59,15 @@ function savePending(pending) {
 function markWordDirty(wordId) {
   const pending = getPending()
   if (!pending.wordIds.includes(wordId)) pending.wordIds.push(wordId)
+  savePending(pending)
+}
+
+function markItemDirty(itemType, itemId) {
+  const pending = getPending()
+  const key = `${itemType}:${itemId}`
+  if (!pending.items.some((i) => `${i.itemType}:${i.itemId}` === key)) {
+    pending.items.push({ itemType, itemId })
+  }
   savePending(pending)
 }
 
@@ -74,21 +86,54 @@ export function clearWordDirty(wordId) {
   savePending({ ...pending, wordIds: pending.wordIds.filter((id) => id !== wordId) })
 }
 
+export function clearItemDirty(itemType, itemId) {
+  const pending = getPending()
+  const key = `${itemType}:${itemId}`
+  savePending({
+    ...pending,
+    items: pending.items.filter((i) => `${i.itemType}:${i.itemId}` !== key),
+  })
+}
+
 export function clearProfileDirty() {
   savePending({ ...getPending(), profileDirty: false })
 }
 
+// Shared SM-2 review step — the one call site into srs.js used by both the
+// vocab-word path (recordAnswer) and the generic item path
+// (recordItemAnswer), so there's a single place that grades an answer.
+function reviewAndGrade(cardsMap, id, isCorrect, now) {
+  const quality = gradeToQuality(isCorrect)
+  const prevCard = cardsMap[id]
+  const nextCard = reviewCard(prevCard, quality, now)
+  cardsMap[id] = { ...nextCard, lastResult: isCorrect ? 'correct' : 'incorrect' }
+}
+
 export function recordAnswer(wordId, isCorrect, now = new Date()) {
   const state = getState()
-  const quality = gradeToQuality(isCorrect)
-  const prevCard = state.words[wordId]
-  const nextCard = reviewCard(prevCard, quality, now)
-  state.words[wordId] = { ...nextCard, lastResult: isCorrect ? 'correct' : 'incorrect' }
+  reviewAndGrade(state.words, wordId, isCorrect, now)
   const xpGained = isCorrect ? XP_PER_CORRECT : XP_PER_INCORRECT
   state.xp += xpGained
   saveState(state)
   markWordDirty(wordId)
   markProfileDirty() // xp changed too
+  addDailyXp(xpGained, now)
+  return state
+}
+
+// Same SM-2 tracking as recordAnswer, generalized to any non-vocab content
+// type (grammar, and later listening/reading/writing) via an item_type
+// namespace so grammar/listening/etc. items never collide with each other
+// or with vocab word ids.
+export function recordItemAnswer(itemType, itemId, isCorrect, now = new Date()) {
+  const state = getState()
+  if (!state.items) state.items = {}
+  reviewAndGrade(state.items, `${itemType}:${itemId}`, isCorrect, now)
+  const xpGained = isCorrect ? XP_PER_CORRECT : XP_PER_INCORRECT
+  state.xp += xpGained
+  saveState(state)
+  markItemDirty(itemType, itemId)
+  markProfileDirty()
   addDailyXp(xpGained, now)
   return state
 }
@@ -116,6 +161,13 @@ export function bumpStreak(now = new Date()) {
 export function getDueWordIds(allWordIds, now = new Date()) {
   const state = getState()
   const due = allWordIds.filter((id) => isDue(state.words[id], now))
+  return due.slice(0, MAX_DUE_PER_SESSION)
+}
+
+// Same as getDueWordIds, generalized to any item_type namespace.
+export function getDueItemIds(itemType, allItemIds, now = new Date()) {
+  const state = getState()
+  const due = allItemIds.filter((id) => isDue(state.items?.[`${itemType}:${id}`], now))
   return due.slice(0, MAX_DUE_PER_SESSION)
 }
 

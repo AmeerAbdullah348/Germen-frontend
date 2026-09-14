@@ -4,8 +4,16 @@ import { useAuth } from './lib/AuthContext'
 import Auth from './pages/Auth'
 import Chatbot from './pages/Chatbot'
 import Dashboard from './pages/Dashboard'
+import Grammar from './pages/Grammar'
+import GrammarLesson from './pages/GrammarLesson'
+import GrammarTopic from './pages/GrammarTopic'
 import Lesson from './pages/Lesson'
+import Mistakes from './pages/Mistakes'
+import MistakesSession from './pages/MistakesSession'
+import Practice from './pages/Practice'
 import Profile from './pages/Profile'
+import Review from './pages/Review'
+import ReviewSession from './pages/ReviewSession'
 
 function RequireUser({ children }) {
   const { user, loading, hydrated } = useAuth()
@@ -50,6 +58,33 @@ export default function App() {
       />
 
       <Route
+        path="/grammar/:topicId/practice"
+        element={
+          <RequireUser>
+            <GrammarLesson />
+          </RequireUser>
+        }
+      />
+
+      <Route
+        path="/review/session"
+        element={
+          <RequireUser>
+            <ReviewSession />
+          </RequireUser>
+        }
+      />
+
+      <Route
+        path="/mistakes/session"
+        element={
+          <RequireUser>
+            <MistakesSession />
+          </RequireUser>
+        }
+      />
+
+      <Route
         element={
           <RequireUser>
             <Layout />
@@ -57,6 +92,11 @@ export default function App() {
         }
       >
         <Route path="/" element={<Dashboard />} />
+        <Route path="/practice" element={<Practice />} />
+        <Route path="/grammar" element={<Grammar />} />
+        <Route path="/grammar/:topicId" element={<GrammarTopic />} />
+        <Route path="/review" element={<Review />} />
+        <Route path="/mistakes" element={<Mistakes />} />
         <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
