@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Badge from '../components/ui/Badge'
 import Card from '../components/ui/Card'
+import InstallBanner from '../components/InstallBanner'
 import ProgressBar from '../components/ui/ProgressBar'
 import SyncStatus from '../components/SyncStatus'
 import { UNITS } from '../data/units'
@@ -98,6 +99,8 @@ export default function Dashboard() {
         </div>
         <SyncStatus />
       </div>
+
+      <InstallBanner />
 
       <div className="flex gap-3">
         <Card className="flex-1 flex items-center gap-3">
