@@ -1,31 +1,27 @@
 import { useState } from 'react'
 import Button from '../ui/Button'
 
-// Open-ended prompts have no reliable deterministic grader, so — like
-// Flashcard's "knew it" and Pronunciation's self-report fallback — the user
-// compares their own answer to a model answer and self-grades, rather than
-// reaching for AI feedback for something this open-ended.
 export default function WritingPrompt({ exercise, onResult }) {
   const [value, setValue] = useState('')
   const [revealed, setRevealed] = useState(false)
 
   function handleReveal() {
-    if (!value.trim()) return // guard: don't reveal on an empty answer
+    if (!value.trim()) return
     setRevealed(true)
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full max-w-sm">
-      <p className="text-lg font-medium text-gray-800">{exercise.prompt}</p>
+    <div className="flex flex-col gap-5 w-full max-w-sm">
+      <p className="text-xl font-extrabold text-white leading-snug">{exercise.prompt}</p>
 
       <textarea
         value={value}
         onChange={(e) => setValue(e.target.value)}
         disabled={revealed}
         placeholder="Write your answer in German..."
-        rows={3}
-        className={`rounded-xl border px-4 py-3 text-base resize-none ${
-          revealed ? 'border-gray-200 bg-gray-50' : 'border-gray-200'
+        rows={4}
+        className={`rounded-2xl border px-4 py-3 text-base resize-none font-medium outline-none transition-all shadow-inner text-white ${
+          revealed ? 'border-white/10 bg-slate-900/50 text-slate-400' : 'border-white/10 bg-slate-900/90 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500'
         }`}
       />
 
@@ -35,11 +31,11 @@ export default function WritingPrompt({ exercise, onResult }) {
         </Button>
       ) : (
         <>
-          <div className="rounded-xl bg-primary-50 border border-primary-100 px-4 py-3">
-            <p className="text-xs text-primary-600 font-medium mb-1">One possible answer</p>
-            <p className="text-gray-800">{exercise.sampleAnswer}</p>
+          <div className="rounded-2xl bg-cyan-500/10 border border-cyan-400/30 p-4">
+            <p className="text-xs text-cyan-400 font-bold uppercase tracking-wider mb-1">One possible answer</p>
+            <p className="text-slate-100 font-medium text-sm leading-relaxed">{exercise.sampleAnswer}</p>
           </div>
-          <p className="text-sm text-gray-600">How did you do?</p>
+          <p className="text-xs text-slate-400 font-medium text-center">How did you do?</p>
           <div className="flex gap-3">
             <Button variant="outline-danger" className="flex-1" onClick={() => onResult(false, value)}>
               Needs practice

@@ -31,36 +31,38 @@ export default function SentenceBuilder({ exercise, onResult }) {
   }
 
   function handleSubmit() {
-    if (submitted || built.length === 0) return // guard: empty / double-submit
+    if (submitted || built.length === 0) return
     setSubmitted(true)
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full max-w-sm">
-      <p className="text-lg font-medium text-gray-800">{exercise.prompt}</p>
+    <div className="flex flex-col gap-5 w-full max-w-sm">
+      <p className="text-xl font-extrabold text-white leading-snug">{exercise.prompt}</p>
 
-      <div className="min-h-14 rounded-xl border border-gray-200 bg-white p-2 flex flex-wrap gap-2">
+      {/* Built words drop zone */}
+      <div className="min-h-16 rounded-2xl border border-white/10 bg-slate-900/90 p-3 flex flex-wrap gap-2 shadow-inner">
         {built.map((word, i) => (
           <button
             key={`${word}-${i}`}
             type="button"
             onClick={() => removeWord(i)}
             disabled={submitted}
-            className="rounded-lg bg-primary-100 text-primary-700 px-3 py-2 font-medium"
+            className="rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-600/30 text-cyan-200 border border-cyan-400/30 px-3.5 py-2 text-sm font-bold shadow-[0_0_10px_rgba(6,182,212,0.2)] cursor-pointer"
           >
             {word}
           </button>
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      {/* Word bank */}
+      <div className="flex flex-wrap gap-2 justify-center">
         {bank.map((word, i) => (
           <button
             key={`${word}-${i}`}
             type="button"
             onClick={() => addWord(i)}
             disabled={submitted}
-            className="rounded-lg border border-gray-200 bg-white px-3 py-2 font-medium text-gray-700"
+            className="rounded-xl border border-white/10 bg-slate-800/80 px-3.5 py-2 text-sm font-bold text-slate-200 hover:border-white/20 hover:bg-slate-700/80 transition-all cursor-pointer"
           >
             {word}
           </button>
@@ -68,8 +70,8 @@ export default function SentenceBuilder({ exercise, onResult }) {
       </div>
 
       {submitted && !isCorrect && (
-        <p className="text-sm text-gray-500">
-          Correct answer: <span className="font-medium text-gray-700">{exercise.answer}</span>
+        <p className="text-xs text-slate-400 font-medium">
+          Correct answer: <span className="font-bold text-emerald-400">{exercise.answer}</span>
         </p>
       )}
 

@@ -1,4 +1,4 @@
-import { Bell, BellOff, LogOut } from 'lucide-react'
+import { Bell, BellOff, Flame, LogOut, ShieldCheck } from 'lucide-react'
 import { useState } from 'react'
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { Link } from 'react-router-dom'
@@ -27,10 +27,10 @@ const MASTERY_TONE = {
 }
 
 const MASTERY_CHART_COLOR = {
-  New: '#d1d5db',
-  Learning: '#ef4444',
-  Familiar: '#fbbf24',
-  Mastered: '#22c55e',
+  New: '#64748b',
+  Learning: '#f43f5e',
+  Familiar: '#f59e0b',
+  Mastered: '#10b981',
 }
 
 const MASTERY_ORDER = ['New', 'Learning', 'Familiar', 'Mastered']
@@ -77,46 +77,60 @@ export default function Profile() {
   }
 
   return (
-    <div className="px-5 pt-8 flex flex-col gap-6">
+    <div className="px-5 pt-8 flex flex-col gap-6 pb-8 text-slate-100">
+      {/* User Header */}
       <div className="flex items-start justify-between">
-        <div className="flex flex-col gap-2">
-          <div>
-            <h1 className="text-2xl font-semibold text-gray-900">{state.name}</h1>
-            <p className="text-gray-500">
-              Level {level} · {state.xp} XP · {state.streak.count} day streak
-            </p>
+        <div className="flex flex-col gap-1.5">
+          <h1 className="text-3xl font-extrabold text-white tracking-tight">{state.name}</h1>
+          <div className="flex items-center gap-2 text-xs text-slate-300 font-semibold">
+            <span className="bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 px-2.5 py-0.5 rounded-full">
+              Level {level}
+            </span>
+            <span>·</span>
+            <span>{state.xp.toLocaleString()} XP</span>
+            <span>·</span>
+            <span className="flex items-center gap-1 text-amber-400">
+              <Flame size={13} fill="currentColor" /> {state.streak.count}d
+            </span>
           </div>
           <SyncStatus />
         </div>
         <button
           type="button"
           onClick={() => signOut()}
-          className="flex items-center gap-1.5 text-sm text-gray-400 shrink-0"
+          className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-rose-400 font-bold bg-white/5 border border-white/10 px-3 py-1.5 rounded-full transition-all shrink-0 cursor-pointer"
         >
-          <LogOut size={16} /> Log out
+          <LogOut size={14} /> Log out
         </button>
       </div>
 
-      <Card as={Link} to="/placement" interactive className="flex items-center justify-between">
-        <div>
-          <p className="text-xs font-semibold text-gray-500">CEFR level</p>
-          <p className="font-medium text-gray-900">
-            {state.placementLevel ? `${state.placementLevel} · ${LEVEL_LABELS[state.placementLevel]}` : 'Not tested yet'}
-          </p>
+      {/* CEFR Level Card */}
+      <Card as={Link} to="/placement" interactive className="flex items-center justify-between p-4.5 bg-gradient-to-r from-blue-900/60 to-slate-900/90 border-blue-500/30">
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 flex items-center justify-center">
+            <ShieldCheck size={20} />
+          </div>
+          <div>
+            <p className="text-xs font-bold text-cyan-400 uppercase tracking-wider">CEFR level</p>
+            <p className="font-bold text-white text-sm">
+              {state.placementLevel ? `${state.placementLevel} · ${LEVEL_LABELS[state.placementLevel]}` : 'Not tested yet'}
+            </p>
+          </div>
         </div>
-        <span className="text-sm text-primary-600 font-medium">
-          {state.placementLevel ? 'Retake test' : 'Take test'}
+        <span className="text-xs text-cyan-300 font-bold bg-cyan-500/20 border border-cyan-400/30 px-3 py-1.5 rounded-full">
+          {state.placementLevel ? 'Retake' : 'Take test'}
         </span>
       </Card>
 
+      {/* Reminders Card */}
       {isNotificationSupported() && (
-        <Card className="flex items-center justify-between gap-3">
+        <Card className="flex items-center justify-between gap-3 p-4">
           <div className="min-w-0">
-            <p className="text-xs font-semibold text-gray-500">Reminders</p>
-            <p className="text-sm text-gray-600">
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Reminders</p>
+            <p className="text-xs text-slate-300 mt-0.5">
               {permissionDenied
-                ? 'Blocked in your browser settings — allow notifications for this site to enable.'
-                : 'Streak, due words, and daily challenge nudges while the app is open.'}
+                ? 'Blocked in browser settings — allow notifications for this site.'
+                : 'Streak, due words, and daily challenge nudges.'}
             </p>
           </div>
           <button
@@ -124,72 +138,77 @@ export default function Profile() {
             onClick={handleToggleReminders}
             disabled={permissionDenied}
             aria-label={remindersOn ? 'Disable reminders' : 'Enable reminders'}
-            className={`shrink-0 h-9 w-9 rounded-full flex items-center justify-center ${
-              remindersOn ? 'bg-primary-50 text-primary-600' : 'bg-gray-100 text-gray-400'
-            } disabled:opacity-50`}
+            className={`shrink-0 h-10 w-10 rounded-full flex items-center justify-center border transition-all ${
+              remindersOn
+                ? 'bg-cyan-500/20 border-cyan-400/30 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.3)]'
+                : 'bg-white/5 border-white/10 text-slate-400'
+            } disabled:opacity-50 cursor-pointer`}
           >
             {remindersOn ? <Bell size={18} /> : <BellOff size={18} />}
           </button>
         </Card>
       )}
 
+      {/* Analytics Grid */}
       <div className="flex flex-col gap-3">
-        <h2 className="text-lg font-medium text-gray-800">Analytics</h2>
+        <h2 className="text-lg font-bold text-white">Analytics</h2>
         <div className="grid grid-cols-2 gap-3">
-          <Card padding="p-3" className="flex flex-col gap-0.5">
-            <p className="text-xs text-gray-500">Vocabulary</p>
-            <p className="font-semibold text-gray-900">
-              {analytics.vocabLearned}/{analytics.vocabTotal} learned
+          <Card padding="p-3.5" className="flex flex-col gap-0.5">
+            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Vocabulary</p>
+            <p className="font-extrabold text-white text-base">
+              {analytics.vocabLearned}/{analytics.vocabTotal}
             </p>
-            <p className="text-xs text-gray-400">{analytics.vocabMastered} mastered</p>
+            <p className="text-xs text-cyan-400 font-medium">{analytics.vocabMastered} mastered</p>
           </Card>
-          <Card padding="p-3" className="flex flex-col gap-0.5">
-            <p className="text-xs text-gray-500">Accuracy</p>
-            <p className="font-semibold text-gray-900">
+          <Card padding="p-3.5" className="flex flex-col gap-0.5">
+            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Accuracy</p>
+            <p className="font-extrabold text-emerald-400 text-base">
               {analytics.overallAccuracy != null ? `${Math.round(analytics.overallAccuracy * 100)}%` : '—'}
             </p>
           </Card>
-          <Card padding="p-3" className="flex flex-col gap-0.5">
-            <p className="text-xs text-gray-500">Streak</p>
-            <p className="font-semibold text-gray-900">{analytics.currentStreak} days</p>
-            <p className="text-xs text-gray-400">Longest: {analytics.longestStreak}</p>
+          <Card padding="p-3.5" className="flex flex-col gap-0.5">
+            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Streak</p>
+            <p className="font-extrabold text-amber-300 text-base">{analytics.currentStreak} days</p>
+            <p className="text-xs text-slate-400 font-medium">Longest: {analytics.longestStreak}</p>
           </Card>
-          <Card padding="p-3" className="flex flex-col gap-0.5">
-            <p className="text-xs text-gray-500">Study time</p>
-            <p className="font-semibold text-gray-900">{formatStudyTime(analytics.studyTimeMs)}</p>
-            <p className="text-xs text-gray-400">{analytics.sessionCount} sessions</p>
+          <Card padding="p-3.5" className="flex flex-col gap-0.5">
+            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Study time</p>
+            <p className="font-extrabold text-cyan-300 text-base">{formatStudyTime(analytics.studyTimeMs)}</p>
+            <p className="text-xs text-slate-400 font-medium">{analytics.sessionCount} sessions</p>
           </Card>
-          <Card padding="p-3" className="flex flex-col gap-0.5">
-            <p className="text-xs text-gray-500">This week</p>
-            <p className="font-semibold text-gray-900">{analytics.weeklyXp} XP</p>
+          <Card padding="p-3.5" className="flex flex-col gap-0.5">
+            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">This week</p>
+            <p className="font-extrabold text-white text-base">{analytics.weeklyXp} XP</p>
           </Card>
-          <Card padding="p-3" className="flex flex-col gap-0.5">
-            <p className="text-xs text-gray-500">This month</p>
-            <p className="font-semibold text-gray-900">{analytics.monthlyXp} XP</p>
+          <Card padding="p-3.5" className="flex flex-col gap-0.5">
+            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">This month</p>
+            <p className="font-extrabold text-white text-base">{analytics.monthlyXp} XP</p>
           </Card>
         </div>
 
-        <div className="rounded-2xl bg-white border border-gray-200 p-3 h-32">
+        {/* Weekly Chart */}
+        <div className="rounded-2xl bg-slate-900/80 border border-white/10 p-3.5 h-36 backdrop-blur-xl shadow-lg">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={weeklyChartData}>
-              <XAxis dataKey="day" tickLine={false} axisLine={false} fontSize={11} stroke="#9ca3af" />
+              <XAxis dataKey="day" tickLine={false} axisLine={false} fontSize={11} stroke="#94a3b8" />
               <YAxis hide allowDecimals={false} />
-              <Tooltip cursor={{ fill: '#f3f4f6' }} />
-              <Bar dataKey="xp" radius={[4, 4, 0, 0]} fill="#3b82f6" />
+              <Tooltip cursor={{ fill: 'rgba(255, 255, 255, 0.05)' }} contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px', color: '#fff' }} />
+              <Bar dataKey="xp" radius={[4, 4, 0, 0]} fill="#38bdf8" />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
+        {/* Skills */}
         <div className="flex flex-col gap-2">
           {Object.entries(SKILL_LABELS).map(([key, label]) => {
             const skill = analytics.skillProgress[key]
             return (
               <div
                 key={key}
-                className="flex items-center justify-between rounded-xl bg-white border border-gray-200 px-4 py-3"
+                className="flex items-center justify-between rounded-xl bg-slate-900/80 border border-white/10 px-4 py-3 text-sm"
               >
-                <span className="text-gray-800">{label}</span>
-                <span className="text-sm text-gray-500">
+                <span className="font-bold text-white">{label}</span>
+                <span className="text-xs text-slate-400 font-medium">
                   {skill.topicsComplete}/{skill.topicsTotal} topics
                   {skill.accuracy != null && ` · ${Math.round(skill.accuracy * 100)}%`}
                 </span>
@@ -199,14 +218,15 @@ export default function Profile() {
         </div>
       </div>
 
+      {/* Mastery breakdown */}
       <div>
-        <h2 className="text-lg font-medium text-gray-800 mb-2">Mastery breakdown</h2>
-        <div className="rounded-2xl bg-white border border-gray-200 p-2 h-40">
+        <h2 className="text-lg font-bold text-white mb-2.5">Mastery breakdown</h2>
+        <div className="rounded-2xl bg-slate-900/80 border border-white/10 p-3 h-44 backdrop-blur-xl shadow-lg">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData} layout="vertical" margin={{ left: 8, right: 16 }}>
               <XAxis type="number" allowDecimals={false} hide />
-              <YAxis type="category" dataKey="label" width={70} tickLine={false} axisLine={false} />
-              <Tooltip cursor={{ fill: '#f3f4f6' }} />
+              <YAxis type="category" dataKey="label" width={70} tickLine={false} axisLine={false} stroke="#94a3b8" />
+              <Tooltip cursor={{ fill: 'rgba(255, 255, 255, 0.05)' }} contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px', color: '#fff' }} />
               <Bar dataKey="count" radius={[0, 6, 6, 0]}>
                 {chartData.map((entry) => (
                   <Cell key={entry.label} fill={MASTERY_CHART_COLOR[entry.label]} />
@@ -217,21 +237,22 @@ export default function Profile() {
         </div>
       </div>
 
+      {/* Vocabulary list */}
       <div className="flex flex-col gap-5 pb-6">
-        <h2 className="text-lg font-medium text-gray-800 -mb-2">Vocabulary progress</h2>
+        <h2 className="text-lg font-bold text-white -mb-2">Vocabulary progress</h2>
         {UNITS.map((unit) => (
           <div key={unit.id} className="flex flex-col gap-2">
-            <h3 className="text-sm font-semibold text-gray-500">{unit.title}</h3>
+            <h3 className="text-xs font-bold text-cyan-400 uppercase tracking-wider">{unit.title}</h3>
             {unit.vocab.map((word) => {
               const label = getMasteryLabel(state.words[word.id])
               return (
                 <div
                   key={word.id}
-                  className="flex items-center justify-between rounded-xl bg-white border border-gray-200 px-4 py-3"
+                  className="flex items-center justify-between rounded-xl bg-slate-900/80 border border-white/10 px-4 py-3"
                 >
                   <div>
-                    <p className="font-medium text-gray-900">{word.de}</p>
-                    <p className="text-sm text-gray-500">{word.en}</p>
+                    <p className="font-bold text-white text-sm">{word.de}</p>
+                    <p className="text-xs text-slate-400">{word.en}</p>
                   </div>
                   <Badge tone={MASTERY_TONE[label]}>{label}</Badge>
                 </div>

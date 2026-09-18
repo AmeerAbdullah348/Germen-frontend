@@ -23,23 +23,33 @@ export default function Favorites() {
 
   if (visibleWords.length === 0) {
     return (
-      <div className="px-5 pt-8 flex flex-col gap-4 items-center text-center">
-        <Star className="text-gray-300" size={40} />
-        <p className="text-gray-500">No favorites yet — tap the star on any word to save it here.</p>
+      <div className="px-5 pt-12 flex flex-col gap-4 items-center justify-center text-center text-slate-100 min-h-[60vh]">
+        <div className="h-16 w-16 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+          <Star size={32} fill="currentColor" />
+        </div>
+        <h2 className="text-xl font-bold text-white">No favorites yet</h2>
+        <p className="text-slate-400 text-xs max-w-xs leading-relaxed">
+          Tap the star icon on any word across lessons or dictionary to save it here for quick review.
+        </p>
       </div>
     )
   }
 
   return (
-    <div className="px-5 pt-8 flex flex-col gap-6 pb-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">Favorites</h1>
-        <p className="text-gray-500 text-sm">{visibleWords.length} saved words</p>
+    <div className="px-5 pt-8 flex flex-col gap-6 pb-8 text-slate-100">
+      <div className="flex flex-col gap-1">
+        <div className="flex items-center gap-2">
+          <div className="h-8 w-8 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 flex items-center justify-center">
+            <Star size={16} fill="currentColor" />
+          </div>
+          <h1 className="text-2xl font-bold tracking-tight text-white">Favorites</h1>
+        </div>
+        <p className="text-amber-400 text-xs font-bold">{visibleWords.length} saved words</p>
       </div>
 
       <Button onClick={() => navigate('/favorites/practice')}>Practice favorites</Button>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2.5">
         {visibleWords.map((word) => (
           <WordRow
             key={word.id}

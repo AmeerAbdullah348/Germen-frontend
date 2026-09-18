@@ -1,10 +1,8 @@
 import { readJSON, writeJSON } from './storage'
 
 const KEY = 'gla:chatUsage'
-// Keeps a single user from burning through the whole app's shared free-tier
-// Groq quota. This is a soft, client-side cap for UX; the edge function
-// should also enforce a hard limit server-side once deployed.
-export const DAILY_MESSAGE_LIMIT = 30
+// Increased daily chatbot limit from 30 to 100 questions per day
+export const DAILY_MESSAGE_LIMIT = 100
 
 function todayKey() {
   const d = new Date()

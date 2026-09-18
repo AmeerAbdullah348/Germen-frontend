@@ -8,20 +8,20 @@ export default function MultipleChoice({ exercise, onResult }) {
   const isCorrect = selected === exercise.answer
 
   function handleSelect(option) {
-    if (submitted) return // guard against changing answer after submit
+    if (submitted) return
     setSelected(option)
   }
 
   function handleSubmit() {
-    if (submitted || selected === null) return // guard against double-submit / empty submit
+    if (submitted || selected === null) return
     setSubmitted(true)
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full max-w-sm">
-      <p className="text-lg font-medium text-gray-800">{exercise.prompt}</p>
+    <div className="flex flex-col gap-5 w-full max-w-sm">
+      <p className="text-xl font-extrabold text-white leading-snug drop-shadow-sm">{exercise.prompt}</p>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         {exercise.options.map((option) => {
           const isSelected = selected === option
           const showCorrect = submitted && option === exercise.answer
@@ -34,11 +34,11 @@ export default function MultipleChoice({ exercise, onResult }) {
               onClick={() => handleSelect(option)}
               disabled={submitted}
               className={[
-                'text-left rounded-xl border px-4 py-3 font-medium transition-colors',
-                showCorrect && 'border-success bg-green-50 text-success',
-                showWrong && 'border-danger bg-red-50 text-danger',
-                !submitted && isSelected && 'border-primary-500 bg-primary-50',
-                !submitted && !isSelected && 'border-gray-200 bg-white',
+                'text-left rounded-2xl border px-4.5 py-3.5 font-bold transition-all text-sm cursor-pointer shadow-md',
+                showCorrect && 'border-emerald-500/80 bg-emerald-500/20 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.3)]',
+                showWrong && 'border-rose-500/80 bg-rose-500/20 text-rose-300 shadow-[0_0_15px_rgba(244,63,94,0.3)]',
+                !submitted && isSelected && 'border-cyan-400 bg-cyan-500/20 text-cyan-200 shadow-[0_0_15px_rgba(6,182,212,0.3)]',
+                !submitted && !isSelected && 'border-white/10 bg-slate-900/80 text-slate-200 hover:border-white/20 hover:bg-slate-800/80',
               ]
                 .filter(Boolean)
                 .join(' ')}

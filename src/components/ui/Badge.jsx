@@ -1,18 +1,16 @@
-// Shared pill label — consolidates the `text-xs font-semibold px-2.5 py-1
-// rounded-full` pattern duplicated for the Dashboard "N due" pill and
-// Profile's mastery labels.
+// Shared pill label — updated for dark theme visual language
 const TONES = {
-  gray: 'bg-gray-100 text-gray-500',
-  accent: 'bg-accent-100 text-accent-600',
-  success: 'bg-green-50 text-success',
-  danger: 'bg-red-50 text-danger',
-  primary: 'bg-primary-50 text-primary-600',
+  gray: 'bg-slate-800 text-slate-300 border border-slate-700',
+  accent: 'bg-amber-500/20 text-amber-300 border border-amber-500/30',
+  success: 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30',
+  danger: 'bg-rose-500/20 text-rose-300 border border-rose-500/30',
+  primary: 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 shadow-[0_0_10px_rgba(6,182,212,0.2)]',
 }
 
 export default function Badge({ tone = 'gray', className = '', children }) {
   return (
     <span
-      className={['text-xs font-semibold px-2.5 py-1 rounded-full', TONES[tone] ?? TONES.gray, className]
+      className={['text-xs font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm', TONES[tone] ?? TONES.gray, className]
         .filter(Boolean)
         .join(' ')}
     >

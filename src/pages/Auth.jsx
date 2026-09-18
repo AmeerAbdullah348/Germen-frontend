@@ -5,7 +5,7 @@ import { useAuth } from '../lib/AuthContext'
 
 export default function Auth() {
   const { user, loading: sessionLoading } = useAuth()
-  const [mode, setMode] = useState('signup') // 'signup' | 'login'
+  const [mode, setMode] = useState('signup')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -19,7 +19,7 @@ export default function Auth() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    if (submitting) return // guard against double-submit
+    if (submitting) return
 
     const trimmedEmail = email.trim()
     if (!trimmedEmail || !password) {
@@ -52,16 +52,14 @@ export default function Auth() {
     if (result.needsConfirmation) {
       setConfirmationSent(true)
     }
-    // Otherwise AuthContext's onAuthStateChange picks up the new session
-    // and the redirect above takes over.
   }
 
   if (confirmationSent) {
     return (
-      <div className="min-h-svh flex flex-col justify-center items-center gap-4 px-6 mx-auto max-w-md text-center">
-        <h1 className="text-2xl font-semibold text-gray-900">Check your email 📬</h1>
-        <p className="text-gray-500">
-          We sent a confirmation link to <span className="font-medium">{email}</span>. Click it,
+      <div className="min-h-svh flex flex-col justify-center items-center gap-5 px-6 mx-auto max-w-md text-center bg-[#070b19] text-slate-100">
+        <h1 className="text-3xl font-extrabold text-white">Check your email 📬</h1>
+        <p className="text-slate-300 text-sm leading-relaxed max-w-xs">
+          We sent a confirmation link to <span className="font-bold text-cyan-300">{email}</span>. Click it,
           then come back and log in.
         </p>
         <button
@@ -70,7 +68,7 @@ export default function Auth() {
             setConfirmationSent(false)
             setMode('login')
           }}
-          className="text-primary-600 font-medium"
+          className="text-cyan-400 font-bold hover:underline text-sm cursor-pointer"
         >
           Back to login
         </button>
@@ -79,20 +77,23 @@ export default function Auth() {
   }
 
   return (
-    <div className="min-h-svh flex flex-col justify-center items-center gap-8 px-6 mx-auto max-w-md">
-      <div className="text-center flex flex-col gap-2">
-        <h1 className="text-3xl font-semibold text-gray-900">Willkommen! 👋</h1>
-        <p className="text-gray-500">Learn real, usable German — fast.</p>
+    <div className="min-h-svh flex flex-col justify-center items-center gap-8 px-6 mx-auto max-w-md bg-[#070b19] text-slate-100 relative overflow-hidden">
+      {/* Radial background glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="text-center flex flex-col gap-2 relative z-10">
+        <h1 className="text-4xl font-black text-white tracking-tight drop-shadow-md">Willkommen! 👋</h1>
+        <p className="text-slate-400 text-sm font-medium">Learn real, usable German — fast.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 relative z-10">
         {mode === 'signup' && (
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="What should we call you?"
-            className="rounded-xl border border-gray-200 px-4 py-3 text-lg"
+            className="rounded-2xl bg-slate-900/90 border border-white/10 px-4.5 py-3.5 text-base text-white placeholder:text-slate-500 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 shadow-inner"
           />
         )}
         <input
@@ -101,22 +102,22 @@ export default function Auth() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           autoFocus
-          className="rounded-xl border border-gray-200 px-4 py-3 text-lg"
+          className="rounded-2xl bg-slate-900/90 border border-white/10 px-4.5 py-3.5 text-base text-white placeholder:text-slate-500 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 shadow-inner"
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="rounded-xl border border-gray-200 px-4 py-3 text-lg"
+          className="rounded-2xl bg-slate-900/90 border border-white/10 px-4.5 py-3.5 text-base text-white placeholder:text-slate-500 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 shadow-inner"
         />
 
-        {error && <p className="text-sm text-danger">{error}</p>}
+        {error && <p className="text-xs font-bold text-rose-400 text-center">{error}</p>}
 
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-xl bg-primary-600 disabled:bg-gray-300 text-white py-3 font-medium text-lg"
+          className="rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:from-slate-800 disabled:to-slate-800 disabled:text-slate-600 text-white py-3.5 font-bold text-base shadow-[0_4px_20px_rgba(6,182,212,0.4)] transition-all cursor-pointer mt-1"
         >
           {submitting ? 'Please wait…' : mode === 'signup' ? 'Get Started' : 'Log In'}
         </button>
@@ -128,7 +129,7 @@ export default function Auth() {
           setMode((m) => (m === 'signup' ? 'login' : 'signup'))
           setError(null)
         }}
-        className="text-sm text-gray-500"
+        className="text-xs text-slate-400 hover:text-white transition-colors relative z-10 cursor-pointer"
       >
         {mode === 'signup' ? 'Already have an account? Log in' : "Don't have an account? Sign up"}
       </button>

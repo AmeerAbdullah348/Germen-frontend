@@ -12,9 +12,9 @@ export default function ReadingPassage() {
 
   if (!passage) {
     return (
-      <div className="px-5 pt-8 flex flex-col gap-4 items-center text-center">
-        <p className="text-gray-600">This passage couldn't be loaded.</p>
-        <Link to="/reading" className="text-primary-600 font-medium">
+      <div className="px-5 pt-8 flex flex-col gap-4 items-center justify-center text-center text-slate-100 min-h-svh bg-[#070b19]">
+        <p className="text-slate-400">This passage couldn't be loaded.</p>
+        <Link to="/reading" className="text-cyan-400 font-bold hover:underline">
           Back to Reading
         </Link>
       </div>
@@ -27,23 +27,23 @@ export default function ReadingPassage() {
   }
 
   return (
-    <div className="px-5 pt-8 flex flex-col gap-6 pb-10">
+    <div className="px-5 pt-8 flex flex-col gap-6 pb-10 text-slate-100">
       <div>
-        <Link to="/reading" className="text-sm text-gray-400">
-          &larr; Reading
+        <Link to="/reading" className="text-xs text-slate-400 hover:text-white font-medium">
+          &larr; Back to Reading
         </Link>
-        <h1 className="text-2xl font-semibold tracking-tight text-gray-900 mt-1">{passage.title}</h1>
-        <p className="text-gray-500 text-sm">{passage.titleEn}</p>
+        <h1 className="text-2xl font-extrabold tracking-tight text-white mt-1">{passage.title}</h1>
+        <p className="text-slate-400 text-xs">{passage.titleEn}</p>
       </div>
 
-      <div className="rounded-2xl bg-white border border-gray-200 p-5 flex flex-col gap-3">
+      <div className="rounded-3xl bg-slate-900/90 border border-white/10 p-5.5 flex flex-col gap-4 backdrop-blur-xl shadow-xl">
         {passage.paragraphs.map((line, i) => (
-          <p key={i} className="text-lg leading-relaxed text-gray-800">
+          <p key={i} className="text-base leading-relaxed text-slate-100 font-medium">
             {line.split(' ').map((token, j) => (
               <span
                 key={j}
                 onClick={() => handleWordTap(token)}
-                className="cursor-pointer hover:bg-primary-50 rounded px-0.5"
+                className="cursor-pointer hover:bg-cyan-500/20 hover:text-cyan-300 rounded px-1 transition-colors inline-block"
               >
                 {token}{' '}
               </span>
@@ -52,12 +52,12 @@ export default function ReadingPassage() {
         ))}
       </div>
 
-      <p className="text-xs text-gray-400 -mt-3">Tap any word for a quick translation.</p>
+      <p className="text-xs text-slate-400 -mt-3">Tap any word for a quick translation.</p>
 
       {lookup && (
-        <div className="rounded-xl bg-primary-50 border border-primary-100 px-4 py-3">
-          <p className="font-medium text-primary-700">{lookup.de}</p>
-          <p className="text-sm text-gray-600">{lookup.en ?? 'No definition available for this word yet.'}</p>
+        <div className="rounded-2xl bg-cyan-500/10 border border-cyan-400/30 p-4 shadow-lg">
+          <p className="font-extrabold text-cyan-300 text-base">{lookup.de}</p>
+          <p className="text-xs text-slate-300 mt-0.5">{lookup.en ?? 'No definition available for this word yet.'}</p>
         </div>
       )}
 

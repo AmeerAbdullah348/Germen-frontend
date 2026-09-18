@@ -16,40 +16,40 @@ export default function Listening({ exercise, onResult }) {
   }
 
   function handleSelect(option) {
-    if (submitted) return // guard against changing answer after submit
+    if (submitted) return
     setSelected(option)
   }
 
   function handleSubmit() {
-    if (submitted || selected === null) return // guard against double-submit / empty submit
+    if (submitted || selected === null) return
     setSubmitted(true)
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full max-w-sm">
-      <div className="flex flex-col items-center gap-3 rounded-2xl bg-white border border-gray-200 p-6">
+    <div className="flex flex-col gap-5 w-full max-w-sm">
+      <div className="flex flex-col items-center gap-3.5 rounded-3xl bg-slate-900/90 border border-white/10 p-6 backdrop-blur-xl shadow-xl">
         <button
           type="button"
           onClick={() => handlePlay()}
-          className="w-16 h-16 rounded-full bg-primary-600 text-white flex items-center justify-center"
+          className="w-18 h-18 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.5)] active:scale-95 transition-all cursor-pointer"
         >
-          <Volume2 size={28} />
+          <Volume2 size={32} />
         </button>
         <div className="flex items-center gap-4">
-          <span className="text-xs text-gray-400">{played ? 'Tap to replay' : 'Tap to listen'}</span>
+          <span className="text-xs text-slate-400 font-medium">{played ? 'Tap to replay' : 'Tap to listen'}</span>
           <button
             type="button"
             onClick={() => handlePlay(SLOW_RATE)}
-            className="text-xs text-primary-500 font-medium"
+            className="text-xs text-cyan-400 font-bold hover:underline cursor-pointer"
           >
             Slower
           </button>
         </div>
       </div>
 
-      <p className="text-lg font-medium text-gray-800">{exercise.prompt}</p>
+      <p className="text-lg font-bold text-white leading-snug">{exercise.prompt}</p>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         {exercise.options.map((option) => {
           const isSelected = selected === option
           const showCorrect = submitted && option === exercise.answer
@@ -62,11 +62,11 @@ export default function Listening({ exercise, onResult }) {
               onClick={() => handleSelect(option)}
               disabled={submitted}
               className={[
-                'text-left rounded-xl border px-4 py-3 font-medium transition-colors',
-                showCorrect && 'border-success bg-green-50 text-success',
-                showWrong && 'border-danger bg-red-50 text-danger',
-                !submitted && isSelected && 'border-primary-500 bg-primary-50',
-                !submitted && !isSelected && 'border-gray-200 bg-white',
+                'text-left rounded-2xl border px-4.5 py-3.5 font-bold transition-all text-sm cursor-pointer shadow-md',
+                showCorrect && 'border-emerald-500/80 bg-emerald-500/20 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.3)]',
+                showWrong && 'border-rose-500/80 bg-rose-500/20 text-rose-300 shadow-[0_0_15px_rgba(244,63,94,0.3)]',
+                !submitted && isSelected && 'border-cyan-400 bg-cyan-500/20 text-cyan-200 shadow-[0_0_15px_rgba(6,182,212,0.3)]',
+                !submitted && !isSelected && 'border-white/10 bg-slate-900/80 text-slate-200 hover:border-white/20 hover:bg-slate-800/80',
               ]
                 .filter(Boolean)
                 .join(' ')}

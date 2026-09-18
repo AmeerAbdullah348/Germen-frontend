@@ -5,9 +5,6 @@ import { bumpStreak, recordItemAnswer } from '../lib/progress'
 import { flushPendingSync } from '../lib/remoteSync'
 import ExerciseRunner from './ExerciseRunner'
 
-// Shared full-screen exercise session for any content type that's just a
-// list of exercises keyed by itemId (Listening/Speaking/Writing) — mirrors
-// GrammarLesson.jsx's pattern so it doesn't get re-implemented per type.
 export default function ContentLessonRunner({
   topic,
   itemType,
@@ -20,9 +17,9 @@ export default function ContentLessonRunner({
 
   if (!topic) {
     return (
-      <div className="px-5 pt-8 flex flex-col gap-4 items-center text-center">
-        <p className="text-gray-600">This couldn't be loaded.</p>
-        <Link to={notFoundBackPath} className="text-primary-600 font-medium">
+      <div className="px-5 pt-8 flex flex-col gap-4 items-center justify-center text-center text-slate-100 min-h-svh bg-[#070b19]">
+        <p className="text-slate-400">This couldn't be loaded.</p>
+        <Link to={notFoundBackPath} className="text-cyan-400 font-bold hover:underline">
           {notFoundBackLabel}
         </Link>
       </div>

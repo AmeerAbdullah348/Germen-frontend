@@ -18,13 +18,10 @@ const RECOGNITION_ERROR_MESSAGES = {
   network: 'Connection hiccup while listening.',
 }
 
-// Some browsers/permission states never fire onresult/onerror/onend at all
-// (e.g. a permission prompt left unanswered) — without a hard timeout the
-// user would be stuck on the pulsing "listening" state forever.
 const LISTEN_TIMEOUT_MS = 8000
 
 export default function Pronunciation({ exercise, onResult }) {
-  const [phase, setPhase] = useState('idle') // idle | listening | correct | retry | self-report
+  const [phase, setPhase] = useState('idle')
   const [attempts, setAttempts] = useState(0)
   const [errorMessage, setErrorMessage] = useState(null)
   const [heardTranscript, setHeardTranscript] = useState(null)
@@ -53,7 +50,7 @@ export default function Pronunciation({ exercise, onResult }) {
   }
 
   function handleRecord() {
-    if (phase === 'listening') return // guard against double-tap while already recording
+    if (phase === 'listening') return
     const recognition = createRecognizer()
     if (!recognition) {
       setPhase('self-report')
@@ -83,7 +80,6 @@ export default function Pronunciation({ exercise, onResult }) {
     }
 
     recognition.onend = () => {
-      // If neither onresult nor onerror fired (e.g. silence timeout), don't get stuck.
       setPhase((p) => (p === 'listening' ? 'retry' : p))
       clearTimeout(timeoutRef.current)
     }
@@ -102,7 +98,6 @@ export default function Pronunciation({ exercise, onResult }) {
     stopListening('idle')
   }
 
-  // Browser has no speech recognition at all — never block the lesson on it.
   if (!speechSupported && phase === 'idle') {
     return (
       <SelfReport
@@ -129,22 +124,22 @@ export default function Pronunciation({ exercise, onResult }) {
 
   return (
     <div className="flex flex-col items-center gap-6 w-full max-w-sm">
-      <p className="text-lg font-medium text-gray-800 text-center">{exercise.prompt}</p>
-      <p className="text-2xl font-semibold text-primary-700 text-center">{exercise.target}</p>
+      <p className="text-lg font-bold text-slate-300 text-center">{exercise.prompt}</p>
+      <p className="text-3xl font-black text-cyan-300 text-center drop-shadow-[0_0_12px_rgba(6,182,212,0.4)]">{exercise.target}</p>
 
       {ttsSupported && (
         <div className="flex items-center gap-4">
           <button
             type="button"
             onClick={() => handleListen()}
-            className="flex items-center gap-2 text-primary-600 font-medium"
+            className="flex items-center gap-2 text-cyan-400 font-bold hover:underline"
           >
             <Volume2 size={20} /> Listen
           </button>
           <button
             type="button"
             onClick={() => handleListen(SLOW_RATE)}
-            className="text-sm text-gray-400 font-medium"
+            className="text-xs text-slate-400 font-medium"
           >
             Slower
           </button>
@@ -155,7 +150,7 @@ export default function Pronunciation({ exercise, onResult }) {
         <button
           type="button"
           onClick={handleRecord}
-          className="w-20 h-20 rounded-full bg-primary-600 text-white flex items-center justify-center"
+          className="w-20 h-20 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.5)] active:scale-95 transition-all cursor-pointer"
         >
           <Mic size={32} />
         </button>
@@ -163,10 +158,10 @@ export default function Pronunciation({ exercise, onResult }) {
 
       {phase === 'listening' && (
         <div className="flex flex-col items-center gap-3">
-          <div className="w-20 h-20 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center animate-pulse">
+          <div className="w-20 h-20 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 flex items-center justify-center animate-pulse shadow-[0_0_25px_rgba(16,185,129,0.5)]">
             <Mic size={32} />
           </div>
-          <button type="button" onClick={handleCancelListening} className="text-sm text-gray-400">
+          <button type="button" onClick={handleCancelListening} className="text-xs text-slate-400 hover:text-white">
             Cancel
           </button>
         </div>
@@ -174,25 +169,25 @@ export default function Pronunciation({ exercise, onResult }) {
 
       {phase === 'retry' && (
         <div className="flex flex-col items-center gap-3">
-          <p className="text-sm text-gray-500 text-center">
+          <p className="text-xs text-slate-300 text-center">
             {errorMessage ?? 'Not quite — give it another try.'}
           </p>
           {heardTranscript && (
-            <p className="text-xs text-gray-400 text-center">We heard: "{heardTranscript}"</p>
+            <p className="text-xs text-slate-400 text-center">We heard: "{heardTranscript}"</p>
           )}
           <div className="flex gap-3">
             <button
               type="button"
               onClick={handleRecord}
-              className="flex items-center gap-1.5 rounded-xl border border-primary-500 text-primary-600 px-4 py-2 font-medium"
+              className="flex items-center gap-1.5 rounded-xl border border-cyan-400/40 bg-cyan-500/20 text-cyan-300 px-4 py-2 text-xs font-bold"
             >
-              <RotateCcw size={16} /> Try again
+              <RotateCcw size={15} /> Try again
             </button>
             {attempts >= 2 && (
               <button
                 type="button"
                 onClick={() => setPhase('self-report')}
-                className="rounded-xl border border-gray-200 text-gray-500 px-4 py-2 font-medium"
+                className="rounded-xl border border-white/10 text-slate-400 px-4 py-2 text-xs font-bold"
               >
                 Skip
               </button>
@@ -203,7 +198,7 @@ export default function Pronunciation({ exercise, onResult }) {
 
       {phase === 'correct' && (
         <div className="flex flex-col items-center gap-3">
-          <p className="text-success font-medium">Nicely done! 🎉</p>
+          <p className="text-emerald-400 font-extrabold text-base">Nicely done! 🎉</p>
           <Button className="px-8" onClick={() => onResult(true)}>
             Continue
           </Button>
@@ -213,33 +208,30 @@ export default function Pronunciation({ exercise, onResult }) {
   )
 }
 
-// Fallback used whenever we can't (or shouldn't) trust automated recognition:
-// unsupported browser, denied mic, or repeated misfires. The user self-grades
-// instead of being hard-blocked — mirrors the Flashcard "knew it" pattern.
 function SelfReport({ exercise, ttsSupported, onListen, note, onResult }) {
   return (
     <div className="flex flex-col items-center gap-6 w-full max-w-sm">
-      <p className="text-lg font-medium text-gray-800 text-center">{exercise.prompt}</p>
-      <p className="text-2xl font-semibold text-primary-700 text-center">{exercise.target}</p>
+      <p className="text-lg font-bold text-slate-300 text-center">{exercise.prompt}</p>
+      <p className="text-3xl font-black text-cyan-300 text-center drop-shadow-[0_0_12px_rgba(6,182,212,0.4)]">{exercise.target}</p>
 
       {ttsSupported && (
         <div className="flex items-center gap-4">
           <button
             type="button"
             onClick={() => onListen()}
-            className="flex items-center gap-2 text-primary-600 font-medium"
+            className="flex items-center gap-2 text-cyan-400 font-bold hover:underline"
           >
             <Volume2 size={20} /> Listen
           </button>
-          <button type="button" onClick={() => onListen(SLOW_RATE)} className="text-sm text-gray-400 font-medium">
+          <button type="button" onClick={() => onListen(SLOW_RATE)} className="text-xs text-slate-400 font-medium">
             Slower
           </button>
         </div>
       )}
 
-      {note && <p className="text-sm text-gray-500 text-center">{note}</p>}
+      {note && <p className="text-xs text-slate-400 text-center">{note}</p>}
 
-      <p className="text-sm text-gray-600">Say it out loud, then let us know:</p>
+      <p className="text-xs text-slate-300">Say it out loud, then let us know:</p>
       <div className="flex gap-3 w-full">
         <Button variant="outline-danger" className="flex-1" onClick={() => onResult(false)}>
           Struggled

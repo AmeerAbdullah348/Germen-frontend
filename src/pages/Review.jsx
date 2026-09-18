@@ -1,3 +1,4 @@
+import { RefreshCw } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../components/ui/Button'
@@ -28,24 +29,31 @@ export default function Review() {
   const activeIds = groups[tab] ?? []
 
   return (
-    <div className="px-5 pt-8 flex flex-col gap-6 pb-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">Review Center</h1>
-        <p className="text-gray-500 text-sm">Your vocabulary, grouped by what needs attention.</p>
+    <div className="px-5 pt-8 flex flex-col gap-6 pb-8 text-slate-100">
+      <div className="flex flex-col gap-1">
+        <div className="flex items-center gap-2">
+          <div className="h-8 w-8 rounded-full bg-sky-500/20 border border-sky-400/30 text-sky-300 flex items-center justify-center">
+            <RefreshCw size={16} />
+          </div>
+          <h1 className="text-2xl font-bold tracking-tight text-white">Review Center</h1>
+        </div>
+        <p className="text-slate-400 text-xs">Your vocabulary, grouped by what needs attention.</p>
       </div>
 
       <Button onClick={() => navigate('/review/session')} disabled={groups.due.length === 0}>
         Quick Review{groups.due.length > 0 ? ` (${groups.due.length})` : ''}
       </Button>
 
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
         {TABS.map(({ key, label }) => (
           <button
             key={key}
             type="button"
             onClick={() => setTab(key)}
-            className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
-              tab === key ? 'bg-primary-600 text-white' : 'bg-white border border-gray-200 text-gray-600'
+            className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all cursor-pointer ${
+              tab === key
+                ? 'bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-[0_0_12px_rgba(14,165,233,0.4)]'
+                : 'bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white'
             }`}
           >
             {label} · {groups[key]?.length ?? 0}
@@ -53,9 +61,9 @@ export default function Review() {
         ))}
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2.5">
         {activeIds.length === 0 ? (
-          <p className="text-sm text-gray-400 text-center py-8">Nothing here right now.</p>
+          <p className="text-xs text-slate-400 text-center py-8">Nothing here right now.</p>
         ) : (
           activeIds.map((id) => {
             const word = wordsById[id]
@@ -63,11 +71,11 @@ export default function Review() {
             return (
               <div
                 key={id}
-                className="flex items-center justify-between rounded-xl bg-white border border-gray-200 px-4 py-3"
+                className="flex items-center justify-between rounded-xl bg-slate-900/80 border border-white/10 px-4 py-3 shadow-md"
               >
                 <div>
-                  <p className="font-medium text-gray-900">{word.de}</p>
-                  <p className="text-sm text-gray-500">{word.en}</p>
+                  <p className="font-bold text-white text-sm">{word.de}</p>
+                  <p className="text-xs text-slate-400">{word.en}</p>
                 </div>
               </div>
             )

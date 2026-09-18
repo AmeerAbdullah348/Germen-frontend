@@ -1,8 +1,5 @@
-// Shared card shell — consolidates the `rounded-2xl bg-white border
-// border-gray-200 shadow-sm` pattern that was duplicated across Dashboard,
-// Profile, and elsewhere. `padding` is a prop (not baked into `className`)
-// because Tailwind utility overrides via class-string concatenation aren't
-// reliable — callers that need different padding pass their own value.
+// Shared card shell — updated for dark royal design system
+// Consolidates rounded-2xl/3xl glassmorphic cards with subtle glowing borders across all screens.
 export default function Card({
   as: As = 'div',
   interactive = false,
@@ -14,11 +11,12 @@ export default function Card({
   ...props
 }) {
   const tone = disabled
-    ? 'bg-gray-50 border-gray-100'
-    : 'bg-white border-gray-200 shadow-sm'
+    ? 'bg-slate-900/40 border-white/5 opacity-60'
+    : 'bg-slate-900/80 border-white/10 shadow-xl shadow-black/40 text-slate-100 backdrop-blur-xl'
+
   const interactiveClasses =
     interactive && !disabled
-      ? 'hover:shadow-md hover:border-primary-200 active:scale-[0.99] transition-all'
+      ? 'hover:border-cyan-500/40 hover:shadow-[0_8px_30px_rgba(6,182,212,0.2)] active:scale-[0.99] transition-all cursor-pointer'
       : ''
 
   return (
@@ -26,10 +24,6 @@ export default function Card({
       className={['rounded-2xl border', tone, padding, interactiveClasses, className]
         .filter(Boolean)
         .join(' ')}
-      // `disabled` only worked as a styling flag before — the native
-      // attribute (works for as="button") and this onClick guard (works for
-      // every `as`, including Link, which ignores `disabled` entirely) are
-      // what actually stop a "locked" card from being clicked through.
       disabled={disabled}
       aria-disabled={disabled || undefined}
       onClick={disabled ? undefined : onClick}

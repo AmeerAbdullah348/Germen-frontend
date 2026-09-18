@@ -3,6 +3,7 @@ import {
   BookMarked,
   BookOpen,
   CheckCircle,
+  Flame,
   GraduationCap,
   Headphones,
   LibraryBig,
@@ -28,6 +29,7 @@ import { UNITS } from '../data/units'
 import { checkAndUnlockAchievements } from '../lib/achievements'
 import { getAnalytics, getWeeklyChartData } from '../lib/analytics'
 import { DAILY_CHALLENGE_BONUS_XP, isDailyChallengeDoneToday } from '../lib/dailyChallenge'
+import { getThemeForPath } from '../lib/designSystem'
 import { getLevelGroups } from '../lib/levels'
 import { getRecommendations } from '../lib/recommendations'
 import { checkAndNotify } from '../lib/reminders'
@@ -41,11 +43,6 @@ import {
   XP_PER_LEVEL_TOTAL,
 } from '../lib/progress'
 
-// Icon + subtitle for a recommendation card, keyed by the first path segment
-// of its route — covers every route getRecommendations() can produce
-// ('/review', '/grammar[...]', '/listening', '/speaking', '/writing',
-// '/reading', '/lesson/...'). Falls back to a generic icon/subtitle for any
-// future route this doesn't know about, so a new skill never breaks the UI.
 const REC_META = {
   review: { icon: RefreshCw, description: 'Catch up on spaced repetition' },
   grammar: { icon: BookOpen, description: 'Sharpen your grammar skills' },
@@ -91,22 +88,24 @@ function UnitCard({ unit, dueCount, locked, onClick }) {
       aria-disabled={locked || undefined}
       onClick={locked ? undefined : onClick}
       className={[
-        'text-left w-full rounded-2xl border p-4 flex items-center gap-3',
-        locked ? 'border-gray-100 bg-gray-50 cursor-not-allowed' : 'border-gray-200 bg-white active:scale-[0.99] transition-transform',
+        'text-left w-full rounded-2xl border p-4 flex items-center gap-3 transition-all',
+        locked
+          ? 'border-white/5 bg-slate-900/40 text-slate-500 cursor-not-allowed'
+          : 'border-white/10 bg-slate-900/80 backdrop-blur-xl shadow-lg hover:border-cyan-500/40 active:scale-[0.99]',
       ].join(' ')}
     >
       <div className="min-w-0 flex-1">
-        <p className={`font-semibold truncate ${locked ? 'text-gray-400' : 'text-black'}`}>{unit.title}</p>
-        <p className={`text-sm truncate ${locked ? 'text-gray-400' : 'text-gray-500'}`}>{unit.description}</p>
+        <p className={`font-bold truncate ${locked ? 'text-slate-500' : 'text-white'}`}>{unit.title}</p>
+        <p className={`text-xs mt-0.5 truncate ${locked ? 'text-slate-600' : 'text-slate-400'}`}>{unit.description}</p>
       </div>
       {locked ? (
-        <Lock className="shrink-0 text-gray-300" size={18} />
+        <Lock className="shrink-0 text-slate-600" size={18} />
       ) : dueCount > 0 ? (
-        <span className="shrink-0 bg-black text-white text-[11px] font-semibold px-2.5 py-1 rounded-full whitespace-nowrap">
+        <span className="shrink-0 bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 text-[11px] font-extrabold px-2.5 py-1 rounded-full whitespace-nowrap shadow-[0_0_10px_rgba(245,158,11,0.4)]">
           {dueCount} due
         </span>
       ) : (
-        <span className="shrink-0 h-8 w-8 rounded-full border border-gray-200 flex items-center justify-center text-black">
+        <span className="shrink-0 h-8 w-8 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-white">
           <ArrowRight size={14} />
         </span>
       )}
@@ -129,10 +128,6 @@ export default function Dashboard() {
   const weekActivity = useMemo(() => getWeeklyChartData(new Date()).map((d) => d.xp > 0), [])
   const challengeDone = isDailyChallengeDoneToday()
 
-  // Achievements are derived from progress rather than recorded directly, so
-  // check for newly-earned ones opportunistically whenever the Dashboard mounts.
-  // Reminders are similarly a once-per-session/day check, not tied to any
-  // specific action.
   useEffect(() => {
     checkAndUnlockAchievements()
     checkAndNotify()
@@ -145,21 +140,28 @@ export default function Dashboard() {
   }, [query])
 
   return (
-    <div className="min-h-full bg-white px-5 pt-8 flex flex-col gap-6 pb-6">
-      <div className="flex flex-col gap-2">
+    <div className="min-h-full px-5 pt-8 flex flex-col gap-6 pb-8">
+      {/* Top Header */}
+      <div className="flex items-start justify-between gap-3">
         <div className="flex flex-col gap-1">
-          <p className="text-xs font-semibold tracking-widest text-gray-400 uppercase">
+          <p className="text-xs font-bold tracking-widest text-cyan-400 uppercase">
             {getGreeting()}, {state.name}
           </p>
-          <h1 className="text-[26px] leading-tight font-bold tracking-tight text-black">Ready to practice?</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight text-white drop-shadow-sm">Ready to practice?</h1>
+          <SyncStatus />
         </div>
-        <SyncStatus />
+        <div className="shrink-0 flex items-center gap-1.5 bg-slate-900/90 border border-amber-500/40 text-amber-300 font-bold px-3 py-1.5 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.3)] backdrop-blur-md text-xs">
+          <Flame size={15} className="text-amber-400 fill-amber-400 animate-pulse" />
+          <span>{state.xp.toLocaleString()} XP</span>
+        </div>
       </div>
 
       <InstallBanner />
 
+      {/* Streak Hero Card */}
       <StreakCard streakCount={state.streak.count} weekActivity={weekActivity} />
 
+      {/* Quick Stats Trio */}
       <div className="flex gap-3">
         <StatBox value={analytics.sessionCount} label="Lessons" />
         <StatBox value={formatCompactTime(analytics.studyTimeMs)} label="Time" />
@@ -169,34 +171,41 @@ export default function Dashboard() {
         />
       </div>
 
+      {/* Level & Daily Goal Cards */}
       <div className="flex flex-col gap-3">
-        <div className="rounded-2xl border border-gray-200 p-4 flex flex-col gap-2">
+        <div className="rounded-2xl bg-slate-900/80 border border-white/10 p-4 flex flex-col gap-2.5 shadow-lg backdrop-blur-xl">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-semibold text-black">Level {level}</p>
-            <p className="text-xs text-gray-400">
+            <p className="text-sm font-bold text-white">Level {level}</p>
+            <p className="text-xs text-slate-400 font-medium">
               {xpIntoLevel}/{XP_PER_LEVEL_TOTAL} XP · {state.xp} total
             </p>
           </div>
-          <ProgressBar value={xpIntoLevel} max={XP_PER_LEVEL_TOTAL} colorClassName="bg-black" trackClassName="bg-gray-100" heightClassName="h-1.5" />
+          <ProgressBar value={xpIntoLevel} max={XP_PER_LEVEL_TOTAL} heightClassName="h-2" />
         </div>
 
-        <div className="rounded-2xl border border-gray-200 p-4 flex flex-col gap-2">
+        <div className="rounded-2xl bg-slate-900/80 border border-white/10 p-4 flex flex-col gap-2.5 shadow-lg backdrop-blur-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <Target size={15} className="text-black" />
-              <p className="text-sm font-semibold text-black">Daily Goal</p>
+              <Target size={16} className="text-cyan-400" />
+              <p className="text-sm font-bold text-white">Daily Goal</p>
             </div>
             <div className="flex items-center gap-1.5">
-              {dailyGoalPct >= 100 && <CheckCircle size={14} className="text-black" />}
-              <p className="text-xs text-gray-400">
+              {dailyGoalPct >= 100 && <CheckCircle size={15} className="text-emerald-400" />}
+              <p className="text-xs text-slate-400 font-medium">
                 {dailyXp}/{DAILY_XP_GOAL} XP
               </p>
             </div>
           </div>
-          <ProgressBar value={dailyXp} max={DAILY_XP_GOAL} colorClassName="bg-black" trackClassName="bg-gray-100" heightClassName="h-1.5" />
+          <ProgressBar
+            value={dailyXp}
+            max={DAILY_XP_GOAL}
+            colorClassName="bg-gradient-to-r from-emerald-400 to-teal-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"
+            heightClassName="h-2"
+          />
         </div>
       </div>
 
+      {/* Featured Cards */}
       <LearningCard
         icon={Zap}
         title="Daily Challenge"
@@ -204,6 +213,7 @@ export default function Dashboard() {
           challengeDone ? 'Completed — come back tomorrow' : `A short mixed session · +${DAILY_CHALLENGE_BONUS_XP} XP`
         }
         disabled={challengeDone}
+        theme={getThemeForPath('/daily-challenge')}
         onClick={() => navigate('/daily-challenge')}
       />
 
@@ -212,13 +222,14 @@ export default function Dashboard() {
           icon={GraduationCap}
           title="Find your level"
           description="Take a quick placement test to unlock the right content."
+          theme={getThemeForPath('/placement')}
           onClick={() => navigate('/placement')}
         />
       )}
 
       {recommendations.length > 0 && (
         <div className="flex flex-col gap-3">
-          <h2 className="text-lg font-bold text-black">Continue Learning</h2>
+          <h2 className="text-lg font-bold text-white">Continue Learning</h2>
           {recommendations.map((rec) => {
             const meta = getRecMeta(rec.to)
             return (
@@ -227,6 +238,7 @@ export default function Dashboard() {
                 icon={meta.icon}
                 title={rec.label}
                 description={meta.description}
+                theme={getThemeForPath(rec.to)}
                 onClick={() => navigate(rec.to)}
               />
             )
@@ -234,21 +246,22 @@ export default function Dashboard() {
         </div>
       )}
 
+      {/* Search Input */}
       <div className="relative">
-        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search a word or unit…"
-          className="w-full rounded-2xl bg-white border border-gray-200 pl-10 pr-9 py-3 text-sm text-black placeholder:text-gray-400 outline-none focus:border-black"
+          className="w-full rounded-2xl bg-slate-900/90 border border-white/10 pl-11 pr-10 py-3.5 text-sm text-white placeholder:text-slate-400 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 shadow-inner"
         />
         {query && (
           <button
             type="button"
             onClick={() => setQuery('')}
             aria-label="Clear search"
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black"
+            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
           >
             <X size={16} />
           </button>
@@ -257,7 +270,7 @@ export default function Dashboard() {
 
       {searchResults ? (
         <div className="flex flex-col gap-3">
-          <h2 className="text-lg font-bold text-black">
+          <h2 className="text-lg font-bold text-white">
             {searchResults.length > 0 ? `${searchResults.length} result${searchResults.length === 1 ? '' : 's'}` : 'No results'}
           </h2>
           {searchResults.map(({ unit, matchedWord }) => (
@@ -265,18 +278,18 @@ export default function Dashboard() {
               key={unit.id}
               type="button"
               onClick={() => navigate(`/lesson/${unit.id}`)}
-              className="text-left w-full rounded-2xl border border-gray-200 bg-white p-4 flex items-center gap-3 active:scale-[0.99] transition-transform"
+              className="text-left w-full rounded-2xl border border-white/10 bg-slate-900/80 backdrop-blur-xl p-4 flex items-center gap-3 active:scale-[0.99] transition-all"
             >
               <div className="min-w-0 flex-1">
-                <p className="font-semibold text-black truncate">{unit.title}</p>
+                <p className="font-bold text-white truncate">{unit.title}</p>
                 {matchedWord ? (
-                  <p className="text-sm text-gray-500 truncate">
-                    <span className="text-black font-semibold">{matchedWord.de}</span>
+                  <p className="text-xs text-slate-300 truncate mt-0.5">
+                    <span className="text-cyan-300 font-bold">{matchedWord.de}</span>
                     {' — '}
                     {matchedWord.en}
                   </p>
                 ) : (
-                  <p className="text-sm text-gray-500 truncate">{unit.description}</p>
+                  <p className="text-xs text-slate-400 truncate mt-0.5">{unit.description}</p>
                 )}
               </div>
             </button>
@@ -287,15 +300,15 @@ export default function Dashboard() {
           {levelGroups.map((group) => (
             <div key={group.level} className="flex flex-col gap-3">
               <div className="flex items-baseline gap-2">
-                <h2 className="text-lg font-bold text-black">
-                  {group.level} <span className="text-gray-400 font-normal">· {group.label}</span>
+                <h2 className="text-lg font-bold text-white">
+                  {group.level} <span className="text-slate-400 font-normal">· {group.label}</span>
                 </h2>
-                <span className="ml-auto text-xs font-semibold text-gray-400">
+                <span className="ml-auto text-xs font-semibold text-cyan-400">
                   {group.completedCount}/{group.totalCount} units
                 </span>
               </div>
               {!group.unlocked && (
-                <p className="text-xs text-gray-400 -mt-1.5">
+                <p className="text-xs text-slate-400 -mt-1.5">
                   Complete the previous level to unlock
                 </p>
               )}

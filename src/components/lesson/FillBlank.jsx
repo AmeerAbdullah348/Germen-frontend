@@ -26,13 +26,13 @@ export default function FillBlank({ exercise, onResult }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if (submitted || !value.trim()) return // guard: empty answer / double-submit
+    if (submitted || !value.trim()) return
     setSubmitted(true)
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-sm">
-      <p className="text-lg font-medium text-gray-800">{exercise.prompt}</p>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full max-w-sm">
+      <p className="text-xl font-extrabold text-white leading-snug drop-shadow-sm">{exercise.prompt}</p>
 
       <input
         ref={inputRef}
@@ -42,23 +42,23 @@ export default function FillBlank({ exercise, onResult }) {
         disabled={submitted}
         placeholder="Type your answer..."
         className={[
-          'rounded-xl border px-4 py-3 text-lg',
-          submitted && isCorrect && 'border-success bg-green-50',
-          submitted && !isCorrect && 'border-danger bg-red-50',
-          !submitted && 'border-gray-200',
+          'rounded-2xl border px-4.5 py-3.5 text-lg font-semibold text-white bg-slate-900/90 outline-none transition-all shadow-inner',
+          submitted && isCorrect && 'border-emerald-500/80 bg-emerald-500/20 text-emerald-200 shadow-[0_0_15px_rgba(16,185,129,0.3)]',
+          submitted && !isCorrect && 'border-rose-500/80 bg-rose-500/20 text-rose-200 shadow-[0_0_15px_rgba(244,63,94,0.3)]',
+          !submitted && 'border-white/10 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500',
         ]
           .filter(Boolean)
           .join(' ')}
       />
 
       {!submitted && (
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap justify-center">
           {SPECIAL_CHARS.map((char) => (
             <button
               key={char}
               type="button"
               onClick={() => insertChar(char)}
-              className="w-10 h-10 rounded-lg border border-gray-200 bg-white font-medium text-gray-700"
+              className="w-10 h-10 rounded-xl border border-white/10 bg-slate-900/80 font-bold text-white hover:bg-cyan-500/20 hover:border-cyan-400/40 transition-all cursor-pointer"
             >
               {char}
             </button>
@@ -67,8 +67,8 @@ export default function FillBlank({ exercise, onResult }) {
       )}
 
       {submitted && !isCorrect && (
-        <p className="text-sm text-gray-500">
-          Correct answer: <span className="font-medium text-gray-700">{Array.isArray(exercise.answer) ? exercise.answer[0] : exercise.answer}</span>
+        <p className="text-xs text-slate-400 font-medium">
+          Correct answer: <span className="font-bold text-emerald-400">{Array.isArray(exercise.answer) ? exercise.answer[0] : exercise.answer}</span>
         </p>
       )}
 

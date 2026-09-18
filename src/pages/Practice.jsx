@@ -4,6 +4,8 @@ import {
   BookMarked,
   BookOpen,
   CheckSquare,
+  ChevronRight,
+  Flame,
   GraduationCap,
   Headphones,
   LibraryBig,
@@ -16,7 +18,8 @@ import {
   Zap,
 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import Card from '../components/ui/Card'
+import { PRACTICE_THEMES } from '../lib/designSystem'
+import { getState } from '../lib/progress'
 
 const ENTRIES = [
   {
@@ -113,33 +116,82 @@ const ENTRIES = [
 
 export default function Practice() {
   const navigate = useNavigate()
+  const state = getState()
+  const userXp = state?.xp ?? 0
 
   return (
-    <div className="px-5 pt-8 flex flex-col gap-6 pb-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">Practice</h1>
-        <p className="text-gray-500 text-sm">Grammar, review, and everything beyond vocabulary lessons.</p>
+    <div className="px-5 pt-8 flex flex-col gap-6 pb-8">
+      {/* Header section mirroring abdu.png */}
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-col gap-1 min-w-0">
+          <h1 className="text-3xl font-bold tracking-tight text-white font-serif drop-shadow-md">Practice</h1>
+          <p className="text-slate-300 text-sm leading-snug">
+            Grammar, review, and everything beyond vocabulary lessons.
+          </p>
+        </div>
+        <div className="shrink-0 flex items-center gap-1.5 bg-slate-900/90 border border-amber-500/40 text-amber-300 font-bold px-3 py-1.5 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.3)] backdrop-blur-md text-xs tracking-wide">
+          <Flame size={15} className="text-amber-400 fill-amber-400 animate-pulse" />
+          <span>{userXp.toLocaleString()} XP</span>
+        </div>
       </div>
 
-      <div className="flex flex-col gap-3">
-        {ENTRIES.map(({ to, icon: Icon, title, description }) => (
-          <Card
-            key={to}
-            as="button"
-            type="button"
-            interactive
-            onClick={() => navigate(to)}
-            className="text-left flex items-center gap-3"
-          >
-            <div className="shrink-0 h-11 w-11 rounded-full bg-primary-50 flex items-center justify-center">
-              <Icon className="text-primary-500" size={22} />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="font-medium text-gray-900">{title}</p>
-              <p className="text-sm text-gray-500 truncate">{description}</p>
-            </div>
-          </Card>
-        ))}
+      {/* Vibrant Module Cards */}
+      <div className="flex flex-col gap-3.5">
+        {ENTRIES.map(({ to, icon: Icon, title, description }) => {
+          const theme = PRACTICE_THEMES[to] || {
+            gradient: 'bg-gradient-to-r from-blue-600 to-indigo-700',
+            glow: 'shadow-lg',
+            iconBg: 'bg-white/20 border border-white/30 text-white',
+            iconColor: 'text-white',
+          }
+
+          return (
+            <button
+              key={to}
+              type="button"
+              onClick={() => navigate(to)}
+              className={[
+                'text-left w-full rounded-3xl p-4.5 flex items-center gap-4 transition-all duration-200 active:scale-[0.98] border border-white/20',
+                theme.gradient,
+                theme.glow,
+              ].join(' ')}
+            >
+              {/* Glowing circular icon container */}
+              <div
+                className={`shrink-0 h-13 w-13 rounded-full flex items-center justify-center shadow-inner ${theme.iconBg}`}
+              >
+                <Icon size={24} className={theme.iconColor} />
+              </div>
+
+              {/* Title & description */}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <p className={`font-bold text-base tracking-tight ${theme.textColor || 'text-white'}`}>
+                    {title}
+                  </p>
+                  {theme.badge && (
+                    <span
+                      className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full ${
+                        theme.badgeStyle || 'bg-white/20 text-white border border-white/30'
+                      }`}
+                    >
+                      {theme.badge}
+                    </span>
+                  )}
+                </div>
+                <p className={`text-xs mt-0.5 truncate ${theme.subtitleColor || 'text-white/80'}`}>
+                  {description}
+                </p>
+              </div>
+
+              {/* Chevron arrow indicator */}
+              <ChevronRight
+                size={20}
+                className={`shrink-0 transition-transform ${theme.textColor || 'text-white/80'}`}
+              />
+            </button>
+          )
+        })}
       </div>
     </div>
   )

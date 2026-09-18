@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react'
 import ExerciseRunner from '../components/ExerciseRunner'
 import { UNITS_BY_ID } from '../data/units'
 import { useAuth } from '../lib/AuthContext'
@@ -14,9 +14,9 @@ export default function Lesson() {
 
   if (!unit) {
     return (
-      <div className="px-5 pt-8 flex flex-col gap-4 items-center text-center">
-        <p className="text-gray-600">This lesson couldn't be loaded.</p>
-        <Link to="/" className="text-primary-600 font-medium">
+      <div className="px-5 pt-8 flex flex-col gap-4 items-center justify-center text-center text-slate-100 min-h-svh bg-[#070b19]">
+        <p className="text-slate-400">This lesson couldn't be loaded.</p>
+        <Link to="/" className="text-cyan-400 font-bold hover:underline">
           Back to Dashboard
         </Link>
       </div>
@@ -24,9 +24,6 @@ export default function Lesson() {
   }
 
   function handleResult(exercise, isCorrect, userAnswer) {
-    // Local write is synchronous and always succeeds — the UI never waits on
-    // the network. The Supabase push below is fire-and-forget; if it fails
-    // (offline), progress.js already queued it for retry (see remoteSync.js).
     recordAnswer(exercise.wordId, isCorrect)
     if (!isCorrect) {
       recordMistake({

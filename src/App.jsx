@@ -47,19 +47,19 @@ function RequireUser({ children }) {
 
 function LoadingScreen() {
   return (
-    <div className="px-5 pt-8 flex flex-col gap-6 animate-pulse" aria-label="Loading your progress">
+    <div className="min-h-svh bg-[#070b19] px-5 pt-8 flex flex-col gap-6 animate-pulse" aria-label="Loading your progress">
       <div className="flex flex-col gap-2">
-        <div className="h-3 w-32 rounded bg-gray-200" />
-        <div className="h-6 w-40 rounded bg-gray-200" />
+        <div className="h-3 w-32 rounded bg-slate-800" />
+        <div className="h-6 w-40 rounded bg-slate-800" />
       </div>
       <div className="flex gap-3">
-        <div className="flex-1 h-16 rounded-2xl bg-gray-100" />
-        <div className="flex-1 h-16 rounded-2xl bg-gray-100" />
+        <div className="flex-1 h-16 rounded-2xl bg-slate-900 border border-white/5" />
+        <div className="flex-1 h-16 rounded-2xl bg-slate-900 border border-white/5" />
       </div>
-      <div className="h-16 rounded-2xl bg-gray-100" />
+      <div className="h-16 rounded-2xl bg-slate-900 border border-white/5" />
       <div className="flex flex-col gap-3">
-        <div className="h-5 w-24 rounded bg-gray-200" />
-        <div className="h-20 rounded-2xl bg-gray-100" />
+        <div className="h-5 w-24 rounded bg-slate-800" />
+        <div className="h-20 rounded-2xl bg-slate-900 border border-white/5" />
       </div>
     </div>
   )
